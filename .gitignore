@@ -9,3 +9,6 @@
 *.pdf
 *.zip
 
+# generated files from maven
+target/
+
