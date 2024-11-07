@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mini-Shopify Shopper Login Page</title>
+    <style>
+        /* Resetting margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(99, 236, 185, 1) 50%, rgba(0, 212, 255, 1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            width: 400px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .container h3 {
+            font-size: 1.8em;
+            color: #0066ff;
+            margin-bottom: 10px;
+        }
+
+        .container p {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            font-weight: bold;
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            background-color: #00d4ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #5d5fff;
+            transform: translateY(-3px);
+        }
+
+        .register-link {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .register-link a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Mini-Shopify Merchant Login</h3>
+        <p>Login to your account</p>
+        <form class="login-form" action="">
+            <label for="username_email">Username or Email:</label>
+            <input type="text" id="username_email" name="username_email" placeholder="example123 or email@example.com">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <button type="button" onclick="window.location.href='merchant_home.html'">Login</button>
+        </form>
+        <div class="register-link">
+            <p>Don't have a merchant account? <a href="merchant_register.html">Register here</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

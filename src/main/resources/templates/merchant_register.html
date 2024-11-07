@@ -42,14 +42,14 @@
             margin-bottom: 20px;
         }
 
-        .login-form label {
+        .registration-form label {
             font-weight: bold;
             display: block;
             text-align: left;
             margin: 10px 0 5px;
         }
 
-        .login-form input {
+        .registration-form input {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -58,7 +58,7 @@
             font-size: 1em;
         }
 
-        .login-form button {
+        .registration-form button {
             width: 100%;
             padding: 12px;
             font-size: 1.1em;
@@ -70,23 +70,23 @@
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
-        .login-form button:hover {
+        .registration-form button:hover {
             background-color: #5d5fff;
             transform: translateY(-3px);
         }
 
-        .register-link {
+        .login-link {
             margin-top: 20px;
             font-size: 0.9em;
             color: #333;
         }
 
-        .register-link a {
+        .login-link a {
             color: #0066ff;
             text-decoration: none;
         }
 
-        .register-link a:hover {
+        .login-link a:hover {
             text-decoration: underline;
         }
     </style>
@@ -94,19 +94,20 @@
 
 <body>
     <div class="container">
-        <h3>Mini-Shopify Merchant Login</h3>
-        <p>Login to your account</p>
-        <form class="login-form" action="">
+        <p>Create your account</p>
+        <form class="registration-form" action="">
             <label for="username_email">Username or Email:</label>
             <input type="text" id="username_email" name="username_email" placeholder="example123 or email@example.com">
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password">
 
-            <button type="submit">Login</button>
+            <button type="button" onclick="window.location.href='merchant_home.html'">Create Mini-Shopify
+                Account</button>
+
         </form>
-        <div class="register-link">
-            <p>Don't have a merchant account? <a href="">Register here</a></p>
+        <div class="login-link">
+            <p>Already have an account? <a href="merchant_login.html">Login here</a></p>
         </div>
     </div>
 </body>

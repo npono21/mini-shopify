@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Merchant Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .page-div {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .header-bar {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #333;
+            color: white;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #search-bar {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        #search-bar input[type="search"] {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            font-size: 1em;
+        }
+
+        #search-bar button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #5d5fff;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        #search-bar button:hover {
+            background-color: #333;
+        }
+
+        .main-page-div {
+            flex: 1;
+            display: flex;
+            background-color: #333;
+        }
+
+        .side-menu-div {
+            width: 250px;
+            background-color: #C0C0C0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+            border-top-left-radius: 15px;
+        }
+
+        .menu-item {
+            width: 100%;
+            padding: 5px 20px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: #5d5fff;
+            transform: translateX(4px);
+        }
+
+        .menu-item i {
+            margin-right: 15px;
+            font-size: 1.1em;
+            color: black;
+        }
+
+        .menu-item-label {
+            color: black;
+            font-size: 0.9em;
+        }
+
+        .settings-div {
+            margin-top: auto;
+            padding: 5px 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .settings-div:hover {
+            background-color: #5d5fff;
+        }
+
+        .settings-div i {
+            margin-right: 15px;
+            font-size: 1.1em;
+            color: black;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 40px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+            border-top-right-radius: 15px;
+        }
+
+        .content-area h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .content-area p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-div">
+        <div class="header-bar">
+            <form id="search-bar">
+                <input type="search" id="query" name="q" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="main-page-div">
+            <div class="side-menu-div">
+                <div class="menu-item">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <p class="menu-item-label">Home</p>
+                </div>
+                <div class="menu-item">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <p class="menu-item-label">Orders</p>
+                </div>
+                <div class="menu-item">
+                    <i class="fa fa-tags" aria-hidden="true"></i>
+                    <p class="menu-item-label">Products</p>
+                </div>
+                <div class="menu-item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <p class="menu-item-label">Customers</p>
+                </div>
+                <div class="menu-item">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                    <p class="menu-item-label">Content</p>
+                </div>
+                <div class="settings-div">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                    <p class="menu-item-label">Settings</p>
+                </div>
+            </div>
+            <div class="content-area">
+                <h1>Welcome to the Merchant Dashboard</h1>
+                <p>Here you can manage your orders, products, customers, and more. Use the side menu to navigate to
+                    different sections of the dashboard and stay on top of your business with ease.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
