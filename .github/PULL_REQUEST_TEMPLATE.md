@@ -15,11 +15,7 @@ A description of what this PR is, not how it does what it is supposed to do.
 <!--
 If this PR is related to a ticket/issue, include it here.
 For github issues the format is as follows: "closes #1234" which would automatically close the github issue
-For Jira, link the ticket.
 -->
-- Jira ticket:
-- Related Issue #
-- Closes #
 ## QA Instruction, Screenshots etc...
 <!--
 Information on how to run/test the changes in the PR.
@@ -33,6 +29,6 @@ Include expected/actual results here as well.
 
 ## PR Checklist
 
-- [ ] I have rebased this branch against develop/latest
+- [ ] I have rebased this branch against main
 - [ ] All the tests are passing
-- [ ] My commit messages are descriptive and usefull
+- [ ] My commit messages are descriptive and useful
