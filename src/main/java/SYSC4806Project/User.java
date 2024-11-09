@@ -1,13 +1,20 @@
 package SYSC4806Project;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 /**
  * A system user that can log in with username and password.
  */
 public abstract class User {
-    // private long id; // generate this
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String password;
 
+    public User() {};
     public User(String name, String password) {
         this.name = name;
         this.password = password;
@@ -16,6 +23,9 @@ public abstract class User {
     public boolean login(String username, String password) {
         return this.name.equals(username) && this.password.equals(password);
     }
+
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
 
     public String getName() {
         return name;
