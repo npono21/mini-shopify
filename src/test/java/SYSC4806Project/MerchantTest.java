@@ -24,7 +24,7 @@ class MerchantTest {
     @Test
     void createShop() {
         assertInstanceOf(Shop.class, m1.createShop("Arthur's Appliances", 123));
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> m1.createShop("Arthur's Appliances", 123));
+        assertThrows(IllegalArgumentException.class, () -> m1.createShop("Arthur's Appliances", 123));
     }
 
     @Test
