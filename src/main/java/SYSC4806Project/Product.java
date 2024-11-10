@@ -55,6 +55,22 @@ public class Product {
         this.tags = tags;
     }
 
+    public void addTag(Tag tag) {
+        if (!tags.contains(tag)) {
+            tags.add(tag);
+        }
+    }
+
+    public void removeTag(Tag tag) {
+        if (tags.contains(tag)) {
+            tags.remove(tag);
+        }
+    }
+
+    public void removeAllTags() {
+        tags.removeAll(tags);
+    }
+
     public List<Tag> getTags() {
         return tags;
     }
