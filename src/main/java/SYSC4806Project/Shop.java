@@ -74,6 +74,8 @@ public class Shop {
         return removed && inventory.removeProduct(product);
     }
 
+    // TODO: Guard against negative quantity when adding (this case
+    // to be covered by removeInventory())
     /**
      * If the product is offered for sale at the shop the specified quantity of the product is added to the inventory.
      * @param product type
