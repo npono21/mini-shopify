@@ -6,17 +6,16 @@ package SYSC4806Project;
  * Buyers can look for shops and find products. They have a cart that products can be put in until purchased.
  */
 public class Buyer extends User{
-    private final Main main;
     private final Cart cart = new Cart();
 
-    public Buyer(String name, String password, Main main) {
+    public Buyer(String name, String password) {
         super(name, password);
-        this.main = main;
     }
 
-    public Shop getShop(String shopName) {
+    /** public Shop getShop(String shopName) {
         return main.getShopByName(shopName);
     }
+    */
 
     private boolean addItemToCart(Product product) {
         return cart.addItem(product);
