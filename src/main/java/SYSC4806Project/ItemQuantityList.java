@@ -43,6 +43,7 @@ public class ItemQuantityList {
      */
     public boolean addItems(Product product, int quantity) {
 
+        // TODO: guard against adding negative quantity
         if (product == null || !this.contains(product)) {return false;}
         else {
             for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
