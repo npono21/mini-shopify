@@ -1,12 +1,12 @@
 package SYSC4806Project;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 /**
  * A system user that can log in with username and password.
  */
+@Entity
+@Table(name = "app_user")
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

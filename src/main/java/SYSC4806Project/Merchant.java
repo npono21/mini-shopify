@@ -24,6 +24,11 @@ public class Merchant extends User {
         super(name, password);
         this.shops = new ArrayList<>();
     }
+
+    /**
+     * Gets the shops of this merchant.
+     * @return shops, the list of shops.
+     */
     public List<Shop> getShops() {return this.shops;}
     /**
      * Adds a shop to the list of shop for this merchant.

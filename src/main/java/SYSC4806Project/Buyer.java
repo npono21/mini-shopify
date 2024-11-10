@@ -12,11 +12,6 @@ public class Buyer extends User{
         super(name, password);
     }
 
-    /** public Shop getShop(String shopName) {
-        return main.getShopByName(shopName);
-    }
-    */
-
     private boolean addItemToCart(Product product) {
         return cart.addItem(product);
     }

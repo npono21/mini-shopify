@@ -22,7 +22,9 @@ public class Shop {
     @ManyToOne(fetch = FetchType.LAZY)
     private Merchant merchant;
 
+    @OneToMany
     private final List<Product> productList = new ArrayList<>();
+    @OneToOne
     private final ItemQuantityList inventory = new ItemQuantityList();
 
     public Shop() {};
