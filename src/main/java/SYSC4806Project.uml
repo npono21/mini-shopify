@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>C:/Users/Rebecca/OneDrive - Carleton University/SYSC4806/mini-shopify/src/main/java/SYSC4806Project</OriginalElement>
+  <nodes>
+    <node x="596.0456067011794" y="801.5042113200326">SYSC4806Project.Product</node>
+    <node x="925.8589139932207" y="1072.5072017772602">SYSC4806Project.Tag</node>
+    <node x="304.7648300882472" y="1136.5441771092242">SYSC4806Project.Shop</node>
+    <node x="-179.87111456304808" y="1056.1977918202417">SYSC4806Project.Merchant</node>
+    <node x="857.1501131097568" y="827.9528506557499">SYSC4806Project.Cart</node>
+    <node x="310.9571768300251" y="632.6486337370434">SYSC4806Project.User</node>
+    <node x="1184.0690200035049" y="854.7921210189622">SYSC4806Project.MerchantController</node>
+    <node x="1157.8833845440872" y="1072.5072017772602">SYSC4806Project.ItemQuantityList</node>
+    <node x="582.5456067011794" y="628.9853421676085">SYSC4806Project.Controller</node>
+    <node x="853.6501131097568" y="652.9853421676085">SYSC4806Project.MerchantRepository</node>
+    <node x="241.7558016745826" y="960.018048798026">SYSC4806Project.Buyer</node>
+    <node x="1169.7546195183343" y="652.9853421676085">SYSC4806Project.ShopRepository</node>
+    <node x="657.8344434423539" y="1117.4050495851163">SYSC4806Project.ItemQuantityPair</node>
+    <node x="-47.50969131024732" y="834.8271020009744">SYSC4806Project.AccessingDataJpaApplication</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="SYSC4806Project.Merchant" target="SYSC4806Project.User" relationship="GENERALIZATION">
+      <point x="180.5001145630481" y="2.0817975826048496E-4" />
+      <point x="212.0" y="1159.6979999999999" />
+      <point x="212.0" y="942.518" />
+      <point x="422.957" y="942.518" />
+      <point x="-1.7683002511859058E-4" y="115.50036626295662" />
+    </edge>
+    <edge source="SYSC4806Project.Buyer" target="SYSC4806Project.User" relationship="GENERALIZATION">
+      <point x="-146.4998016745826" y="-4.8798026000440586E-5" />
+      <point x="212.0" y="1003.518" />
+      <point x="212.0" y="942.518" />
+      <point x="422.957" y="942.518" />
+      <point x="-1.7683002511859058E-4" y="115.50036626295662" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.7807250221043325" showDependencies="false" x="690.9660249150621" y="1071.780860702152" />
+  <SelectedNodes>
+    <node>SYSC4806Project.Buyer</node>
+    <node>SYSC4806Project.ItemQuantityList</node>
+    <node>SYSC4806Project.Product</node>
+    <node>SYSC4806Project.Cart</node>
+    <node>SYSC4806Project.AccessingDataJpaApplication</node>
+    <node>SYSC4806Project.Tag</node>
+    <node>SYSC4806Project.MerchantRepository</node>
+    <node>SYSC4806Project.Shop</node>
+    <node>SYSC4806Project.MerchantController</node>
+    <node>SYSC4806Project.Merchant</node>
+    <node>SYSC4806Project.ItemQuantityPair</node>
+    <node>SYSC4806Project.User</node>
+    <node>SYSC4806Project.Controller</node>
+    <node>SYSC4806Project.ShopRepository</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
