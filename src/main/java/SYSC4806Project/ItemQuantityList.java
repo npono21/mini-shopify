@@ -119,5 +119,40 @@ public class ItemQuantityList {
     }
 
 
+    public static class ItemQuantityPair {
+        Product product;
+        int quantity;
+
+        public ItemQuantityPair(Product product) {
+            this.product = product;
+            quantity = 0;
+        }
+
+        public ItemQuantityPair(Product product, int quantity) {
+            this.product = product;
+            this.quantity = quantity;
+        }
+
+        public Product getItem() {
+            return product;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            if (quantity < 0) {
+                System.out.println("Negative quantities are not permitted.");
+                return;
+            }
+            this.quantity = quantity;
+        }
+
+        @Override
+        public String toString() {
+            return "[product=" + product + ", quantity=" + quantity + "]";
+        }
+    }
 
 }
