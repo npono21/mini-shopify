@@ -5,10 +5,11 @@ SYSC 4806 A Project
 1. [Contributors](#contributors)
 1. [Description](#description)
 1. [Milestones](#milestones)
-1. [Procedures](#procedures)
 1. [Use Cases](#use-cases)
-1. [Resources](#resources)
+1. [Procedures](#procedures)
+1. [Diagrams](#diagrams)
 1. [Issues](#issues)
+1. [Kanban](#kanban)
 
 ## Contributors
 
@@ -21,11 +22,22 @@ SYSC 4806 A Project
 
 ## Description
 
+[Visit the Mini-Shopify web application!](https://sysc4806-minishopify-ergyb4hpcef7fufw.canadaeast-01.azurewebsites.net/)
+
 The Mini-Shopify project is a web application, developed using the Java Spring Boot framework, that provides a simple and easy forum for merchants and customers to interact in an online marketplace. Merchants are able to create one or more shops where they may list various products for purchase. Customers may browse merchant shops to view and purchase items, or they may rely on the site's various search mechanisms to help them find the products they want. Customers may add items to their cart from a vendor's shop, and initiate purchase of the items in their shop through a transaction.
 
 ## Milestones
+Project milestones.
 
-### Milestone 1
+### Milestone 1: Early Prototype (2024/11/11)
+#### Goals
+* [x] Project initialization and integration with Spring Boot
+* [x] Project Kanban board initialized
+* [x] GitHub Issues initialized
+* [x] Automated deployment to Azure via GitHub Actions
+* [x] Automated testing via GitHub Actions 
+* [x] Front-end and back-end connectivity
+* [x] At least one important use case implemented and functional
 
 #### Completed Use Cases
 1. Register a Merchant Account
@@ -35,11 +47,11 @@ The Mini-Shopify project is a web application, developed using the Java Spring B
 Use Cases for this project used to drive the design and implementation.
 
 ### Use Case 1: Register a Merchant Account
-Primary Actor: 
+* Primary Actor: 
     * New Merchant User
-Preconditions:
-    * None
-Steps:
+* Preconditions: 
+    * None 
+* Steps:
     1. In a browser, navigate to the [Mini-Shopify home page on Azure](https://sysc4806-minishopify-ergyb4hpcef7fufw.canadaeast-01.azurewebsites.net/).
     1. Click the __I am a Merchant Login__ Button.
     1. Click the __Register here__ button to begin the registration process.
@@ -48,15 +60,15 @@ Steps:
         * __Password__
     1. Click the __Create Mini-Shopify Account__ button to complete merchant registration.
     1. Peruse the merchant dashboard created for the merchant account.
-* Status:
+* Status: 
     * Implemented in Milestone 1
 
-### Use Case 1: Create a Shop
-Primary Actor: 
+### Use Case 2: Create a Shop
+* Primary Actor: 
     * Merchant User
-Preconditions:
+* Preconditions:
     * User has registered as a Merchant and is logged in to their account, as per Use Case 1 above.
-Steps:
+* Steps:
     1. From the merchant dashboard, click the __Create a Shop__ button.
     1. Complete the resultant form with the following fields:
         * __Shop Name__
@@ -65,8 +77,6 @@ Steps:
     1. View the shop icon created under the __My Shops__ section of the merchant dashboard.
 * Status:
     * Implemented in Milestone 1
-
-
 
 ## Procedures
 Relevant retrieval, build, and usage procedures for this project.
@@ -105,12 +115,26 @@ This project also takes advantages of the Continuous Deployment (CD) capabilitie
 Upon every successful merge to the repository's [mainline](https://github.com/npono21/mini-shopify/tree/main), the updated application is automatically deployed to [Azure](https://sysc4806-minishopify-ergyb4hpcef7fufw.canadaeast-01.azurewebsites.net/).
 The GitHub Actions Workflow for deployment is defined in the file `main_sysc4806-shopify.yml`, and may be actively monitored or later reviewed [here](https://github.com/npono21/mini-shopify/actions/workflows/main_sysc4806-minishopify.yml).
 
-### Continous Testing (CT)
+### Continuous Testing (CT)
 Unit and integration tests are automatically executed upon every mainline and feature branch _push_ to the remote repository as a GitHub Action. The Workflow for these tests are defined in the file `run-tests.yml`, and may be actively monitored or later reviewed [here](https://github.com/npono21/mini-shopify/actions/workflows/run-tests.yml).
+__N.B.__ If tests do _not_ pass on the project's mainline, this is because they are caused by known bugs tracked in our project's [GitHub Issues](https://github.com/npono21/mini-shopify/issues) and [Kanban](https://github.com/users/npono21/projects/2) board that are actively being worked on. 
+
+## Diagrams
+Design diagrams generated for this project.
+
+### UML Class Diagram
+The current UML class diagram for the project is visualized below:
+
+TODO
+
+### Database Schema
+The current relational database schema design for the project is visualized below:
+
+TODO
 
 
 ## Issues
+For a list of all issues, please refer to the [GitHub Issues](https://github.com/npono21/mini-shopify/issues) page on this project's repository.
 
-## Milestones
-
-## Resources
+## Kanban
+To view the Kanban board for this project, please refer to the [GitHub Kanban](https://github.com/users/npono21/projects/2) page on this project's repository.
