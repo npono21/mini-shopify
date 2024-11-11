@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Entity
 public class Merchant extends User {
-    private String name;
+
     @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
     private List<Shop> shops;
 
@@ -52,8 +52,8 @@ public class Merchant extends User {
      * @param accountNumber of the shop
      * @return created shop or null
      */
-    public Shop createShop(String name, int accountNumber) {
-        Shop shop = new Shop(name, accountNumber, this);
+    public Shop createShop(String name, String description, int accountNumber) {
+        Shop shop = new Shop(name, description, this);
         shops.add(shop);
         return shop;
     }
