@@ -19,19 +19,21 @@ public class Shop {
 
     private String name;
 
+    private String description;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Merchant merchant;
 
     @OneToMany
     private final List<Product> productList = new ArrayList<>();
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private final ItemQuantityList inventory = new ItemQuantityList();
 
     public Shop() {};
 
-    public Shop(String name, int accountNumber, Merchant merchant) {
+    public Shop(String name, String description, Merchant merchant) {
         this.name = name;
-        this.accountNumber = accountNumber;
+        this.description = description;
         this.merchant = merchant;
     }
 
@@ -41,6 +43,14 @@ public class Shop {
 
     public void setMerchant(Merchant merchant) {
         this.merchant = merchant;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     /**
