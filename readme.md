@@ -6,10 +6,11 @@ SYSC 4806 A Project
 1. [Description](#description)
 1. [Milestones](#milestones)
 1. [Use Cases](#use-cases)
-1. [Procedures](#procedures)
-1. [Diagrams](#diagrams)
+1. [CI/CD/CT](#cicdct)
 1. [Issues](#issues)
 1. [Kanban](#kanban)
+1. [Procedures](#procedures)
+1. [Diagrams](#diagrams)
 
 ## Contributors
 
@@ -78,29 +79,6 @@ Use Cases for this project used to drive the design and implementation.
 * Status:
     * Implemented in Milestone 1
 
-## Procedures
-Relevant retrieval, build, and usage procedures for this project.
-
-### Source Code Retrieval
-Retrieve this repository's source code through one of the following methods:
-* Clone using HTTPS:
-    - `git https://github.com/ArthurAtangana/SYSC3303A_Project.git` 
-* Clone using SSH:
-    - `git clone git@github.com:ArthurAtangana/SYSC3303A_Project.git`
-* Clone using GitHub CLI:
-    - `gh repo clone npono21/mini-shopify`
-* Download the `zip` archive from the [GitHub Repository](https://github.com/npono21/mini-shopify).
-
-### Building and Executing the Project Locally
-To build and execute the project locally in IntelliJ, select the `AccessingDataJpaApplication.java` class in the _Project_ browser, and select __Run__ (`SHIFT + F10`).
-
-### Running Unit and Integration Tests
-Unit and integration tests are automatically executed upon every mainline and feature branch _push_ to the remote repository as a GitHub Action; however, tests may also be run locally.
-If you wish to execute the entire suite of unit and integration tests locally under Maven, you may issue the following command from the project's root:
-```bash
-mvn -B test --file pom.xml
-```
-
 ## CI/CD/CT
 
 ### Continuous Integration (CI)
@@ -119,22 +97,45 @@ The GitHub Actions Workflow for deployment is defined in the file `main_sysc4806
 Unit and integration tests are automatically executed upon every mainline and feature branch _push_ to the remote repository as a GitHub Action. The Workflow for these tests are defined in the file `run-tests.yml`, and may be actively monitored or later reviewed [here](https://github.com/npono21/mini-shopify/actions/workflows/run-tests.yml).
 __N.B.__ If tests do _not_ pass on the project's mainline, this is because they are caused by known bugs tracked in our project's [GitHub Issues](https://github.com/npono21/mini-shopify/issues) and [Kanban](https://github.com/users/npono21/projects/2) board that are actively being worked on. 
 
-## Diagrams
-Design diagrams generated for this project.
-
-### UML Class Diagram
-The current UML class diagram for the project is visualized below:
-
-TODO
-
-### Database Schema
-The current relational database schema design for the project is visualized below:
-
-TODO
-
-
 ## Issues
 For a list of all issues, please refer to the [GitHub Issues](https://github.com/npono21/mini-shopify/issues) page on this project's repository.
 
 ## Kanban
 To view the Kanban board for this project, please refer to the [GitHub Kanban](https://github.com/users/npono21/projects/2) page on this project's repository.
+
+## Procedures
+Relevant retrieval, build, and usage procedures for this project.
+
+### Source Code Retrieval
+Retrieve this repository's source code through one of the following methods:
+* Clone using HTTPS:
+  - `git https://github.com/ArthurAtangana/SYSC3303A_Project.git`
+* Clone using SSH:
+  - `git clone git@github.com:ArthurAtangana/SYSC3303A_Project.git`
+* Clone using GitHub CLI:
+  - `gh repo clone npono21/mini-shopify`
+* Download the `zip` archive from the [GitHub Repository](https://github.com/npono21/mini-shopify).
+
+### Building and Executing the Project Locally
+To build and execute the project locally in IntelliJ, select the `AccessingDataJpaApplication.java` class in the _Project_ browser, and select __Run__ (`SHIFT + F10`).
+
+### Running Unit and Integration Tests
+Unit and integration tests are automatically executed upon every mainline and feature branch _push_ to the remote repository as a GitHub Action; however, tests may also be run locally.
+If you wish to execute the entire suite of unit and integration tests locally under Maven, you may issue the following command from the project's root:
+```bash
+mvn -B test --file pom.xml
+```
+
+
+## Diagrams
+Design diagrams generated for this project.
+
+### UML Class Diagram
+The current UML class diagram for the project is visualized below:
+![Milestone 1: UML Class Diagram](https://github.com/npono21/mini-shopify/blob/main/src/main/java/SYSC4806Project.png?raw=true)
+
+
+### Database Schema
+The current relational database schema design for the project is visualized below:
+![Milestone 1: Database Schema](https://github.com/npono21/mini-shopify/blob/e44040a775aa786d0ee9eebc4e75c0482096a111/src/main/java/db-schema-m01.png?raw=true)
+
