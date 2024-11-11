@@ -74,9 +74,13 @@ public class ItemQuantityList {
      * @return true if the quantity was removed
      */
     public boolean removeItems(Product product, int quantity) {
-        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
-            if (itemQuantityPair.getProduct().equals(product)) {
-                itemQuantityPair.setQuantity(quantity - itemQuantityPair.getQuantity());
+        for (ItemQuantityPair itemQuantityPair : this) {
+            if (itemQuantityPair.getItem().equals(product)) {
+                if (itemQuantityPair.quantity < quantity) {
+                    System.out.println("Attempted to remove more quantity than available. None were removed.");
+                    return false;
+                }
+                itemQuantityPair.setQuantity(itemQuantityPair.getQuantity() - quantity);
                 return true;
             }
         }
