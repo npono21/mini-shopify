@@ -22,6 +22,7 @@ public class ItemQuantityList {
 
     public ItemQuantityList() {}
 
+
     public ItemQuantityList(ArrayList<ItemQuantityPair> list) {
         this.itemQuantityPairs.addAll(list);
     }
@@ -41,6 +42,7 @@ public class ItemQuantityList {
      * @return true if the amount could be added
      */
     public boolean addItems(Product product, int quantity) {
+
         if (product == null || !this.contains(product)) {return false;}
         else {
             for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
@@ -59,8 +61,8 @@ public class ItemQuantityList {
      * @return true if the product was added
      */
     public boolean addProduct(Product product) {
-        if (product == null || !this.contains(product)) {return false;}
-        return this.itemQuantityPairs.add(new ItemQuantityPair(product));
+        if (product == null || this.contains(product)) {return false;}
+        return this.add(new ItemQuantityPair(product));
     }
 
     // TODO: if quantity to remove is greater than current quantity, none should be removed.
