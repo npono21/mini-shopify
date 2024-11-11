@@ -5,7 +5,7 @@
     <title>Mini-Shopify Merchant Login Page</title>
     <meta charset="UTF-8">
     <meta name="author" content="Nicholai Ponomarev">
-    <link rel="stylesheet" href="../static/css/merchant_login.css">
+    <link rel="stylesheet" href="/css/merchant_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -20,26 +20,26 @@
 </head>
 
 <body>
-    <div class="container">
-        <div id="go-back-div">
-            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-            <p>Go Back</p>
-        </div>
-        <h3>Mini-Shopify Merchant Login</h3>
-        <p>Login to your account</p>
-        <form class="login-form" action="">
-            <label for="username_email">Username or Email:</label>
-            <input type="text" id="username_email" name="username_email" placeholder="example123 or email@example.com">
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password">
-
-            <button type="button" onclick="window.location.href='merchant_home.html'">Login</button>
-        </form>
-        <div class="register-link">
-            <p>Don't have a merchant account? <a href="merchant_register.html">Register here</a></p>
-        </div>
+<div class="container">
+    <div id="go-back-div">
+        <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+        <p>Go Back</p>
     </div>
+    <h3>Mini-Shopify Merchant Login</h3>
+    <p>Login to your account</p>
+    <form class="login-form" action="">
+        <label for="username_email">Username or Email:</label>
+        <input type="text" id="username_email" name="username_email" placeholder="example123 or email@example.com">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+
+        <button type="button" onclick="window.location.href='/loginMerchant'">Login</button>
+    </form>
+    <div class="register-link">
+        <p>Don't have a merchant account? <a href="/registerMerchant">Register here</a></p>
+    </div>
+</div>
 </body>
 
 </html>

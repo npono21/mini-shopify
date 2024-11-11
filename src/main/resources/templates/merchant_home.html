@@ -5,7 +5,7 @@
     <title>Mini-Shopify Merchant Home</title>
     <meta charset="UTF-8">
     <meta name="author" content="Nicholai Ponomarev">
-    <link rel="stylesheet" href="../static/css/merchant_home.css">
+    <link rel="stylesheet" href="/css/merchant_home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -41,98 +41,98 @@
 </head>
 
 <body>
-    <div class="header-bar">
-        <img src="../static/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-        <form id="search-bar">
-            <input type="search" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
-        <div class="dropdown-account-menu">
-            <button onclick="toggleProfileMenuDropdown()" class="dropdown-account-button">
-                <i class="fa fa-user"></i> Account
-            </button>
-            <div class="dropdown-account-content">
-                <a href="#">Manage Account</a>
-                <a href="index.html">Logout</a>
-            </div>
+<div class="header-bar">
+    <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
+    <form id="search-bar">
+        <input type="search" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+    <div class="dropdown-account-menu">
+        <button onclick="toggleProfileMenuDropdown()" class="dropdown-account-button">
+            <i class="fa fa-user"></i> Account
+        </button>
+        <div class="dropdown-account-content">
+            <a href="#">Manage Account</a>
+            <a href="index.html">Logout</a>
         </div>
     </div>
-    <div class="main-content">
-        <aside class="side-menu">
-            <div class="menu-item"><i class="fa fa-home" aria-hidden="true"></i>
-                <p> Home</p>
+</div>
+<div class="main-content">
+    <aside class="side-menu">
+        <div class="menu-item"><i class="fa fa-home" aria-hidden="true"></i>
+            <p> Home</p>
+        </div>
+        <div class="menu-item"><i class="fa fa-shopping-cart"></i>
+            <p> Orders</p>
+        </div>
+        <div class="menu-item"><i class="fa fa-cog"></i>
+            <p> Settings</p>
+        </div>
+    </aside>
+    <main class="content-area">
+        <div class="page-title-div">
+            <div>
+                <h1 th:text="'Welcome to '+ ${merchant.name} + '\'s Dashboard'">Dashboard</h1>
+                <p>Manage your business activities, check orders, and stay on top of inventory and customer needs.
+                </p>
             </div>
-            <div class="menu-item"><i class="fa fa-shopping-cart"></i>
-                <p> Orders</p>
+            <button id="create-shop-button">Create a Shop</button>
+        </div>
+        <h1 style="margin-top: 20px;">My Shops</h1>
+        <section class="tiles-container">
+            <div class="tile">
+                <h2>Shop 1 Name</h2>
+                <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
             </div>
-            <div class="menu-item"><i class="fa fa-cog"></i>
-                <p> Settings</p>
+            <div class="tile">
+                <h2>Shop 2 Name</h2>
+                <img src="/images/miguel-sousa-hUBeoOI0TmA-unsplash.jpg" alt="Shop Stock Image 1">
             </div>
-        </aside>
-        <main class="content-area">
-            <div class="page-title-div">
-                <div>
-                    <h1>Welcome to the Merchant Dashboard</h1>
-                    <p>Manage your business activities, check orders, and stay on top of inventory and customer needs.
-                    </p>
-                </div>
-                <button id="create-shop-button">Create a Shop</button>
-            </div>
-            <h1 style="margin-top: 20px;">My Shops</h1>
-            <section class="tiles-container">
-                <div class="tile">
-                    <h2>Shop 1 Name</h2>
-                    <img src="../static/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
-                </div>
-                <div class="tile">
-                    <h2>Shop 2 Name</h2>
-                    <img src="../static/images/miguel-sousa-hUBeoOI0TmA-unsplash.jpg" alt="Shop Stock Image 1">
-                </div>
-            </section>
-        </main>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <form action="">
-                    <label for="select_shop_img">Select Shop Display Image:</label>
-                    <input type="file" id="select_shop_img" name="select_shop_img" accept="image/*">
-                    <label for="shop_name">Shop Name:</label><br>
-                    <input type="text" id="shop_name" name="shop_name"><br>
-                    <p><label for="shop_description">Shop Description:</label></p>
-                    <textarea id="shop_description" name="shop_description" rows="4" cols="50"></textarea>
-                    <br>
-                    <input type="submit" value="Create Shop">
-                </form>
-            </div>
-            <script>
-                // Get the modal
-                var modal = document.getElementById("myModal");
+        </section>
+    </main>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form th:action="@{/{id}/createShop(id=${merchant.id})}" method="post">
+                <label for="select_shop_img">Select Shop Display Image:</label>
+                <input type="file" id="select_shop_img" name="select_shop_img" accept="image/*">
+                <label for="shopName">Shop Name:</label><br>
+                <input type="text" id="shopName" name="shopName"><br>
+                <p><label for="shopDescription">Shop Description:</label></p>
+                <textarea id="shopDescription" name="shopDescription" rows="4" cols="50"></textarea>
+                <br>
+                <input type="submit" value="Create Shop">
+            </form>
+        </div>
+        <script>
+            // Get the modal
+            var modal = document.getElementById("myModal");
 
-                // Get the button that opens the modal
-                var btn = document.getElementById("create-shop-button");
+            // Get the button that opens the modal
+            var btn = document.getElementById("create-shop-button");
 
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
 
-                // When the user clicks the button, open the modal 
-                btn.onclick = function () {
-                    modal.style.display = "block";
-                }
+            // When the user clicks the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
 
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function () {
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
                     modal.style.display = "none";
                 }
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            </script>
-        </div>
+            }
+        </script>
     </div>
+</div>
 </body>
 
 </html>
