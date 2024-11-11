@@ -1,6 +1,6 @@
 package SYSC4806Project;
 
-import SYSC4806Project.ItemQuantityList.ItemQuantityPair;
+import SYSC4806Project.ItemQuantityPair;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

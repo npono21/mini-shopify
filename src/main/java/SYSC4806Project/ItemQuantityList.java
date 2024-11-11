@@ -63,7 +63,7 @@ public class ItemQuantityList {
      */
     public boolean addProduct(Product product) {
         if (product == null || this.contains(product)) {return false;}
-        return this.add(new ItemQuantityPair(product));
+        return this.itemQuantityPairs.add(new ItemQuantityPair(product));
     }
 
     // TODO: if quantity to remove is greater than current quantity, none should be removed.
@@ -74,8 +74,8 @@ public class ItemQuantityList {
      * @return true if the quantity was removed
      */
     public boolean removeItems(Product product, int quantity) {
-        for (ItemQuantityPair itemQuantityPair : this) {
-            if (itemQuantityPair.getItem().equals(product)) {
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            if (itemQuantityPair.getProduct().equals(product)) {
                 if (itemQuantityPair.quantity < quantity) {
                     System.out.println("Attempted to remove more quantity than available. None were removed.");
                     return false;
@@ -121,42 +121,4 @@ public class ItemQuantityList {
         // TODO: handle this better
         throw new RuntimeException("wasn't able to get product quantity");
     }
-
-
-    public static class ItemQuantityPair {
-        Product product;
-        int quantity;
-
-        public ItemQuantityPair(Product product) {
-            this.product = product;
-            quantity = 0;
-        }
-
-        public ItemQuantityPair(Product product, int quantity) {
-            this.product = product;
-            this.quantity = quantity;
-        }
-
-        public Product getItem() {
-            return product;
-        }
-
-        public int getQuantity() {
-            return quantity;
-        }
-
-        public void setQuantity(int quantity) {
-            if (quantity < 0) {
-                System.out.println("Negative quantities are not permitted.");
-                return;
-            }
-            this.quantity = quantity;
-        }
-
-        @Override
-        public String toString() {
-            return "[product=" + product + ", quantity=" + quantity + "]";
-        }
-    }
-
 }
