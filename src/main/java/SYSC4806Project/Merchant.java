@@ -1,5 +1,7 @@
 package SYSC4806Project;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,15 +10,31 @@ import java.util.List;
 /**
  * Merchants have a name and a list of shops they manage.
  */
+@Entity
 public class Merchant extends User {
-    private Main main;
     private String name;
-    private final List<Shop> shops = new ArrayList<>();
+    @OneToMany(mappedBy = "merchant", cascade = CascadeType.ALL)
+    private List<Shop> shops;
 
-    public Merchant(String name, String password, Main main) {
+    public Merchant() {
+        super();
+        this.shops = new ArrayList<>();}
+
+    public Merchant(String name, String password) {
         super(name, password);
-        this.main = main;
+        this.shops = new ArrayList<>();
     }
+
+    /**
+     * Gets the shops of this merchant.
+     * @return shops, the list of shops.
+     */
+    public List<Shop> getShops() {return this.shops;}
+    /**
+     * Adds a shop to the list of shop for this merchant.
+     * @param shop to be added to the list of shops.
+     */
+    public void addShop(Shop shop) {this.shops.add(shop);}
 
     /**
      * Remove a shop.
@@ -35,15 +53,11 @@ public class Merchant extends User {
      * @return created shop or null
      */
     public Shop createShop(String name, int accountNumber) {
-        if (main.getShopByName(name) != null) {
-            // TODO: handle this better
-            throw new IllegalArgumentException("Shop already exists");
-        }
         Shop shop = new Shop(name, accountNumber, this);
         shops.add(shop);
-        main.addShop(shop);
         return shop;
     }
+
 
     public boolean addProductToShop(Shop shop, Product product) {
         return shop.addProduct(product);
@@ -59,4 +73,5 @@ public class Merchant extends User {
         }
         return false;
     }
+
 }

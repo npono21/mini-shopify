@@ -1,5 +1,7 @@
 package SYSC4806Project;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,17 +11,35 @@ import java.util.List;
  * A Shop has a name and a merchant who runs it. It contains a list of products available to purchase and the quantities
  * available for each product. It has an account number that payments for products are sent to.
  */
+@Entity
 public class Shop {
-    // private final long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int accountNumber;
+
     private String name;
-    private final int accountNumber;
-    private final Merchant merchant;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Merchant merchant;
+
+    @OneToMany
     private final List<Product> productList = new ArrayList<>();
+    @OneToOne
     private final ItemQuantityList inventory = new ItemQuantityList();
+
+    public Shop() {};
 
     public Shop(String name, int accountNumber, Merchant merchant) {
         this.name = name;
         this.accountNumber = accountNumber;
+        this.merchant = merchant;
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
         this.merchant = merchant;
     }
 
