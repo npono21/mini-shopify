@@ -22,6 +22,7 @@ public class ItemQuantityList {
 
     public ItemQuantityList() {}
 
+
     public ItemQuantityList(ArrayList<ItemQuantityPair> list) {
         this.itemQuantityPairs.addAll(list);
     }
@@ -41,6 +42,8 @@ public class ItemQuantityList {
      * @return true if the amount could be added
      */
     public boolean addItems(Product product, int quantity) {
+
+        // TODO: guard against adding negative quantity
         if (product == null || !this.contains(product)) {return false;}
         else {
             for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
@@ -59,8 +62,8 @@ public class ItemQuantityList {
      * @return true if the product was added
      */
     public boolean addProduct(Product product) {
-        if (product == null || !this.contains(product)) {return false;}
-        return this.itemQuantityPairs.add(new ItemQuantityPair(product));
+        if (product == null || this.contains(product)) {return false;}
+        return this.add(new ItemQuantityPair(product));
     }
 
     // TODO: if quantity to remove is greater than current quantity, none should be removed.
@@ -71,9 +74,13 @@ public class ItemQuantityList {
      * @return true if the quantity was removed
      */
     public boolean removeItems(Product product, int quantity) {
-        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
-            if (itemQuantityPair.getProduct().equals(product)) {
-                itemQuantityPair.setQuantity(quantity - itemQuantityPair.getQuantity());
+        for (ItemQuantityPair itemQuantityPair : this) {
+            if (itemQuantityPair.getItem().equals(product)) {
+                if (itemQuantityPair.quantity < quantity) {
+                    System.out.println("Attempted to remove more quantity than available. None were removed.");
+                    return false;
+                }
+                itemQuantityPair.setQuantity(itemQuantityPair.getQuantity() - quantity);
                 return true;
             }
         }
@@ -116,5 +123,40 @@ public class ItemQuantityList {
     }
 
 
+    public static class ItemQuantityPair {
+        Product product;
+        int quantity;
+
+        public ItemQuantityPair(Product product) {
+            this.product = product;
+            quantity = 0;
+        }
+
+        public ItemQuantityPair(Product product, int quantity) {
+            this.product = product;
+            this.quantity = quantity;
+        }
+
+        public Product getItem() {
+            return product;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            if (quantity < 0) {
+                System.out.println("Negative quantities are not permitted.");
+                return;
+            }
+            this.quantity = quantity;
+        }
+
+        @Override
+        public String toString() {
+            return "[product=" + product + ", quantity=" + quantity + "]";
+        }
+    }
 
 }

@@ -14,6 +14,7 @@ public class Cart {
 
     public boolean addItem(Product product) {
         return addItems(product, 1);
+
     }
 
     public boolean addItems(Product product, int quantity) {
@@ -25,7 +26,7 @@ public class Cart {
     }
 
     public boolean removeItem(Product product) {
-        return items.removeProduct(product);
+        return removeItems(product, 1);
     }
 
     public boolean removeItems(Product product, int quantity) {
