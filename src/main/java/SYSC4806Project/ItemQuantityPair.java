@@ -47,6 +47,10 @@ public class ItemQuantityPair {
     }
 
     public void setQuantity(int quantity) {
+        if (quantity < 0){
+            System.out.println("Negative quantities are not permitted.");
+            return;
+        }
         this.quantity = quantity;
     }
 
