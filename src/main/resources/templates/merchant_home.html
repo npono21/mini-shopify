@@ -41,94 +41,92 @@
 </head>
 
 <body>
-<div class="header-bar">
-    <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-    <form id="search-bar">
-        <input type="search" placeholder="Search...">
-        <button type="submit">Search</button>
-    </form>
-    <div class="dropdown-account-menu">
-        <button onclick="toggleProfileMenuDropdown()" class="dropdown-account-button">
-            <i class="fa fa-user"></i> Account
-        </button>
-        <div class="dropdown-account-content">
-            <a href="#">Manage Account</a>
-            <a href="index.html">Logout</a>
+    <div class="header-bar">
+        <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
+        <form id="search-bar">
+            <input type="search" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+        <div class="dropdown-account-menu">
+            <button onclick="toggleProfileMenuDropdown()" class="dropdown-account-button">
+                <i class="fa fa-user"></i> Account
+            </button>
+            <div class="dropdown-account-content">
+                <a href="#">Manage Account</a>
+                <a href="index.html">Logout</a>
+            </div>
         </div>
     </div>
-</div>
-<div class="main-content">
-    <aside class="side-menu">
-        <div class="menu-item"><i class="fa fa-home" aria-hidden="true"></i>
-            <p> Home</p>
-        </div>
-        <div class="menu-item"><i class="fa fa-shopping-cart"></i>
-            <p> Orders</p>
-        </div>
-        <div class="menu-item"><i class="fa fa-cog"></i>
-            <p> Settings</p>
-        </div>
-    </aside>
-    <main class="content-area">
-        <div class="page-title-div">
-            <div>
-                <h1 th:text="'Welcome to '+ ${merchant.name} + '\'s Dashboard'">Dashboard</h1>
-                <p>Manage your business activities, check orders, and stay on top of inventory and customer needs.
-                </p>
+    <div class="main-content">
+        <aside class="side-menu">
+            <div class="menu-item"><i class="fa fa-home" aria-hidden="true"></i>
+                <p> Home</p>
             </div>
-            <button id="create-shop-button">Create a Shop</button>
-        </div>
-        <h1 style="margin-top: 20px;">My Shops</h1>
-        <section class="tiles-container">
-            <div class="tile" th:each="shop : ${merchant.shops}">
-                <h2 th:text="${shop.name}">Shop name</h2>
-                <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+            <div class="menu-item"><i class="fa fa-shopping-cart"></i>
+                <p> Orders</p>
             </div>
-        </section>
-    </main>
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <form th:action="@{/{id}/createShop(id=${merchant.id})}" method="post">
-                <label for="select_shop_img">Select Shop Display Image:</label>
-                <input type="file" id="select_shop_img" name="select_shop_img" accept="image/*">
-                <label for="shopName">Shop Name:</label><br>
-                <input type="text" id="shopName" name="shopName"><br>
-                <p><label for="shopDescription">Shop Description:</label></p>
-                <textarea id="shopDescription" name="shopDescription" rows="4" cols="50"></textarea>
-                <br>
-                <input type="submit" value="Create Shop">
-            </form>
-        </div>
-        <script>
-            // Get the modal
-            var modal = document.getElementById("myModal");
+            <div class="menu-item"><i class="fa fa-cog"></i>
+                <p> Settings</p>
+            </div>
+        </aside>
+        <main class="content-area">
+            <div class="page-title-div">
+                <div>
+                    <h1 th:text="'Welcome to '+ ${merchant.name} + '\'s Dashboard'">Dashboard</h1>
+                    <p>Manage your business activities, check orders, and stay on top of inventory and customer needs.
+                    </p>
+                </div>
+                <button id="create-shop-button">Create a Shop</button>
+            </div>
+            <h1 style="margin-top: 20px;">My Shops</h1>
+            <section class="tiles-container">
+                <div class="tile" th:each="shop : ${merchant.shops}">
+                    <h2 th:text="${shop.name}">Shop name</h2>
+                    <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+                </div>
+            </section>
+        </main>
+        <div id="create-shop-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form th:action="@{/{id}/createShop(id=${merchant.id})}" method="post">
+                    <label for="select_shop_img">Select Shop Display Image:</label>
+                    <input type="file" id="select_shop_img" name="select_shop_img" accept="image/*">
+                    <label for="shopName">Shop Name:</label><br>
+                    <input type="text" id="shopName" name="shopName"><br>
+                    <p><label for="shopDescription">Shop Description:</label></p>
+                    <textarea id="shopDescription" name="shopDescription" rows="4" cols="50"></textarea>
+                    <br>
+                    <input type="submit" value="Create Shop">
+                </form>
+            </div>
+            <script>
+                var create_shop_modal = document.getElementById("create-shop-modal");
+                var create_shop_btn = document.getElementById("create-shop-button");
 
-            // Get the button that opens the modal
-            var btn = document.getElementById("create-shop-button");
+                // Get the <span> element that closes the modal, this is the (x)
+                // We need to get the [0] because getElementsByClassName returns a collection of HTML element
+                var close_modal_span = document.getElementsByClassName("close")[0];
 
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+                // When the user clicks the button, open the modal
+                create_shop_btn.onclick = function () {
+                    create_shop_modal.style.display = "block";
                 }
-            }
-        </script>
+
+                // When the user clicks on <span> (x), close the modal
+                close_modal_span.onclick = function () {
+                    create_shop_modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == create_shop_modal) {
+                        create_shop_modal.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
     </div>
-</div>
 </body>
 
 </html>
