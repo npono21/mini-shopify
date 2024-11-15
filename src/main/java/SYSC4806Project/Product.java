@@ -17,12 +17,23 @@ public class Product {
     private Long id;
     private String name;
     private double price;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<Tag> tags = new ArrayList<>();
+    private String imagePath;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Shop shop;
 
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
+        imagePath = "/images/Mini-Shopify Logo.png";
+    }
+    public Product(String name, double price, String imagePath, Shop shop) {
+        this.name = name;
+        this.price = price;
+        this.imagePath = imagePath;
+        this.shop = shop;
     }
 
     public Product() {}
@@ -75,9 +86,21 @@ public class Product {
         return tags;
     }
 
+    public int getShopInventoryForProduct() {
+        return shop.checkProductInventory(this);
+    }
+
+
+    public Shop getShop() {
+        return shop;
+    }
+
     @Override
     public String toString() {
         return "Product [name=" + name + ", price=" + price + ", tags=" + tags + "]";
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
 }

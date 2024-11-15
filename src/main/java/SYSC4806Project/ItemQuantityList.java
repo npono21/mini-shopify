@@ -1,23 +1,21 @@
 package SYSC4806Project;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-
-// TODO: protect against negative quantities
 
 /**
  * Lists Products and a quantity for each. Products must be unique by name and quantities must be non-negative.
  */
 @Entity
-public class ItemQuantityList {
+public class ItemQuantityList implements Iterable<ItemQuantityPair> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private final List<ItemQuantityPair> itemQuantityPairs = new ArrayList<>();
 
     public ItemQuantityList() {}
@@ -37,14 +35,23 @@ public class ItemQuantityList {
 
     /**
      * Adds a quantity of a product to a list only if that product is in the list.
+     * @param productId type
+     * @param quantity to add
+     * @return true if the amount could be added
+     */
+    public boolean addItems(Long productId, int quantity) {
+        Product product = this.getProductById(productId);
+        return addItems(product, quantity);
+    }
+
+    /**
+     * Adds a quantity of a product to a list only if that product is in the list.
      * @param product type
      * @param quantity to add
      * @return true if the amount could be added
      */
     public boolean addItems(Product product, int quantity) {
-
-        // TODO: guard against adding negative quantity
-        if (product == null || !this.contains(product)) {return false;}
+        if (product == null || quantity < 0) {return false;}
         else {
             for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
                 if (itemQuantityPair.getProduct().equals(product)) {
@@ -66,7 +73,6 @@ public class ItemQuantityList {
         return this.itemQuantityPairs.add(new ItemQuantityPair(product));
     }
 
-    // TODO: if quantity to remove is greater than current quantity, none should be removed.
     /**
      * Removes a quantity of a produce if the product is in the list and has at least that quantity already.
      * @param product type
@@ -74,8 +80,19 @@ public class ItemQuantityList {
      * @return true if the quantity was removed
      */
     public boolean removeItems(Product product, int quantity) {
+        if (product == null) return false;
+        return removeItems(product.getId(), quantity);
+    }
+
+    /**
+     * Removes a quantity of a product if the id is in the list and has at least that quantity already.
+     * @param id of the product
+     * @param quantity to remove
+     * @return true if the quantity was removed
+     */
+    public boolean removeItems(Long id, int quantity) {
         for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
-            if (itemQuantityPair.getProduct().equals(product)) {
+            if (itemQuantityPair.getProduct().getId().equals(id)) {
                 if (itemQuantityPair.quantity < quantity) {
                     System.out.println("Attempted to remove more quantity than available. None were removed.");
                     return false;
@@ -93,8 +110,18 @@ public class ItemQuantityList {
      * @return true if the product was in the list and was removed
      */
     public boolean removeProduct(Product product) {
+        if (product == null) return false;
+        return removeProduct(product.getId());
+    }
+
+    /**
+     * Removes the product type from the list.
+     * @param id of the product
+     * @return true if the id was in the list and was removed
+     */
+    public boolean removeProduct(Long id) {
         for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
-            if (itemQuantityPair.getProduct().equals(product)) {
+            if (itemQuantityPair.getProduct().getId().equals(id)) {
                 this.itemQuantityPairs.remove(itemQuantityPair);
                 return true;
             }
@@ -111,14 +138,62 @@ public class ItemQuantityList {
         return false;
     }
 
-    public int getItemQuantity(Product product) {
+    public int getItemQuantity(Long id) {
         for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
-            if (itemQuantityPair.getProduct().equals(product)) {
+            if (itemQuantityPair.getProduct().getId().equals(id)) {
                 return itemQuantityPair.getQuantity();
             }
         }
 
         // TODO: handle this better
         throw new RuntimeException("wasn't able to get product quantity");
+    }
+
+    public int getItemQuantity(Product product) {
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            if (itemQuantityPair.getProduct().equals(product)) {
+                return itemQuantityPair.getQuantity();
+            }
+        }
+        return -1; // Product not in list
+    }
+
+    public Product getProductById(Long id) {
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            if (itemQuantityPair.getProduct().getId().equals(id)) {
+                return itemQuantityPair.getProduct();
+            }
+        }
+        return null;
+    }
+
+    public double getTotalProductCost(Long id) {
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            if (itemQuantityPair.getProduct().getId().equals(id)) {
+                return itemQuantityPair.getTotalCost();
+            }
+        }
+        throw new RuntimeException("wasn't able to get total cost");
+    }
+
+    public void removeAll() {
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            itemQuantityPairs.remove(itemQuantityPair);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return itemQuantityPairs.toString();
+    }
+
+    /**
+     * Returns an iterator over elements of type {@code T}.
+     *
+     * @return an Iterator.
+     */
+    @Override
+    public Iterator<ItemQuantityPair> iterator() {
+        return itemQuantityPairs.iterator();
     }
 }
