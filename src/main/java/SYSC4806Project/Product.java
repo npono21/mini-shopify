@@ -36,6 +36,14 @@ public class Product {
         this.shop = shop;
     }
 
+
+    public Product(String name, double price, Shop shop) {
+        this.name = name;
+        this.price = price;
+        this.imagePath = imagePath;
+        this.shop = shop;
+    }
+
     public Product() {}
 
     public void setId(Long id) {
@@ -54,7 +62,7 @@ public class Product {
         return name;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

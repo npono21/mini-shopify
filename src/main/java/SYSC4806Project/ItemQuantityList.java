@@ -91,6 +91,7 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
      * @return true if the quantity was removed
      */
     public boolean removeItems(Long id, int quantity) {
+        if (id == null) return false;
         for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
             if (itemQuantityPair.getProduct().getId().equals(id)) {
                 if (itemQuantityPair.quantity < quantity) {
@@ -159,8 +160,19 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
     }
 
     public Product getProductById(Long id) {
+        if (id == null) return null;
         for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
             if (itemQuantityPair.getProduct().getId().equals(id)) {
+                return itemQuantityPair.getProduct();
+            }
+        }
+        return null;
+    }
+
+    public Product getProductByName(String name) {
+        if (name == null) return null;
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            if (itemQuantityPair.getProduct().getName().equals(name)) {
                 return itemQuantityPair.getProduct();
             }
         }
@@ -185,6 +197,10 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
     @Override
     public String toString() {
         return itemQuantityPairs.toString();
+    }
+
+    public int size() {
+        return itemQuantityPairs.size();
     }
 
     /**

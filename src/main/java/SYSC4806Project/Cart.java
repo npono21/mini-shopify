@@ -29,8 +29,9 @@ public class Cart {
     }
 
     public boolean addItem(Product product) {
+        if (product == null) return false;
         items.addProduct(product); // make sure the product type is in the list
-        return addItem(product.getId());
+        return addItems(product, 1);
     }
 
     public boolean addItem(Long productId) {
@@ -47,6 +48,7 @@ public class Cart {
     }
 
     public boolean addItems(Product product, int quantity) throws RuntimeException {
+        if (product == null) return false;
         boolean productInCart = items.contains(product);
         int quantityInCart = items.getItemQuantity(product);
         if (quantity + ((quantityInCart == -1) ? 0 : quantityInCart) > product.getShopInventoryForProduct()) {
@@ -62,10 +64,12 @@ public class Cart {
     }
 
     public boolean removeItem(Long productId) {
+        if (productId == null) return false;
         return removeItems(productId, 1);
     }
 
     public boolean removeItems(Long productId, int quantity) {
+        if (productId == null) return false;
         Product product = items.getProductById(productId);
         if (product == null) {
             return false;
@@ -74,6 +78,7 @@ public class Cart {
     }
 
     public boolean removeItems(Product product, int quantity) {
+        if (product == null) return false;
         boolean removed = items.removeItems(product, quantity);
         if (removed) {
             runningTotal -= product.getPrice() * quantity;
