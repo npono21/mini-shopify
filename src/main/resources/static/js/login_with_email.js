@@ -4,11 +4,10 @@ function toggleEmailForm() {
   const emailLoginButton = document.getElementsByClassName("login-button");
   const socialLoginDiv = document.getElementsByClassName("social-login-div");
 
-  if (
-    emailLoginFormDiv.style.display === "none" ||
-    emailLoginFormDiv.style.display === ""
-  ) {
-    // Show the form and hide the button
+  const isHidden = getComputedStyle(emailLoginFormDiv).display === "none";
+
+  if (isHidden) {
+    // Show the form and hide other elements
     emailLoginFormDiv.style.display = "flex";
     if (emailLoginButton.length > 0) {
       emailLoginButton[0].style.display = "none";
@@ -16,10 +15,12 @@ function toggleEmailForm() {
       goBackIconDiv.style.display = "none";
     }
   } else {
-    // Hide the form and show the button
+    // Hide the form and show other elements
     emailLoginFormDiv.style.display = "none";
     if (emailLoginButton.length > 0) {
-      emailLoginButton[0].style.display = "inline";
+      emailLoginButton[0].style.display = "block";
+      socialLoginDiv[0].style.display = "flex";
+      goBackIconDiv.style.display = "block";
     }
   }
 }

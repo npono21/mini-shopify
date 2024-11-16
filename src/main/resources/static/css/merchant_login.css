@@ -58,32 +58,37 @@ body {
   padding-top: 10px;
 }
 
-.social-login-div .login-button {
+button {
+  background-color: #0039a6;
   border-radius: 8px;
-  background-color: #1e1e1e;
-  color: white;
-  font-size: 0.9em;
-  flex: 1;
+  border-width: 0;
+  height: 40px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 15px;
 }
 
-.social-login-div .login-button:hover {
-  box-shadow: 0 0 6px #ccc;
-  background-color: #333;
+button:hover {
+  box-shadow: rgba(0, 1, 0, 0.2) 0 2px 8px;
+  opacity: 0.85;
 }
 
-.login-button {
-  border: none;
-  padding: 12px;
+.social-login-div button {
+  background-color: #0039a6;
   border-radius: 8px;
-  background-color: #0078d7;
-  color: white;
-  font-size: 1em;
-  font-weight: 600;
-  cursor: pointer;
+  border-width: 0;
+  height: 40px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 15px;
+  width: 100%;
 }
 
-.login-button:hover {
-  background-color: #005bb5;
+.social-login-div button:hover {
+  box-shadow: rgba(0, 1, 0, 0.2) 0 2px 8px;
+  opacity: 0.85;
 }
 
 .register-link {
@@ -120,60 +125,49 @@ a:hover {
 
 #email-login-div {
   display: none;
-  width: 100%;
-  text-align: left;
-  gap: 1rem;
-}
-
-form {
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-}
-
-.form_row_div {
-  display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+}
+
+.label-forgot-password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align the label and link properly */
 }
 
 label {
-  font-size: 0.9rem;
-  font-weight: 500;
+  float: left;
 }
 
-input {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 0.9rem;
+.form-input-div {
+  height: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
   width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-input::placeholder {
-  color: #777;
-}
-
-input:focus {
-  outline: none;
-  border-color: #3ea6ff;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #0078d7;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
+input[type="submit"] {
+  background-color: #0039a6;
   border-radius: 8px;
-  cursor: pointer;
+  border-width: 0;
+  height: 40px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 15px;
+  width: 100%;
+  margin-top: 5%;
 }
 
-button:hover {
-  background-color: #005bb5;
+input[type="submit"]:hover {
+  box-shadow: rgba(0, 1, 0, 0.2) 0 2px 8px;
+  opacity: 0.85;
 }

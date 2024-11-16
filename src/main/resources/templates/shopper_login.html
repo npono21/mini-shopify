@@ -1,35 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Mini-Shopify Shopper Login Page</title>
     <meta charset="UTF-8">
     <meta name="author" content="Nicholai Ponomarev">
-    <link rel="stylesheet" href="../static/css/shopper_login.css">
+    <link rel="stylesheet" href="/css/merchant_login.css">
+    <link rel="stylesheet" href="../static/css/merchant_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="/js/go_back_arrow.js"></script>
+    <script src="/js/go_back_arrow.js" defer></script>
+    <script src="../static/js/login_with_email.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <div class="page-title-div">
+        <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" width="150" height="150">
+        <h3>Bring your ideas to life for FREE!</h3>
+        <p>The future of business is yours to shape</p>
+    </div>
     <div class="container">
         <div id="go-back-div">
-            <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-            <p>Go Back</p>
+            <i class="fa fa-chevron-circle-left" id="go-back-arrow" aria-hidden="true"></i>
         </div>
-        <h3>Mini-Shopify Shopper Login</h3>
-        <p>Login to your account</p>
-        <form class="login-form" action="">
-            <label for="username_email">Username or Email:</label>
-            <input type="text" id="username_email" name="username_email" placeholder="example123 or email@example.com">
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password">
-
-            <button type="submit">Login</button>
-        </form>
+        <div class="login-button-div">
+            <button class="login-button" onclick="toggleEmailForm()">Login with email</button>
+            <div class="social-login-div">
+                <button class="login-button">Login with Google</button>
+                <div class="divider"></div>
+                <button class="login-button">Login with Microsoft</button>
+            </div>
+        </div>
+        <div id="email-login-div">
+            <form action="">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email">
+                <div class="form-input-div"></div>
+                <div class="label-forgot-password">
+                    <label for="password">Password</label>
+                    <a href="">Forgot Password?</a>
+                </div>
+                <input type="password" id="password" name="password">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
         <div class="register-link">
-            <p>Don't have a shopper account? <a href="">Register here</a></p>
+            <p>Don't have a shopper account? <a href="/registerShopper">Register here</a></p>
         </div>
     </div>
 </body>
