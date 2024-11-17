@@ -12,6 +12,9 @@ public class MerchantController {
     @Autowired
     MerchantRepository merchantRepository;
 
+    @Autowired
+    ShopRepository shopRepository;
+
     @PostMapping("/createMerchant")
     public String createMerchant(@RequestParam String username, @RequestParam String password, Model model) {
         Merchant merchant = new Merchant(username, password);
@@ -20,7 +23,7 @@ public class MerchantController {
         return "redirect:/" + merchant.getId();
     }
     @GetMapping("/{merchantId}")
-    public String getMerchant(@PathVariable Long merchantId, Model model) {
+    public String showMerchantHome(@PathVariable Long merchantId, Model model) {
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
         if (merchant.isPresent()) {
             model.addAttribute("merchant", merchant.get());
@@ -37,7 +40,50 @@ public class MerchantController {
             Shop shop = new Shop(shopName,shopDescription,merchant.get());
             merchant.get().addShop(shop);
             merchantRepository.save(merchant.get());
+            model.addAttribute("shop", shop);
             return "redirect:/" + merchant.get().getId();
+        }
+        else {
+            return "error";
+        }
+    }
+    @GetMapping("/home/{merchantId}/{shopId}")
+    public String showShopHome(@PathVariable Long merchantId, @PathVariable Long shopId, Model model) {
+        Optional<Shop> shop = shopRepository.findByIdAndMerchantId(shopId, merchantId);
+        Optional<Merchant> merchant = merchantRepository.findById(merchantId);
+        if (shop.isPresent() && merchant.isPresent()) {
+            model.addAttribute("shop", shop.get());
+            model.addAttribute("merchant", merchant.get());
+            return "shop_home";
+        }
+        else {
+            return "error";
+        }
+    }
+    @PostMapping("/home/{merchantId}/{shopId}/addProduct")
+    public String addProduct(@PathVariable Long merchantId,
+                             @PathVariable Long shopId,
+                             @RequestParam String productName,
+                             @RequestParam String productDescription,
+                             @RequestParam double productPrice,
+                             @RequestParam int quantity,
+                             Model model) {
+
+        Optional<Shop> shop = shopRepository.findByIdAndMerchantId(shopId, merchantId);
+        Optional<Merchant> merchant = merchantRepository.findById(merchantId);
+        if (shop.isPresent() && merchant.isPresent()) {
+            for (Product product: shop.get().getProducts()){
+                if (product.getName().equals(productName)){
+                    return "product-name-already-exists";
+                }
+            }
+            Product product = new Product(productName, productDescription, productPrice);
+            shop.get().addToInventory(product, quantity);
+            shop.get().addProduct(product);
+            shopRepository.save(shop.get());
+            model.addAttribute("shop", shop.get());
+            model.addAttribute("merchant", merchant.get());
+            return "redirect:/home/" + merchant.get().getId() + "/" + shop.get().getId();
         }
         else {
             return "error";

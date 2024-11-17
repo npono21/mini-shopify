@@ -16,6 +16,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
     private double price;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Tag> tags = new ArrayList<>();
@@ -24,27 +25,29 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Shop shop;
 
-    public Product(String name, double price) {
+    public Product() {}
+    public Product(String name, String description, double price) {
         this.name = name;
+        this.description = description;
         this.price = price;
         imagePath = "/images/Mini-Shopify Logo.png";
     }
-    public Product(String name, double price, String imagePath, Shop shop) {
+    public Product(String name, String description, double price, String imagePath, Shop shop) {
         this.name = name;
+        this.description = description;
         this.price = price;
         this.imagePath = imagePath;
         this.shop = shop;
     }
 
 
-    public Product(String name, double price, Shop shop) {
+    public Product(String name, String description, double price, Shop shop) {
         this.name = name;
+        this.description = description;
         this.price = price;
         this.imagePath = imagePath;
         this.shop = shop;
     }
-
-    public Product() {}
 
     public void setId(Long id) {
         this.id = id;
@@ -60,6 +63,14 @@ public class Product {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setPrice(double price) {

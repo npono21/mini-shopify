@@ -15,7 +15,7 @@ import java.util.List;
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int accountNumber;
+    private Long id;
 
     private String name;
 
@@ -24,8 +24,8 @@ public class Shop {
     @ManyToOne(fetch = FetchType.LAZY)
     private Merchant merchant;
 
-    @OneToMany
-    private final List<Product> productList = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private final List<Product> products = new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL)
     private final ItemQuantityList inventory = new ItemQuantityList();
 
@@ -35,6 +35,18 @@ public class Shop {
         this.name = name;
         this.description = description;
         this.merchant = merchant;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Merchant getMerchant() {
@@ -53,14 +65,18 @@ public class Shop {
         return this.description;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
     /**
      * Adds the product to the list of products sold by the shop, if the product isn't already listed
      * @param product to added
      * @return true if product was added or already was on the list.
      */
     public boolean addProduct(Product product) {
-        if (productList.contains(product)) {return true;}
-        productList.add(product);
+        if (products.contains(product)) {return true;}
+        products.add(product);
         return inventory.addProduct(product);
     }
 
@@ -70,7 +86,7 @@ public class Shop {
      * @return true if the product and its inventory were removed. If the product was not in the list false is returned.
      */
     public boolean removeProduct(Product product) {
-        boolean removed = productList.remove(product);
+        boolean removed = products.remove(product);
         return removed && inventory.removeProduct(product);
     }
 
@@ -82,8 +98,11 @@ public class Shop {
      * @param quantity to add
      * @return true if the product is being sold by the shop and the quantity was added
      */
-    public boolean addInventory(Product product, int quantity) {
-        if (productList.contains(product)) {
+    public boolean addToInventory(Product product, int quantity) {
+        if (quantity <= 0){
+            return false;
+        }
+        if (products.contains(product)) {
             return inventory.addItems(product, quantity);
         }
         return false;
@@ -96,17 +115,10 @@ public class Shop {
      * @param quantity to remove
      * @return true if the whole quantity was able tobe removed.
      */
-    public boolean removeInventory(Product product, int quantity) {
+    public boolean removeFromInventory(Product product, int quantity) {
         return inventory.removeItems(product, quantity);
     }
 
-    /**
-     * Gets the list of products sold by the shop.
-     * @return list of products
-     */
-    public List<Product> getProductList() {
-        return productList;
-    }
 
     /**
      * Gets the inventory for the shop.
@@ -120,15 +132,8 @@ public class Shop {
         return inventory.getItemQuantity(product);
     }
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String toString() {
-        return "Shop [name=" + name + ", accountNumber=" + accountNumber + ", Merchant=(" + merchant + "), productList=" + productList + ", inventory=" + inventory + "]";
+        return "Shop [name=" + name + ", accountNumber=" + id + ", Merchant=(" + merchant + "), productList=" + products + ", inventory=" + inventory + "]";
     }
 }

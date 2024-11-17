@@ -45,6 +45,8 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
         return addItems(product, quantity);
     }
 
+    public List<ItemQuantityPair> getItemQuantityPairs() {return itemQuantityPairs;}
+
     /**
      * Adds a quantity of a product to a list only if that product is in the list.
      * @param product type
