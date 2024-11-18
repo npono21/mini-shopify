@@ -14,8 +14,23 @@ public class Controller {
     public String merchantLogin() {
         return "merchant_login";
     }
-    @GetMapping("/loginMerchant")
+    @GetMapping("/merchantHome")
     public String loginMerchant(Model model) {
         return "merchant_home";
+    }
+
+    @GetMapping("/index")
+    public String index(Model model) {
+        return "index";
+    }
+
+    @GetMapping("/shopperLogin")
+    public String shopperLogin(Model model) {
+        return "shopper_login";
+    }
+
+    @GetMapping("/registerShopper")
+    public String registerShopper(Model model) {
+        return "shopper_register";
     }
 }
