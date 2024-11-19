@@ -6,7 +6,7 @@ name: Build and deploy JAR app to Azure Web App - SYSC4806-MiniShopify
 on:
   push:
     branches:
-      - refactor/46-create-static-js-edit-styles
+      - main
   workflow_dispatch:
 
 jobs:
