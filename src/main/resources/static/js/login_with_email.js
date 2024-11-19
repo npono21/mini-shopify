@@ -1,9 +1,13 @@
 window.onload = function () {
   const emailLoginFormDiv = document.getElementById("email-login-div");
   const goBackIconDiv = document.getElementById("go-back-div");
-  const emailLoginButton = document.getElementsByClassName("login-button");
-  const socialLoginDiv = document.getElementsByClassName("social-login-div");
+  const emailLoginButton = document.querySelector(".login-button");
+  const socialLoginDiv = document.querySelector(".social-login-div");
 
+  if (!emailLoginFormDiv || !goBackIconDiv || !emailLoginButton || !socialLoginDiv) {
+    console.error("One or more elements could not be found in the DOM.");
+    return;
+  }
   // Show email login form and hide other elements
   emailLoginButton.addEventListener("click", () => {
     const isHidden = getComputedStyle(emailLoginFormDiv).display === "none";
