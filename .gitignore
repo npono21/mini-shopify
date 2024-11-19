@@ -18,6 +18,3 @@ target/
 
 # VS Code generated files
 .vscode
-
-# Temporarily adding src/test/ folder to avoid testing when building
-src/test
