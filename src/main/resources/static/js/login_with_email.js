@@ -4,7 +4,7 @@ window.onload = function () {
   const emailLoginButton = document.getElementsByClassName("login-button")[0];
   const socialLoginDiv = document.getElementsByClassName("social-login-div")[0];
 
-  emailLoginButton.addEventListener("click", function () {
+  emailLoginButton.onclick = function () {
     const isHidden = getComputedStyle(emailLoginFormDiv).display === "none";
 
     if (isHidden) {
@@ -20,7 +20,7 @@ window.onload = function () {
       socialLoginDiv.style.display = "flex";
       goBackIconDiv.style.display = "block";
     }
-  });
+  };
 };
 
 // function toggleEmailForm() {
