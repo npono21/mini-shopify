@@ -2,7 +2,6 @@ window.onload = function () {
   const emailLoginFormDiv = document.getElementById("email-login-div");
   const loginDivCollection =
     document.getElementsByClassName("login-button-div");
-
   const loginDiv = loginDivCollection[0];
   const emailLoginButton = document.querySelector(".login-button");
 
@@ -11,9 +10,11 @@ window.onload = function () {
     return;
   }
 
-  // Show email login form and hide other elements
+  // Show email login form and hide other elements on button click
   emailLoginButton.addEventListener("click", () => {
     const isHidden = getComputedStyle(emailLoginFormDiv).display === "none";
+
+    console.log(isHidden);
 
     if (isHidden) {
       // Show the form and hide other elements
