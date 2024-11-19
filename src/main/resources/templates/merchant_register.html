@@ -7,13 +7,17 @@
     <meta name="author" content="Nicholai Ponomarev">
     <link rel="stylesheet" href="/css/shopper_merchant_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="/js/go_back_arrow.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
-        <div id="go-back-div">
+        <div id="go-back-div" onclick="goBack()">
             <i class="fa fa-arrow-left" id="go-back-arrow" aria-hidden="true"></i>
         </div>
         <p>Create your Merchant account!</p>
