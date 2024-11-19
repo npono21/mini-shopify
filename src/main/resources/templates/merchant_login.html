@@ -8,12 +8,7 @@
     <link rel="stylesheet" href="/css/shopper_merchant_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script>
-        // go back to index.html if back arrow is selected on login page
-        function goBack() {
-            window.location.href = '/index';
-        }
-    </script>
+    <script src="/js/go_back.js"></script>
 </head>
 
 <body>
@@ -22,7 +17,7 @@
         <p>The future of business is yours to shape</p>
     </div>
     <div class="container">
-        <div id="go-back-div" onclick="goBack()">
+        <div id="go-back-div" onclick="goBack('index')">
             <i class="fa fa-arrow-left" id="go-back-arrow" aria-hidden="true"></i>
         </div>
         <div class="login-button-div">
