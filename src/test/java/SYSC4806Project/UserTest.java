@@ -8,19 +8,15 @@ import org.springframework.beans.factory.support.RegisteredBean;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
-
-    Main main;
     User buyer;
     User merchant;
     Shop shop;
 
     @BeforeEach
     void setUp() {
-        main = new Main();
-        buyer = new Buyer("Rebecca", "ult1m4t3_fr1sb33", main);
-        merchant = new Merchant("Arthur", "zinch", main);
-        shop = new Shop("Arthur's Appliances", 123, (Merchant)merchant);
-        main.addShop(shop);
+        buyer = new Buyer("Rebecca", "ult1m4t3_fr1sb33");
+        merchant = new Merchant("Arthur", "zinch");
+        shop = new Shop("Arthur's Appliances", "a shop", (Merchant)merchant);
     }
 
     @AfterEach
