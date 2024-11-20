@@ -50,14 +50,14 @@ public class Cart {
     public boolean addItems(Product product, int quantity) throws RuntimeException {
         if (product == null) return false;
         boolean productInCart = items.contains(product);
+        if (!productInCart) {
+            items.addProduct(product);
+        }
+
         int quantityInCart = items.getItemQuantity(product);
         if (quantity + ((quantityInCart == -1) ? 0 : quantityInCart) > product.getShopInventoryForProduct()) {
             throw new RuntimeException("Shop only has " + product.getShopInventoryForProduct()
                     + " of that item. Your request can not be fulfilled");
-        }
-
-        if (!productInCart) {
-            items.addProduct(product);
         }
         runningTotal += product.getPrice() * quantity;
         return items.addItems(product, quantity);

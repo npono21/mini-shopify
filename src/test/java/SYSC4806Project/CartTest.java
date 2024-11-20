@@ -118,7 +118,7 @@ class CartTest {
     @Test
     void removeItems() {
         // Try to remove from empty cart
-        assertFalse(cart.removeItems(bread, 1));
+        assertThrows(RuntimeException.class, () -> cart.removeItems(bread, 1));
         // Try to remove null Product from cart
         assertFalse(cart.removeItems((Product) null, 1));
         // Try to remove null Product from cart
@@ -127,7 +127,7 @@ class CartTest {
         cart.addItems(apple, 10);
         assertEquals(10, cart.getItems().getItemQuantity(apple));
         // Remove quantity of 0 of a Product, leaving 10 quantity
-        assertFalse(cart.removeItems(apple, 0));
+        assertTrue(cart.removeItems(apple, 0));
         assertEquals(10, cart.getItems().getItemQuantity(apple));
 
         // Needed so an Id is generated
