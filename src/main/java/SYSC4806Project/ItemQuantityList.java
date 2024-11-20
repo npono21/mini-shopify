@@ -1,6 +1,7 @@
 package SYSC4806Project;
 
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -59,7 +60,7 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
                     return true;
                 }
             }
-            throw new RuntimeException("wasn't able to increment quantity");
+            return false;
         }
     }
 
@@ -81,7 +82,17 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
      */
     public boolean removeItems(Product product, int quantity) {
         if (product == null) return false;
-        return removeItems(product.getId(), quantity);
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            if (itemQuantityPair.getProduct().equals(product)) {
+                if (itemQuantityPair.quantity < quantity) {
+                    System.out.println("Attempted to remove more quantity than available. None were removed.");
+                    return false;
+                }
+                itemQuantityPair.setQuantity(itemQuantityPair.getQuantity() - quantity);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -112,7 +123,12 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
      */
     public boolean removeProduct(Product product) {
         if (product == null) return false;
-        return removeProduct(product.getId());
+        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
+            if (itemQuantityPair.getProduct().equals(product)) {
+                this.itemQuantityPairs.remove(itemQuantityPair);
+                return true;
+            }
+        }return false;
     }
 
     /**
@@ -121,6 +137,7 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
      * @return true if the id was in the list and was removed
      */
     public boolean removeProduct(Long id) {
+        if (id == null) return false;
         for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
             if (itemQuantityPair.getProduct().getId().equals(id)) {
                 this.itemQuantityPairs.remove(itemQuantityPair);
@@ -156,7 +173,7 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
                 return itemQuantityPair.getQuantity();
             }
         }
-        return -1; // Product not in list
+        throw new RuntimeException("Product not in list"); // Product not in list
     }
 
     public Product getProductById(Long id) {

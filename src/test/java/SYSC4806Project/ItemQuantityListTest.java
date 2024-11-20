@@ -1,7 +1,5 @@
 package SYSC4806Project;
 
-import SYSC4806Project.ItemQuantityPair;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,7 +61,9 @@ class ItemQuantityListTest {
         // Add valid quantity of valid product
         iql1.addItems(toaster, 3);
         // Try to remove null item
-        assertFalse(iql1.removeItems(null, 1));
+        assertFalse(iql1.removeItems((Product) null, 1));
+        // Try to remove null item
+        assertFalse(iql1.removeItems((Long) null, 1));
         // Try to remove invalid item
         assertFalse(iql1.removeItems(bread, 1));
         // Try to remove valid item, valid quantity
@@ -77,7 +77,9 @@ class ItemQuantityListTest {
         // Add Product::toaster to ItemQuantityList
         iql1.addProduct(toaster);
         // Try to remove null product
-        assertFalse(iql1.removeProduct(null));
+        assertFalse(iql1.removeProduct((Product) null));
+        // Try to remove null product
+        assertFalse(iql1.removeProduct((Long) null));
         // Try to remove invalid product
         assertFalse(iql1.removeProduct(bread));
         // Try to remove valid product
@@ -109,6 +111,8 @@ class ItemQuantityListTest {
         // Try to get quantity of invalid product
         assertThrows(RuntimeException.class, () -> iql1.getItemQuantity(bread));
         // Try to get quantity of null item
-        assertThrows(RuntimeException.class, () -> iql1.getItemQuantity(null));
+        assertThrows(RuntimeException.class, () -> iql1.getItemQuantity((Product) null));
+        // Try to get quantity of null item
+        assertThrows(RuntimeException.class, () -> iql1.getItemQuantity((Long) null));
     }
 }
