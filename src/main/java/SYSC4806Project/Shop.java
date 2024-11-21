@@ -116,6 +116,10 @@ public class Shop {
         return inventory;
     }
 
+    public int checkProductInventory(Product product) {
+        return inventory.getItemQuantity(product);
+    }
+
     public String getName() {
         return name;
     }

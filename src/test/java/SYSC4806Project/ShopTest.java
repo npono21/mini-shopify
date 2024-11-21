@@ -10,8 +10,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShopTest {
-
-    Main main;
     Buyer buyer;
     Merchant merchant;
     Shop shop;
@@ -20,13 +18,12 @@ class ShopTest {
 
     @BeforeEach
     void setUp() {
-        main = new Main();
-        buyer = new Buyer("Rebecca", "ult1m4t3_fr1sb33", main);
-        merchant = new Merchant("Arthur", "zinch", main);
-        merchant.createShop("Arthur's Appliances", 123);
+        buyer = new Buyer("Rebecca", "ult1m4t3_fr1sb33");
+        merchant = new Merchant("Arthur", "zinch");
+        shop = new Shop("Arthur's Appliances", "sells appliances", merchant);
+        merchant.addShop(shop);
         toaster = new Product("Toaster", 12.99);
         bread = new Product("Bread", 4.25);
-        shop = main.getShopByName("Arthur's Appliances");
     }
 
     @AfterEach
@@ -136,15 +133,18 @@ class ShopTest {
     @Test
     void testToString() {
         // Empty shop
-        String expected = "Shop [name=Arthur's Appliances, accountNumber=123, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[], inventory=[]]";
-        assertEquals(expected, shop.toString());
+        String expected = "Shop [name=Arthur's Appliances, accountNumber=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[], inventory=[]]";
+        String pattern = "(accountNumber=)\\d+";
+        String actual = shop.toString();
+        String normActual = actual.replaceAll(pattern, "accountNumber=*");
+        assertEquals(expected, normActual);
         // Add valid Product to Shop
         shop.addProduct(toaster);
         // Add quantity of Product to shop
         shop.addInventory(toaster, 12);
         // Shop with inventory
         System.out.println(shop.toString());
-        expected = "Shop [name=Arthur's Appliances, accountNumber=123, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[Product [name=Toaster, price=12.99, tags=[]]], inventory=[[product=Product [name=Toaster, price=12.99, tags=[]], quantity=12]]]";
-        assertEquals(expected, shop.toString());
+        expected = "Shop [name=Arthur's Appliances, accountNumber=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[Product [name=Toaster, price=12.99, tags=[]]], inventory=[[product=Product [name=Toaster, price=12.99, tags=[]], quantity=12]]]";
+        assertEquals(expected, shop.toString().replaceAll(pattern, "accountNumber=*"));
     }
 }

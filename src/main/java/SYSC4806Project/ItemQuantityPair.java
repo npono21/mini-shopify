@@ -8,9 +8,10 @@ public class ItemQuantityPair {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Product product;
     int quantity;
+    double totalCost;
 
     public ItemQuantityPair() {
 
@@ -19,11 +20,17 @@ public class ItemQuantityPair {
     public ItemQuantityPair(Product product) {
         this.product = product;
         quantity = 0;
+        totalCost = 0;
     }
 
     public ItemQuantityPair(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
+        totalCost = 0;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
     }
 
     public void setId(Long id) {
@@ -52,6 +59,7 @@ public class ItemQuantityPair {
             return;
         }
         this.quantity = quantity;
+        totalCost = quantity * product.getPrice();
     }
 
     @Override
