@@ -16,8 +16,8 @@ class ProductTest {
 
     @BeforeEach
     void setUp() {
-        apple = new Product("apple", 1.50);
-        toaster = new Product("toaster", 12.99);
+        apple = new Product("apple", "some apples", 1.50);
+        toaster = new Product("toaster", "a toaster", 12.99);
     }
 
     @AfterEach

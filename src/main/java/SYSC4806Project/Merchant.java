@@ -68,7 +68,7 @@ public class Merchant extends User {
 
     public boolean setProductQuantity(Shop shop, Product product, int quantity) {
         if (shop.getProducts().contains(product)) {
-            return shop.addToInventory(product, quantity);
+            return shop.addInventory(product, quantity);
         }
         return false;
     }

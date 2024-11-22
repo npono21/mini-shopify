@@ -22,8 +22,8 @@ class ShopTest {
         merchant = new Merchant("Arthur", "zinch");
         shop = new Shop("Arthur's Appliances", "sells appliances", merchant);
         merchant.addShop(shop);
-        toaster = new Product("Toaster", 12.99);
-        bread = new Product("Bread", 4.25);
+        toaster = new Product("Toaster", "a toaster", 12.99);
+        bread = new Product("Bread", "some bread", 4.25);
     }
 
     @AfterEach
@@ -85,22 +85,22 @@ class ShopTest {
     @Test
     void getProductList() {
         // Test empty list
-        assertEquals(0, shop.getProductList().size());
+        assertEquals(0, shop.getProducts().size());
         // Add valid Product to Shop
         shop.addProduct(toaster);
         // Test singleton list
-        assertEquals(1, shop.getProductList().size());
-        assertTrue(shop.getProductList().contains(toaster));
+        assertEquals(1, shop.getProducts().size());
+        assertTrue(shop.getProducts().contains(toaster));
         // Add valid Product to Shop
         shop.addProduct(bread);
         // Test multiple list
-        assertEquals(2, shop.getProductList().size());
-        assertTrue(shop.getProductList().contains(bread));
+        assertEquals(2, shop.getProducts().size());
+        assertTrue(shop.getProducts().contains(bread));
         // Test list equality
         List<Product> expectedList = new ArrayList<>();
         expectedList.add(toaster);
         expectedList.add(bread);
-        assertEquals(expectedList, shop.getProductList());
+        assertEquals(expectedList, shop.getProducts());
     }
 
     @Test
@@ -133,10 +133,11 @@ class ShopTest {
     @Test
     void testToString() {
         // Empty shop
-        String expected = "Shop [name=Arthur's Appliances, accountNumber=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[], inventory=[]]";
-        String pattern = "(accountNumber=)\\d+";
+        String expected = "Shop [name=Arthur's Appliances, id=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[], inventory=[]]";
+        // id only exists if persisted, which it is not for testing this method.
+        String pattern = "id=(null|\\d+)";
         String actual = shop.toString();
-        String normActual = actual.replaceAll(pattern, "accountNumber=*");
+        String normActual = actual.replaceAll(pattern, "id=*");
         assertEquals(expected, normActual);
         // Add valid Product to Shop
         shop.addProduct(toaster);
@@ -144,7 +145,7 @@ class ShopTest {
         shop.addInventory(toaster, 12);
         // Shop with inventory
         System.out.println(shop.toString());
-        expected = "Shop [name=Arthur's Appliances, accountNumber=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[Product [name=Toaster, price=12.99, tags=[]]], inventory=[[product=Product [name=Toaster, price=12.99, tags=[]], quantity=12]]]";
-        assertEquals(expected, shop.toString().replaceAll(pattern, "accountNumber=*"));
+        expected = "Shop [name=Arthur's Appliances, id=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[Product [name=Toaster, price=12.99, tags=[]]], inventory=[[product=Product [name=Toaster, price=12.99, tags=[]], quantity=12]]]";
+        assertEquals(expected, shop.toString().replaceAll(pattern, "id=*"));
     }
 }

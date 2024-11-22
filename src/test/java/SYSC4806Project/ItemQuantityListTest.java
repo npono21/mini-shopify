@@ -17,11 +17,13 @@ class ItemQuantityListTest {
     ItemQuantityPair iqp3;
     ItemQuantityList iql1;
 
+    Shop shop;
+
     @BeforeEach
     void setUp() {
-        apple = new Product("apple", 1.50);
-        bread = new Product("bread", 4.25);
-        toaster = new Product("toaster", 12.99);
+        apple = new Product("apple", "some apples", 1.50, shop);
+        bread = new Product("bread", "some bread", 4.25, shop);
+        toaster = new Product("toaster", "a toaster", 12.99, shop);
         iql1 = new ItemQuantityList();
         iqp1 = new ItemQuantityPair(apple, 1);
         iqp2 = new ItemQuantityPair(bread, 2);

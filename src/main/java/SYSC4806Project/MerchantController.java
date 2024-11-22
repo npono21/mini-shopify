@@ -78,7 +78,7 @@ public class MerchantController {
                 }
             }
             Product product = new Product(productName, productDescription, productPrice);
-            shop.get().addToInventory(product, quantity);
+            shop.get().addInventory(product, quantity);
             shop.get().addProduct(product);
             shopRepository.save(shop.get());
             model.addAttribute("shop", shop.get());

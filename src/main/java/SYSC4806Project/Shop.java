@@ -98,7 +98,7 @@ public class Shop {
      * @param quantity to add
      * @return true if the product is being sold by the shop and the quantity was added
      */
-    public boolean addToInventory(Product product, int quantity) {
+    public boolean addInventory(Product product, int quantity) {
         if (quantity <= 0){
             return false;
         }
@@ -115,7 +115,7 @@ public class Shop {
      * @param quantity to remove
      * @return true if the whole quantity was able tobe removed.
      */
-    public boolean removeFromInventory(Product product, int quantity) {
+    public boolean removeInventory(Product product, int quantity) {
         return inventory.removeItems(product, quantity);
     }
 
@@ -134,6 +134,6 @@ public class Shop {
 
     @Override
     public String toString() {
-        return "Shop [name=" + name + ", accountNumber=" + id + ", Merchant=(" + merchant + "), productList=" + products + ", inventory=" + inventory + "]";
+        return "Shop [name=" + name + ", id=" + this.getId() + ", Merchant=(" + merchant + "), productList=" + products + ", inventory=" + inventory + "]";
     }
 }

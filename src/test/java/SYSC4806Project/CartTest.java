@@ -35,9 +35,9 @@ class CartTest {
     void setUp() {
         shop = new Shop();
         cart = new Cart();
-        apple = new Product("apple", 1.50, shop);
-        bread = new Product("bread", 4.25, shop);
-        toaster = new Product("toaster", 12.99, shop);
+        apple = new Product("apple", "some apples", 1.50, shop);
+        bread = new Product("bread", "some bread", 4.25, shop);
+        toaster = new Product("toaster", "a toaster", 12.99, shop);
         iql1 = new ItemQuantityList();
         iqp1 = new ItemQuantityPair(apple, 1);
         iqp2 = new ItemQuantityPair(bread, 2);
