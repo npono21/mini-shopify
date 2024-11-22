@@ -84,6 +84,11 @@
                     <h2 th:text="${product.name}">Product name</h2>
                     <h4 th:text="${product.description}">Product Description</h4>
                     <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+                <div class="tile" th:each="items : ${shop.inventory.itemQuantityPairs}">
+                    <h2 th:text="${items.product.name}">Product Name</h2>
+                    <h5 th:text="'Description: ' + ${items.product.description}">Product Description</h5>
+                    <h5 th:text="'Inventory: ' + ${items.quantity}">Product Inventory</h5>
+                    <h5 th:text="'  Price: $' + ${items.product.price}">Product Price</h5>
                 </div>
             </section>
         </main>
@@ -94,13 +99,13 @@
                     <label for="select_product_img">Select Product Display Image:</label>
                     <input type="file" id="select_product_img" name="select_product_img" accept="image/*">
                     <label for="productName">Product Name:</label><br>
-                    <input type="text" id="productName" name="productName"><br>
+                    <input type="text" id="productName" name="productName" required><br>
                     <label for="productPrice">Product Price</label>
-                    <input type="number" id="productPrice" name="productPrice" min="001" step="0.01"><br>
+                    <input type="number" id="productPrice" name="productPrice" min="001" step="0.01" required><br>
                     <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="999999">
+                    <input type="number" id="quantity" name="quantity" min="1" max="999999" required>
                     <p><label for="productDescription">Product Description:</label></p>
-                    <textarea id="productDescription" name="productDescription" rows="4" cols="50"></textarea>
+                    <textarea id="productDescription" name="productDescription" rows="4" cols="50" required></textarea>
                     <br>
                     <input type="submit" value="Add Product">
                 </form>

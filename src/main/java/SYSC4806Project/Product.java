@@ -106,7 +106,7 @@ public class Product {
     }
 
     public int getShopInventoryForProduct() {
-        return shop.checkProductInventory(this);
+        return shop.getProductInventory(this);
     }
 
 

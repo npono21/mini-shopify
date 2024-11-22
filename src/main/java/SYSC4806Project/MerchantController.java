@@ -74,12 +74,13 @@ public class MerchantController {
         if (shop.isPresent() && merchant.isPresent()) {
             for (Product product: shop.get().getProducts()){
                 if (product.getName().equals(productName)){
-                    return "product-name-already-exists";
+                    // TODO: handle duplicated product name
+                    return "redirect:/home/" + merchant.get().getId() + "/" + shop.get().getId();
                 }
             }
             Product product = new Product(productName, productDescription, productPrice);
-            shop.get().addInventory(product, quantity);
             shop.get().addProduct(product);
+            shop.get().addInventory(product, quantity);
             shopRepository.save(shop.get());
             model.addAttribute("shop", shop.get());
             model.addAttribute("merchant", merchant.get());

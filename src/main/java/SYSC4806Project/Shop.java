@@ -24,9 +24,9 @@ public class Shop {
     @ManyToOne(fetch = FetchType.LAZY)
     private Merchant merchant;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private final List<Product> products = new ArrayList<>();
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private final ItemQuantityList inventory = new ItemQuantityList();
 
     public Shop() {};
@@ -128,7 +128,7 @@ public class Shop {
         return inventory;
     }
 
-    public int checkProductInventory(Product product) {
+    public int getProductInventory(Product product) {
         return inventory.getItemQuantity(product);
     }
 
