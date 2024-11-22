@@ -82,6 +82,7 @@
             <section class="tiles-container">
                 <div class="tile" th:each="product : ${shop.products}">
                     <h2 th:text="${product.name}">Product name</h2>
+                    <h4 th:text="${product.description}">Product Description</h4>
                     <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
                 </div>
             </section>
