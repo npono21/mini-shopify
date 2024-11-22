@@ -10,9 +10,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.minishopify</groupId>
-    <artifactId>project</artifactId>
+    <groupId>sysc4806.group7</groupId>
+    <artifactId>mini-shopify</artifactId>
     <version>0.0.1</version>
+    <name>mini-shopify</name>
+    <description>The best storefront on the planet</description>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -21,10 +23,19 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>3.3.4</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
