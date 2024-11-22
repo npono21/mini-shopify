@@ -80,22 +80,21 @@
             </div>
             <h1 style="margin-top: 20px;">Products</h1>
             <section class="tiles-container">
-                <div class="tile" th:each="product : ${shop.products}">
-                    <h2 th:text="${product.name}">Product name</h2>
-                    <h4 th:text="${product.description}">Product Description</h4>
-                    <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
                 <div class="tile" th:each="items : ${shop.inventory.itemQuantityPairs}">
                     <h2 th:text="${items.product.name}">Product Name</h2>
                     <h5 th:text="'Description: ' + ${items.product.description}">Product Description</h5>
                     <h5 th:text="'Inventory: ' + ${items.quantity}">Product Inventory</h5>
                     <h5 th:text="'  Price: $' + ${items.product.price}">Product Price</h5>
+                    <img th:src="${items.product.imagePath}" alt="Item Stock Image 1">
                 </div>
             </section>
         </main>
         <div id="add-product-modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <form th:action="@{/home/{merchantId}/{shopId}/addProduct(merchantId=${merchant.id},shopId=${shop.id})}" method="post">
+                <form th:action="@{/home/{merchantId}/{shopId}/addProduct(merchantId=${merchant.id},shopId=${shop.id})}"
+                      method="post"
+                      enctype="multipart/form-data">
                     <label for="select_product_img">Select Product Display Image:</label>
                     <input type="file" id="select_product_img" name="select_product_img" accept="image/*">
                     <label for="productName">Product Name:</label><br>

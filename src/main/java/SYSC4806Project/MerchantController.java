@@ -3,6 +3,7 @@ package SYSC4806Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
@@ -67,6 +68,7 @@ public class MerchantController {
                              @RequestParam String productDescription,
                              @RequestParam double productPrice,
                              @RequestParam int quantity,
+                             @RequestParam("select_product_img") MultipartFile productImg,
                              Model model) {
 
         Optional<Shop> shop = shopRepository.findByIdAndMerchantId(shopId, merchantId);
@@ -78,6 +80,7 @@ public class MerchantController {
                     return "redirect:/home/" + merchant.get().getId() + "/" + shop.get().getId();
                 }
             }
+            // TODO: handle product image
             Product product = new Product(productName, productDescription, productPrice);
             shop.get().addProduct(product);
             shop.get().addInventory(product, quantity);
