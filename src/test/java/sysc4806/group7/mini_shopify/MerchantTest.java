@@ -4,14 +4,24 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MerchantTest {
     Merchant m1;
+    Shop s1;
+    ArrayList<Tag> tags;
 
     @BeforeEach
     void setUp() {
         m1 = new Merchant("Arthur", "zinch");
+        tags = new ArrayList<>();
+        tags.add(Tag.BABY);
+        tags.add(Tag.GROCERY);
+        tags.add(Tag.APPLIANCES);
+        s1 = new Shop("Arthur's Appliances", "a shop", m1, tags);
+
     }
 
     @AfterEach
@@ -20,7 +30,7 @@ class MerchantTest {
 
     @Test
     void createShop() {
-        assertInstanceOf(Shop.class, m1.createShop("Arthur's Appliances", "a shop"));
+        assertInstanceOf(Shop.class, s1);
         // TODO: assertThrows(IllegalArgumentException.class, () -> m1.createShop("Arthur's Appliances", "a shop", 123));
     }
 

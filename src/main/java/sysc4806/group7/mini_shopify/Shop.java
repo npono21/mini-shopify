@@ -29,12 +29,16 @@ public class Shop {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private final ItemQuantityList inventory = new ItemQuantityList();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Tag> tags = new ArrayList<>();
+
     public Shop() {};
 
-    public Shop(String name, String description, Merchant merchant) {
+    public Shop(String name, String description, Merchant merchant, ArrayList<Tag> tags) {
         this.name = name;
         this.description = description;
         this.merchant = merchant;
+        this.tags.addAll(tags);
     }
 
     public void setId(Long id) {
@@ -136,8 +140,34 @@ public class Shop {
         return inventory.getItemQuantity(product);
     }
 
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public void addTag(Tag tag) {
+        if (!tags.contains(tag)) {
+            tags.add(tag);
+        }
+    }
+
+    public void removeTag(Tag tag) {
+        if (tags.contains(tag)) {
+            tags.remove(tag);
+        }
+    }
+
+    public void removeAllTags() {
+        tags.removeAll(tags);
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+
     @Override
     public String toString() {
-        return "Shop [name=" + name + ", id=" + this.getId() + ", Merchant=(" + merchant + "), productList=" + products + ", inventory=" + inventory + "]";
+        return "Shop [name=" + name + ", id=" + this.getId() + ", Merchant=(" + merchant + "), productList=" + products + ", inventory=" + inventory + ", tags=" + tags + "]";
+
     }
 }

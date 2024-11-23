@@ -48,12 +48,12 @@ class ProductTest {
     void addTag() {
         apple.addTag(Tag.GROCERY);
         assertTrue(apple.getTags().contains(Tag.GROCERY));
-        assertFalse(apple.getTags().contains(Tag.ELECTRONIC));
+        assertFalse(apple.getTags().contains(Tag.ELECTRONICS));
 
-        toaster.addTag(Tag.APPLIANCE);
-        toaster.addTag(Tag.ELECTRONIC);
-        assertTrue(toaster.getTags().contains(Tag.APPLIANCE));
-        assertTrue(toaster.getTags().contains(Tag.ELECTRONIC));
+        toaster.addTag(Tag.APPLIANCES);
+        toaster.addTag(Tag.ELECTRONICS);
+        assertTrue(toaster.getTags().contains(Tag.APPLIANCES));
+        assertTrue(toaster.getTags().contains(Tag.ELECTRONICS));
         assertFalse(toaster.getTags().contains(Tag.GROCERY));
     }
 
@@ -65,10 +65,10 @@ class ProductTest {
         assertEquals(appleTags, apple.getTags());
 
         List<Tag> toasterTags = new ArrayList<Tag>();
-        toasterTags.add(Tag.APPLIANCE);
-        toasterTags.add(Tag.ELECTRONIC);
-        toaster.addTag(Tag.APPLIANCE);
-        toaster.addTag(Tag.ELECTRONIC);
+        toasterTags.add(Tag.APPLIANCES);
+        toasterTags.add(Tag.ELECTRONICS);
+        toaster.addTag(Tag.APPLIANCES);
+        toaster.addTag(Tag.ELECTRONICS);
         assertEquals(toasterTags, toaster.getTags());
     }
 
@@ -79,11 +79,11 @@ class ProductTest {
         apple.removeTag(Tag.GROCERY);
         assertFalse(apple.getTags().contains(Tag.GROCERY));
 
-        toaster.addTag(Tag.APPLIANCE);
-        toaster.addTag(Tag.ELECTRONIC);
-        assertTrue(toaster.getTags().contains(Tag.APPLIANCE));
-        toaster.removeTag(Tag.APPLIANCE);
-        assertFalse(toaster.getTags().contains(Tag.APPLIANCE));
+        toaster.addTag(Tag.APPLIANCES);
+        toaster.addTag(Tag.ELECTRONICS);
+        assertTrue(toaster.getTags().contains(Tag.APPLIANCES));
+        toaster.removeTag(Tag.APPLIANCES);
+        assertFalse(toaster.getTags().contains(Tag.APPLIANCES));
     }
 
     @Test
@@ -93,13 +93,13 @@ class ProductTest {
         apple.removeAllTags();
         assertFalse(apple.getTags().contains(Tag.GROCERY));
 
-        toaster.addTag(Tag.APPLIANCE);
-        toaster.addTag(Tag.ELECTRONIC);
-        assertTrue(toaster.getTags().contains(Tag.APPLIANCE));
-        assertTrue(toaster.getTags().contains(Tag.ELECTRONIC));
+        toaster.addTag(Tag.APPLIANCES);
+        toaster.addTag(Tag.ELECTRONICS);
+        assertTrue(toaster.getTags().contains(Tag.APPLIANCES));
+        assertTrue(toaster.getTags().contains(Tag.ELECTRONICS));
         toaster.removeAllTags();
-        assertFalse(toaster.getTags().contains(Tag.APPLIANCE));
-        assertFalse(toaster.getTags().contains(Tag.ELECTRONIC));
+        assertFalse(toaster.getTags().contains(Tag.APPLIANCES));
+        assertFalse(toaster.getTags().contains(Tag.ELECTRONICS));
     }
 
     @Test
@@ -107,9 +107,9 @@ class ProductTest {
         String expected = "Product [name=toaster, price=12.99, tags=[]]";
         assertEquals(expected, toaster.toString());
 
-        toaster.addTag(Tag.APPLIANCE);
-        toaster.addTag(Tag.ELECTRONIC);
-        expected = "Product [name=toaster, price=12.99, tags=[APPLIANCE, ELECTRONIC]]";
+        toaster.addTag(Tag.APPLIANCES);
+        toaster.addTag(Tag.ELECTRONICS);
+        expected = "Product [name=toaster, price=12.99, tags=[APPLIANCES, ELECTRONICS]]";
         assertEquals(expected, toaster.toString());
     }
 
