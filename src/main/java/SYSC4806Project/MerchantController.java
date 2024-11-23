@@ -21,7 +21,7 @@ public class MerchantController {
         return "redirect:/" + merchant.getId();
     }
     @PostMapping("/signinMerchant")
-    public String loginMerchant(@RequestParam String username, @RequestParam String password, Model model) {
+    public String signinMerchant(@RequestParam String username, @RequestParam String password, Model model) {
         return "merchant_home";
         // Optional<Merchant> merchantOpt = merchantRepository.findAll().stream()
         //     .filter(m -> m.login(username, password))
