@@ -20,15 +20,15 @@ public class MerchantController {
         merchantRepository.save(merchant);
         return "redirect:/" + merchant.getId();
     }
-    @PostMapping("/loginMerchant")
+    @PostMapping("/signinMerchant")
     public String loginMerchant(@RequestParam String username, @RequestParam String password, Model model) {
-        Optional<Merchant> merchant = merchantRepository.findAll().stream()
+        Merchant merchant = merchantRepository.findAll().stream()
             .filter(m -> m.login(username, password))
-            .findFirst();
+            .findFirst().get();
 
-        if (merchant.isPresent()) {
-            model.addAttribute("merchant", merchant.get());
-            return "redirect:/" + merchant.get().getId();
+        if (merchant != null) {
+            model.addAttribute("merchant", merchant);
+            return "redirect:/" + merchant.getId();
         }
 
         model.addAttribute("error", "Invalid username or password");
