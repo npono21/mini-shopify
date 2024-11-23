@@ -22,18 +22,19 @@ public class MerchantController {
     }
     @PostMapping("/signinMerchant")
     public String loginMerchant(@RequestParam String username, @RequestParam String password, Model model) {
-        Optional<Merchant> merchantOpt = merchantRepository.findAll().stream()
-            .filter(m -> m.login(username, password))
-            .findFirst();
+        return "merchant_home";
+        // Optional<Merchant> merchantOpt = merchantRepository.findAll().stream()
+        //     .filter(m -> m.login(username, password))
+        //     .findFirst();
         
-        if (merchantOpt.isPresent()) {
-            Merchant merchant = merchantOpt.get();
-            model.addAttribute("merchant", merchant);
-            return "redirect:/" + merchant.getId();
-        }
+        // if (merchantOpt.isPresent()) {
+        //     Merchant merchant = merchantOpt.get();
+        //     model.addAttribute("merchant", merchant);
+        //     return "redirect:/" + merchant.getId();
+        // }
 
-        model.addAttribute("error", "Invalid username or password");
-        return "merchant_login";
+        // model.addAttribute("error", "Invalid username or password");
+        // return "merchant_login";
     }
     @GetMapping("/{merchantId}")
     public String getMerchant(@PathVariable Long merchantId, Model model) {
