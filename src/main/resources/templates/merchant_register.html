@@ -14,9 +14,8 @@
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirm_password").value;
 
-            // Check if passwords match
             if (password !== confirmPassword) {
-                e.preventDefault(); // Prevent form submission
+                e.preventDefault();
                 alert("Passwords do not match. Please try again.");
             }
         });
