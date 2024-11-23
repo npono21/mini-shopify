@@ -81,10 +81,23 @@
             <h1 style="margin-top: 20px;">My Shops</h1>
             <section class="tiles-container">
                 <div class="tile" th:each="shop : ${merchant.shops}">
+                    <!--
                     <a th:href="@{/home/{merchantId}/{shopId}(merchantId=${merchant.id}, shopId=${shop.id})}" class="tile-link">
                         <h2 th:text="${shop.name}">Shop name</h2>
                         <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
                     </a>
+                    -->
+                    <h2 th:text="${shop.name}">Shop name</h2>
+                    <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+                    <!-- Display Tags -->
+                    <div class="displayTags">
+                        <ul>
+                            <li th:each="tag : ${shop.tags}">
+                                <p th:text="${tag.name}">magic</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Display Tags -->
                 </div>
             </section>
         </main>
@@ -105,19 +118,19 @@
                         <tr>
                             <td>
                                 <label for="APPLIANCES">
-                                    <input type="checkbox" id="APPLIANCES" name="tags" value="APPLIANCES">
+                                    <input type="checkbox" id="APPLIANCES" name="shopTags" value="APPLIANCES">
                                     APPLIANCES
                                 </label>
                             </td>
                             <td>
                                 <label for="BABY">
-                                    <input type="checkbox" id="BABY" name="tags" value="BABY">
+                                    <input type="checkbox" id="BABY" name="shopTags" value="BABY">
                                     BABY
                                 </label>
                             </td>
                             <td>
                                 <label for="CLOTHES">
-                                    <input type="checkbox" id="CLOTHES" name="tags" value="CLOTHES">
+                                    <input type="checkbox" id="CLOTHES" name="shopTags" value="CLOTHES">
                                     CLOTHES
                                 </label>
                             </td>
@@ -126,19 +139,19 @@
                         <tr>
                             <td>
                                 <label for="COMPUTERS">
-                                    <input type="checkbox" id="COMPUTERS" name="tags" value="COMPUTERS">
+                                    <input type="checkbox" id="COMPUTERS" name="shopTags" value="COMPUTERS">
                                     COMPUTERS
                                 </label>
                             </td>
                             <td>
                                 <label for="ELECTRONICS">
-                                    <input type="checkbox" id="ELECTRONICS" name="tags" value="ELECTRONICS">
+                                    <input type="checkbox" id="ELECTRONICS" name="shopTags" value="ELECTRONICS">
                                     ELECTRONICS
                                 </label>
                             </td>
                             <td>
                                 <label for="ENTERTAINMENT">
-                                    <input type="checkbox" id="ENTERTAINMENT" name="tags" value="ENTERTAINMENT">
+                                    <input type="checkbox" id="ENTERTAINMENT" name="shopTags" value="ENTERTAINMENT">
                                     ENTERTAINMENT
                                 </label>
                             </td>
@@ -147,19 +160,19 @@
                         <tr>
                             <td>
                                 <label for="GROCERY">
-                                    <input type="checkbox" id="GROCERY" name="tags" value="GROCERY">
+                                    <input type="checkbox" id="GROCERY" name="shopTags" value="GROCERY">
                                     GROCERY
                                 </label>
                             </td>
                             <td>
                                 <label for="HOME">
-                                    <input type="checkbox" id="HOME" name="tags" value="HOME">
+                                    <input type="checkbox" id="HOME" name="shopTags" value="HOME">
                                     HOME
                                 </label>
                             </td>
                             <td>
                                 <label for="KITCHEN">
-                                    <input type="checkbox" id="KITCHEN" name="tags" value="KITCHEN">
+                                    <input type="checkbox" id="KITCHEN" name="shopTags" value="KITCHEN">
                                     KITCHEN
                                 </label>
                             </td>
@@ -168,19 +181,19 @@
                         <tr>
                             <td>
                                 <label for="LIVING">
-                                    <input type="checkbox" id="LIVING" name="tags" value="LIVING">
+                                    <input type="checkbox" id="LIVING" name="shopTags" value="LIVING">
                                     LIVING
                                 </label>
                             </td>
                             <td>
                                 <label for="PHONE">
-                                    <input type="checkbox" id="PHONE" name="tags" value="PHONE">
+                                    <input type="checkbox" id="PHONE" name="shopTags" value="PHONE">
                                     PHONE
                                 </label>
                             </td>
                             <td>
                                 <label for="TOYS">
-                                    <input type="checkbox" id="TOYS" name="tags" value="TOYS">
+                                    <input type="checkbox" id="TOYS" name="shopTags" value="TOYS">
                                     TOYS
                                 </label>
                             </td>
