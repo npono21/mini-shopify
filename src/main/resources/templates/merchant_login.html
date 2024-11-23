@@ -27,14 +27,14 @@
     </div>
     <h3>Mini-Shopify Merchant Login</h3>
     <p>Login to your account</p>
-    <form class="login-form" action="">
-        <label for="username_email">Username or Email:</label>
-        <input type="text" id="username_email" name="username_email" placeholder="example123 or email@example.com">
+    <form class="login-form" action="/login/merchant" method="post">
+        <label for="username">Username or Email:</label>
+        <input type="text" id="username" name="username" placeholder="example123 or email@example.com">
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Enter your password">
 
-        <button type="button" onclick="window.location.href='/loginMerchant'">Login</button>
+        <button type="submit">Login to Mini-Shopify Account</button>
     </form>
     <div class="register-link">
         <p>Don't have a merchant account? <a href="/registerMerchant">Register here</a></p>

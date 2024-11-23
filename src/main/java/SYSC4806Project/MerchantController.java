@@ -19,6 +19,16 @@ public class MerchantController {
         merchantRepository.save(merchant);
         return "redirect:/" + merchant.getId();
     }
+    @PostMapping("/login/merchant")
+    public String loginMerchant(@RequestParam String username, @RequestParam String password, Model model) {
+        if (merchantRepository.findByName(username).isEmpty()) {
+            return "error";
+        } else if (merchantRepository.findByName(username).get().getPassword().equals(password)) {
+            return "redirect:/" + merchantRepository.findByName(username).get().getId();
+
+        }
+        return "error";
+    }
     @GetMapping("/{merchantId}")
     public String getMerchant(@PathVariable Long merchantId, Model model) {
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
