@@ -32,7 +32,7 @@ public class MerchantController {
             }
         }
 
-        return "error";
+        return "merchant_login";
     }
     @GetMapping("/{merchantId}")
     public String getMerchant(@PathVariable Long merchantId, Model model) {
