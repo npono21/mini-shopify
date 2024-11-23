@@ -11,7 +11,7 @@ class MerchantTest {
 
     @BeforeEach
     void setUp() {
-        m1 = new Merchant("Arthur", "zinch");
+        m1 = new Merchant("Arthur", "arthur123", "zinch");
     }
 
     @AfterEach
