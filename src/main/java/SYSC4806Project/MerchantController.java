@@ -13,8 +13,8 @@ public class MerchantController {
     MerchantRepository merchantRepository;
 
     @PostMapping("/createMerchant")
-    public String createMerchant(@RequestParam String username, @RequestParam String password, Model model) {
-        Merchant merchant = new Merchant(username, password);
+    public String createMerchant(@RequestParam String email, @RequestParam String password, Model model) {
+        Merchant merchant = new Merchant(email, password);
         model.addAttribute("merchant", merchant);
         merchantRepository.save(merchant);
         return "redirect:/" + merchant.getId();
