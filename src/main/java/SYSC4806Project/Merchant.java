@@ -20,8 +20,8 @@ public class Merchant extends User {
         super();
         this.shops = new ArrayList<>();}
 
-    public Merchant(String name, String password) {
-        super(name, password);
+    public Merchant(String name, String username, String password) {
+        super(name, username, password);
         this.shops = new ArrayList<>();
     }
 
