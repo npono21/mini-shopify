@@ -1,3 +1,14 @@
+<?php
+    $serverName = "minishopify.database.windows.net"; // update me
+        $connectionOptions = array(
+            "Database" => "mini_shopify_dev", // update me
+            "Uid" => "admin_minishopify_sysc4806", // update me
+            "PWD" => "j;*86XgQa^b2+CR5" // update me
+        );
+        //Establishes the connection
+        $conn = sqlsrv_connect($serverName, $connectionOptions);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -42,32 +53,32 @@
     </div>
 
     <script>
-        document.getElementById('registerForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            // Client-side validation
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm_password').value;
-            const confirmTsAndCs = document.getElementById('confirm_ts_and_cs').checked;
+        // Client-side validation
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        const confirmTsAndCs = document.getElementById('confirm_ts_and_cs').checked;
 
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
 
-            if (!confirmTsAndCs) {
-                alert('Please agree to the Terms and Conditions.');
-                return;
-            }
+        if (!confirmTsAndCs) {
+            alert('Please agree to the Terms and Conditions.');
+            return;
+        }
 
-            const formData = new FormData(e.target);
-            const response = await fetch('/registerMerchant', {
-                method: 'POST',
-                body: formData,
-            });
-            const result = await response.text();
-            alert(result);
+        const formData = new FormData(e.target);
+        const response = await fetch('/registerMerchant', {
+            method: 'POST',
+            body: formData,
         });
+        const result = await response.text();
+        alert(result);
+    });
     </script>
 </body>
 
