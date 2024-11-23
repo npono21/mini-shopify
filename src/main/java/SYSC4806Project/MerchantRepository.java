@@ -1,9 +1,6 @@
 package SYSC4806Project;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-public interface MerchantRepository extends CrudRepository<Merchant, Long> {
-    Optional<Merchant> findById(Long id);
+public interface MerchantRepository extends JpaRepository<Merchant, Long> {
 }

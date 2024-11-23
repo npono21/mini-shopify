@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Console;
 import java.util.Optional;
 
 @org.springframework.stereotype.Controller
@@ -20,16 +21,22 @@ public class MerchantController {
         return "redirect:/" + merchant.getId();
     }
     @PostMapping("/loginMerchant")
-    public String loginMerchant(@RequestParam String username, @RequestParam String password, Model model) {
-        Iterable<Merchant> merchants = merchantRepository.findAll();
+    public String loginMerchant(
+        @RequestParam String username, 
+        @RequestParam String password, 
+        Model model) {
 
-        for (Merchant merchant: merchants) {
-            if (merchant.login(username, password)) {
-                return "redirect:/" + merchant.getId();
-            }
+        Optional<Merchant> merchant = merchantRepository.findAll().stream()
+            .filter(m -> m.login(username, password))
+            .findFirst();
+
+        if (merchant.isPresent()) {
+            model.addAttribute("merchant", merchant.get());
+            return "redirect:/" + merchant.get().getId();
         }
 
-        return "error";
+        model.addAttribute("error", "Invalid username or password");
+        return "merchant_login";
     }
 
     @GetMapping("/{merchantId}")
