@@ -22,11 +22,12 @@ public class MerchantController {
     }
     @PostMapping("/signinMerchant")
     public String loginMerchant(@RequestParam String username, @RequestParam String password, Model model) {
-        Merchant merchant = merchantRepository.findAll().stream()
+        Optional<Merchant> merchantOpt = merchantRepository.findAll().stream()
             .filter(m -> m.login(username, password))
-            .findFirst().get();
-
-        if (merchant != null) {
+            .findFirst();
+        
+        if (merchantOpt.isPresent()) {
+            Merchant merchant = merchantOpt.get();
             model.addAttribute("merchant", merchant);
             return "redirect:/" + merchant.getId();
         }
@@ -34,7 +35,6 @@ public class MerchantController {
         model.addAttribute("error", "Invalid username or password");
         return "merchant_login";
     }
-
     @GetMapping("/{merchantId}")
     public String getMerchant(@PathVariable Long merchantId, Model model) {
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
