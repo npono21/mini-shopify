@@ -13,6 +13,7 @@
 
 <body>
     <div class="container">
+<<<<<<< HEAD
         <div id="go-back-div" onclick="goBack('merchantLogin')">
             <i class="fa fa-arrow-left" id="go-back-arrow" aria-hidden="true"></i>
         </div>
@@ -40,6 +41,32 @@
         </form>
         <div class="login-link">
             <p>Already have an account? <a href="/merchantLogin">Login here</a></p>
+=======
+        <p>Create your account</p>
+        <form class="registration-form" id="registerForm" action="createMerchant" method="post">
+            <label for="username">Username or Email:</label>
+            <input type="text" id="username" name="username" placeholder="example123 or email@example.com">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <button type="submit">Create Mini-Shopify Account</button>
+        </form>
+        <script>
+            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const response = await fetch('/registerMerchant', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await response.text();
+                alert(result);
+            });
+        </script>
+        <div class="login-link">
+            <p>Already have an account? <a href="merchant_login.html">Login here</a></p>
+>>>>>>> c277b688a73b3bbb68bea5e50e0a522104ef28da
         </div>
     </div>
 </body>

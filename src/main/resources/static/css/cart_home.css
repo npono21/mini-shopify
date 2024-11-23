@@ -1,0 +1,328 @@
+body,
+html {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #202020;
+    color: #333;
+    font-family: "Roboto", sans-serif;
+}
+
+.header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #202020;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    height: 10%;
+}
+
+#search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    margin-left: 20px;
+}
+
+#search-bar input[type="search"] {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 1em;
+}
+
+#search-bar button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    transition: background-color 0.3s ease;
+}
+
+#search-bar button:hover {
+    background-color: #555;
+}
+
+.dropdown-account-menu {
+    position: relative;
+    margin-left: auto;
+}
+
+.dropdown-account-button {
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.dropdown-account-button:hover {
+    background-color: #555;
+}
+
+.dropdown-account-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    right: 0;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.dropdown-account-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-account-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.side-menu {
+    width: 250px;
+    background-color: lightgrey;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.menu-item {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    padding: 5px;
+}
+
+.menu-item p {
+    color: black;
+}
+
+.menu-item:hover {
+    background-color: white;
+}
+
+.menu-item i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.content-area {
+    flex: 1;
+    padding: 10px;
+    background: #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.content-area h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.content-area p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.6;
+}
+
+.tiles-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+}
+
+.tile {
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.1s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.tile img {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#create-shop-button {
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    right: 0;
+    position: absolute;
+    margin-right: 25px;
+}
+
+#create-shop-button:hover {
+    background-color: #555;
+}
+
+.page-title-div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* This is styling for the modal that will allow the user to create a shop */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    width: 50%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+    justify-content: center;
+}
+
+.modal.show .modal-content {
+    transform: scale(1);
+}
+
+.close {
+    color: #333;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close:hover {
+    color: #ff5a5f;
+}
+
+.modal-content form label {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.modal-content form input[type="text"],
+.modal-content form textarea,
+.modal-content form input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-right: 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.2s;
+}
+
+.modal-content form input[type="text"]:focus,
+.modal-content form textarea:focus,
+.modal-content form input[type="file"]:focus {
+    border-color: #333;
+}
+
+.modal-content form input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-content form input[type="submit"]:hover {
+    background-color: #555;
+}
+
+.total-display {
+    margin: 10px 0;
+    padding: 10px 15px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+#checkout-button {
+    background-color: #5d5fff;
+    color: white;
+    padding: 40px 60px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    right: 0;
+    position: absolute;
+    margin-right: 25px;
+}
+
+#checkout-button:hover {
+    background-color: #555;
+}
+
+.alert {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+
+
