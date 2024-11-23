@@ -290,3 +290,20 @@ html {
 .modal-content form input[type="submit"]:hover {
   background-color: #555;
 }
+
+.displayTags {
+  font-size: small;
+  padding: 2px 2px;
+}
+
+.displayTags ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.displayTags li {
+  color: dimgrey;
+  font-size: x-small;
+  display: inline-block;
+  margin-right: 4px;
+}
