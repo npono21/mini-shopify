@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Console;
+import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Controller
@@ -22,22 +23,16 @@ public class MerchantController {
     }
     @PostMapping("/signinMerchant")
     public String signinMerchant(@RequestParam String username, @RequestParam String password, Model model) {
-        Merchant merchant = new Merchant("test", username, password);
-        model.addAttribute("merchant", merchant);
-        merchantRepository.save(merchant);
-        return "redirect:/" + merchant.getId();
-        // Optional<Merchant> merchantOpt = merchantRepository.findAll().stream()
-        //     .filter(m -> m.login(username, password))
-        //     .findFirst();
-        
-        // if (merchantOpt.isPresent()) {
-        //     Merchant merchant = merchantOpt.get();
-        //     model.addAttribute("merchant", merchant);
-        //     return "redirect:/" + merchant.getId();
-        // }
+        List<Merchant> merchants = merchantRepository.findAll();
 
-        // model.addAttribute("error", "Invalid username or password");
-        // return "merchant_login";
+        for (Merchant merchant : merchants) {
+            if (merchant.login(username, password)) {
+                model.addAttribute("merchant", merchant);
+                return "redirect:/" + merchant.getId();
+            }
+        }
+
+        return "error";
     }
     @GetMapping("/{merchantId}")
     public String getMerchant(@PathVariable Long merchantId, Model model) {
