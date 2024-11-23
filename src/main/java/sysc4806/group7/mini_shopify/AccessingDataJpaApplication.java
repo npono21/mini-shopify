@@ -14,6 +14,11 @@ import java.util.Optional;
 public class AccessingDataJpaApplication {
     private static final Logger log = LoggerFactory.getLogger(AccessingDataJpaApplication.class);
 
+    @Bean
+    public Logger logger() {
+       return LoggerFactory.getLogger("logger");
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(AccessingDataJpaApplication.class, args);
     }
