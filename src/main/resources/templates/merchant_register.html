@@ -11,21 +11,33 @@
 </head>
 
 <body>
-<div class="container">
-    <p>Create your account</p>
-    <form class="registration-form" action="createMerchant" method="post">
-        <label for="username">Username or Email:</label>
-        <input type="text" id="username" name="username" placeholder="example123 or email@example.com">
+    <div class="container">
+        <p>Create your account</p>
+        <form class="registration-form" id="registerForm" action="createMerchant" method="post">
+            <label for="username">Username or Email:</label>
+            <input type="text" id="username" name="username" placeholder="example123 or email@example.com">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
 
-        <button type="submit">Create Mini-Shopify Account</button>
-    </form>
-    <div class="login-link">
-        <p>Already have an account? <a href="merchant_login.html">Login here</a></p>
+            <button type="submit">Create Mini-Shopify Account</button>
+        </form>
+        <script>
+            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const response = await fetch('/registerMerchant', {
+                    method: 'POST',
+                    body: formData,
+                });
+                const result = await response.text();
+                alert(result);
+            });
+        </script>
+        <div class="login-link">
+            <p>Already have an account? <a href="merchant_login.html">Login here</a></p>
+        </div>
     </div>
-</div>
 </body>
 
 </html>
