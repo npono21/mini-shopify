@@ -22,7 +22,10 @@ public class MerchantController {
     }
     @PostMapping("/signinMerchant")
     public String signinMerchant(@RequestParam String username, @RequestParam String password, Model model) {
-        return "merchant_home";
+        Merchant merchant = new Merchant("test", username, password);
+        model.addAttribute("merchant", merchant);
+        merchantRepository.save(merchant);
+        return "redirect:/" + merchant.getId();
         // Optional<Merchant> merchantOpt = merchantRepository.findAll().stream()
         //     .filter(m -> m.login(username, password))
         //     .findFirst();
