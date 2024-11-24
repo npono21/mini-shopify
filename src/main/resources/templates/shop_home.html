@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mini-Shopify Shop Home</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Nicholai Ponomarev">
+    <link rel="stylesheet" href="/css/shop_home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        function toggleProfileMenuDropdown() {
+            const dropdownContent = document.querySelector(".dropdown-account-content");
+            const newShopButton = document.querySelector("#add-product-button");
+
+            // Toggle dropdown visibility
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none"; // Hide dropdown
+                newShopButton.style.display = "block";  // Show "Create Shop" button
+            } else {
+                dropdownContent.style.display = "block"; // Show dropdown
+                newShopButton.style.display = "none";   // Hide "Create Shop" button
+            }
+        }
+
+        window.onclick = function (event) {
+            const dropdownContent = document.querySelector(".dropdown-account-content");
+            const dropdownButton = document.querySelector(".dropdown-account-button");
+            const newShopButton = document.querySelector("#add-product-button");
+
+            // Close dropdown if the user clicks outside the button and dropdown
+            if (!event.target.matches('.dropdown-account-button') && !event.target.matches('.dropdown-account-content') && !event.target.matches('#add-product-button')) {
+                if (dropdownContent) {
+                    dropdownContent.style.display = "none"; // Hide dropdown
+                    newShopButton.style.display = "block";  // Show "Create Shop" button
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="header-bar">
+        <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
+        <form id="search-bar">
+            <input type="search" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+        <div class="dropdown-account-menu">
+            <button onclick="toggleProfileMenuDropdown()" class="dropdown-account-button">
+                <i class="fa fa-user"></i> Account
+            </button>
+            <div class="dropdown-account-content">
+                <a href="#">Manage Account</a>
+                <a href="index.html">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <aside class="side-menu">
+            <div class="menu-item"><i class="fa fa-home" aria-hidden="true"></i>
+                <p> Home</p>
+            </div>
+            <div class="menu-item"><i class="fa fa-shopping-cart"></i>
+                <p> Orders</p>
+            </div>
+            <div class="menu-item"><i class="fa fa-cog"></i>
+                <p> Settings</p>
+            </div>
+        </aside>
+        <main class="content-area">
+            <div class="page-title-div">
+                <div>
+                    <h1 th:text="${shop.name} + '\'s Dashboard'">Shop Dashboard</h1>
+                    <p>Manage your business activities, check orders, and stay on top of inventory and customer needs.
+                    </p>
+                </div>
+                <button id="add-product-button">Add a Product</button>
+            </div>
+            <h1 style="margin-top: 20px;">Products</h1>
+            <section class="tiles-container">
+                <div class="tile" th:each="items : ${shop.inventory.itemQuantityPairs}">
+                    <h2 th:text="${items.product.name}">Product Name</h2>
+                    <h5 th:text="'Description: ' + ${items.product.description}">Product Description</h5>
+                    <h5 th:text="'Inventory: ' + ${items.quantity}">Product Inventory</h5>
+                    <h5 th:text="'  Price: $' + ${items.product.price}">Product Price</h5>
+                    <img th:src="${items.product.imagePath}" alt="Item Stock Image 1">
+                </div>
+            </section>
+        </main>
+        <div id="add-product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form th:action="@{/home/{merchantId}/{shopId}/addProduct(merchantId=${merchant.id},shopId=${shop.id})}"
+                      method="post"
+                      enctype="multipart/form-data">
+                    <label for="select_product_img">Select Product Display Image:</label>
+                    <input type="file" id="select_product_img" name="select_product_img" accept="image/*">
+                    <label for="productName">Product Name:</label><br>
+                    <input type="text" id="productName" name="productName" required><br>
+                    <label for="productPrice">Product Price</label>
+                    <input type="number" id="productPrice" name="productPrice" min="001" step="0.01" required><br>
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="999999" required>
+                    <p><label for="productDescription">Product Description:</label></p>
+                    <textarea id="productDescription" name="productDescription" rows="4" cols="50" required></textarea>
+                    <br>
+                    <input type="submit" value="Add Product">
+                </form>
+            </div>
+            <script>
+                var add_product_modal = document.getElementById("add-product-modal");
+                var add_product_btn = document.getElementById("add-product-button");
+
+                // Get the <span> element that closes the modal, this is the (x)
+                // We need to get the [0] because getElementsByClassName returns a collection of HTML element
+                var close_modal_span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks the button, open the modal
+                add_product_btn.onclick = function () {
+                    add_product_modal.style.display = "block";
+                }
+
+                // When the user clicks on <span> (x), close the modal
+                close_modal_span.onclick = function () {
+                    add_product_modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == add_product_modal) {
+                        add_product_modal.style.display = "none";
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
