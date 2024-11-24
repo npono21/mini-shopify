@@ -50,6 +50,19 @@ Project milestones.
 1. Register a Merchant Account
 2. Create a Shop
 
+### Milestone 2: Alpha Release (2024/11/25)
+
+#### Goals
+
+- [ ] Implement several additional related features
+- [ ] Support several related use cases
+- [ ] Implement integration tests for Controllers
+- [ ] Update project documentation and diagrams 
+
+#### Completed Use Cases
+
+3. Search a Shop by Name or Tags
+
 ## Use Cases
 
 Use Cases for this project used to drive the design and implementation.
@@ -70,7 +83,7 @@ Use Cases for this project used to drive the design and implementation.
   1. Click the **Create Mini-Shopify Account** button to complete merchant registration.
   1. Peruse the merchant dashboard created for the merchant account.
 - Status:
-  - Implemented in Milestone 1
+  - Implemented in Milestone 1.
 
 ### Use Case 2: Create a Shop
 
@@ -83,10 +96,23 @@ Use Cases for this project used to drive the design and implementation.
   1. Complete the resultant form with the following fields:
      - **Shop Name**
      - **Shop Description**
+     - **Shop Tags**
   1. Create the shop by clicking the **Create Shop** button.
   1. View the shop icon created under the **My Shops** section of the merchant dashboard.
 - Status:
-  - Implemented in Milestone 1
+  - Implemented in Milestone 1.
+
+### Use Case 3: Search a Shop by Name or Tags
+
+- Primary Actor:
+  - User (Merchant or Buyer)
+- Preconditions:
+  - User has registered and is logged in to their account.
+- Steps:
+  1. From any page, enter a query into the **Search Bar**.
+  1. View the list of results containing all **Shops** that match any search term in their **Name** or list of **Tags**.
+- Status:
+  - Implemented in Milestone 2.
 
 ## CI/CD/CT
 

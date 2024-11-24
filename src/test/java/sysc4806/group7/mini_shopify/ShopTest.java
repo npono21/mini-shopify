@@ -15,12 +15,17 @@ class ShopTest {
     Shop shop;
     Product bread;
     Product toaster;
+    ArrayList<Tag> tags;
 
     @BeforeEach
     void setUp() {
         buyer = new Buyer("Rebecca", "ult1m4t3_fr1sb33");
         merchant = new Merchant("Arthur", "zinch");
-        shop = new Shop("Arthur's Appliances", "sells appliances", merchant);
+        tags = new ArrayList<>();
+        tags.add(Tag.BABY);
+        tags.add(Tag.GROCERY);
+        tags.add(Tag.APPLIANCES);
+        shop = new Shop("Arthur's Appliances", "sells appliances", merchant, tags);
         merchant.addShop(shop);
         toaster = new Product("Toaster", "a toaster", 12.99);
         bread = new Product("Bread", "some bread", 4.25);
@@ -133,7 +138,7 @@ class ShopTest {
     @Test
     void testToString() {
         // Empty shop
-        String expected = "Shop [name=Arthur's Appliances, id=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[], inventory=[]]";
+        String expected = "Shop [name=Arthur's Appliances, id=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[], inventory=[], tags=[BABY, GROCERY, APPLIANCES]]";
         // id only exists if persisted, which it is not for testing this method.
         String pattern = "id=(null|\\d+)";
         String actual = shop.toString();
@@ -145,7 +150,7 @@ class ShopTest {
         shop.addInventory(toaster, 12);
         // Shop with inventory
         System.out.println(shop.toString());
-        expected = "Shop [name=Arthur's Appliances, id=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[Product [name=Toaster, price=12.99, tags=[]]], inventory=[[product=Product [name=Toaster, price=12.99, tags=[]], quantity=12]]]";
+        expected = "Shop [name=Arthur's Appliances, id=*, Merchant=(User [Name: Arthur, Type: Merchant]), productList=[Product [name=Toaster, price=12.99, tags=[]]], inventory=[[product=Product [name=Toaster, price=12.99, tags=[]], quantity=12]], tags=[BABY, GROCERY, APPLIANCES]]";
         assertEquals(expected, shop.toString().replaceAll(pattern, "id=*"));
     }
 }

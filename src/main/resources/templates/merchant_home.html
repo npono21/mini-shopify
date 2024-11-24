@@ -43,8 +43,8 @@
 <body>
     <div class="header-bar">
         <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-        <form id="search-bar">
-            <input type="search" placeholder="Search...">
+        <form id="search-bar" action="/searchResults" method="get">
+            <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
             <button type="submit">Search</button>
         </form>
         <div class="dropdown-account-menu">
@@ -84,6 +84,13 @@
                     <a th:href="@{/home/{merchantId}/{shopId}(merchantId=${merchant.id}, shopId=${shop.id})}" class="tile-link">
                         <h2 th:text="${shop.name}">Shop name</h2>
                         <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+                        <div class="displayTags">
+                            <ul>
+                                <li th:each="tag : ${shop.tags}">
+                                    <p th:text="${tag.name}">magic</p>
+                                </li>
+                            </ul>
+                        </div>
                     </a>
                 </div>
             </section>
@@ -98,7 +105,96 @@
                     <input type="text" id="shopName" name="shopName"><br>
                     <p><label for="shopDescription">Shop Description:</label></p>
                     <textarea id="shopDescription" name="shopDescription" rows="4" cols="50"></textarea>
-                    <br>
+                    <!-- Shop Tags -->
+                    <p><label>Shop Tags:</label></p>
+                    <table>
+                        <!-- Row -->
+                        <tr>
+                            <td>
+                                <label for="APPLIANCES">
+                                    <input type="checkbox" id="APPLIANCES" name="shopTags" value="APPLIANCES">
+                                    APPLIANCES
+                                </label>
+                            </td>
+                            <td>
+                                <label for="BABY">
+                                    <input type="checkbox" id="BABY" name="shopTags" value="BABY">
+                                    BABY
+                                </label>
+                            </td>
+                            <td>
+                                <label for="CLOTHES">
+                                    <input type="checkbox" id="CLOTHES" name="shopTags" value="CLOTHES">
+                                    CLOTHES
+                                </label>
+                            </td>
+                        </tr>
+                        <!-- Row -->
+                        <tr>
+                            <td>
+                                <label for="COMPUTERS">
+                                    <input type="checkbox" id="COMPUTERS" name="shopTags" value="COMPUTERS">
+                                    COMPUTERS
+                                </label>
+                            </td>
+                            <td>
+                                <label for="ELECTRONICS">
+                                    <input type="checkbox" id="ELECTRONICS" name="shopTags" value="ELECTRONICS">
+                                    ELECTRONICS
+                                </label>
+                            </td>
+                            <td>
+                                <label for="ENTERTAINMENT">
+                                    <input type="checkbox" id="ENTERTAINMENT" name="shopTags" value="ENTERTAINMENT">
+                                    ENTERTAINMENT
+                                </label>
+                            </td>
+                        </tr>
+                        <!-- Row -->
+                        <tr>
+                            <td>
+                                <label for="GROCERY">
+                                    <input type="checkbox" id="GROCERY" name="shopTags" value="GROCERY">
+                                    GROCERY
+                                </label>
+                            </td>
+                            <td>
+                                <label for="HOME">
+                                    <input type="checkbox" id="HOME" name="shopTags" value="HOME">
+                                    HOME
+                                </label>
+                            </td>
+                            <td>
+                                <label for="KITCHEN">
+                                    <input type="checkbox" id="KITCHEN" name="shopTags" value="KITCHEN">
+                                    KITCHEN
+                                </label>
+                            </td>
+                        </tr>
+                        <!-- Row -->
+                        <tr>
+                            <td>
+                                <label for="LIVING">
+                                    <input type="checkbox" id="LIVING" name="shopTags" value="LIVING">
+                                    LIVING
+                                </label>
+                            </td>
+                            <td>
+                                <label for="PHONE">
+                                    <input type="checkbox" id="PHONE" name="shopTags" value="PHONE">
+                                    PHONE
+                                </label>
+                            </td>
+                            <td>
+                                <label for="TOYS">
+                                    <input type="checkbox" id="TOYS" name="shopTags" value="TOYS">
+                                    TOYS
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- Submit -->
+                    </br>
                     <input type="submit" value="Create Shop">
                 </form>
             </div>

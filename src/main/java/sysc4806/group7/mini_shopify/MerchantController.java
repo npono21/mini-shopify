@@ -1,10 +1,12 @@
 package sysc4806.group7.mini_shopify;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @org.springframework.stereotype.Controller
@@ -15,6 +17,9 @@ public class MerchantController {
 
     @Autowired
     ShopRepository shopRepository;
+
+    @Autowired
+    Logger logger;
 
     @PostMapping("/createMerchant")
     public String createMerchant(@RequestParam String username, @RequestParam String password, Model model) {
@@ -35,10 +40,17 @@ public class MerchantController {
         }
     }
     @PostMapping("/{merchantId}/createShop")
-    public String createShop(@PathVariable Long merchantId, @RequestParam String shopName, @RequestParam String shopDescription, Model model) {
+    //public String createShop(@PathVariable Long merchantId, @RequestParam String shopName, @RequestParam String shopDescription, Model model) {
+    public String createShop(@PathVariable Long merchantId, @RequestParam String shopName, @RequestParam String shopDescription, @RequestParam ArrayList<Tag> shopTags, Model model) {
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
         if (merchant.isPresent()) {
-            Shop shop = new Shop(shopName,shopDescription,merchant.get());
+            // Log list of received tags
+            logger.debug("Tags for shop" + shopName + ":");
+            for (Tag tag : shopTags) {
+                logger.debug(tag.toString());
+            }
+            Shop shop = new Shop(shopName,shopDescription,merchant.get(), shopTags);
+            //Shop shop = new Shop(shopName,shopDescription,merchant.get());
             merchant.get().addShop(shop);
             merchantRepository.save(merchant.get());
             model.addAttribute("shop", shop);
@@ -55,7 +67,7 @@ public class MerchantController {
         if (shop.isPresent() && merchant.isPresent()) {
             model.addAttribute("shop", shop.get());
             model.addAttribute("merchant", merchant.get());
-            return "shop_home";
+            return "merchant_shop";
         }
         else {
             return "error";

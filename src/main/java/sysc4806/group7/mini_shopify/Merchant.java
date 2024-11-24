@@ -49,10 +49,11 @@ public class Merchant extends User {
      * Create a new shop associated with the merchant. Shop is not permitted to have the same name as any other shop in
      * the system.
      * @param name of the shop
+     * @param accountNumber of the shop
      * @return created shop or null
      */
-    public Shop createShop(String name, String description) {
-        Shop shop = new Shop(name, description, this);
+    public Shop createShop(String name, String description, int accountNumber, ArrayList<Tag> tags) {
+        Shop shop = new Shop(name, description, this, tags);
         shops.add(shop);
         return shop;
     }

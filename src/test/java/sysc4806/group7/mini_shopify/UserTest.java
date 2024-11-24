@@ -4,18 +4,25 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     User buyer;
     User merchant;
     Shop shop;
+    ArrayList<Tag> tags;
 
     @BeforeEach
     void setUp() {
         buyer = new Buyer("Rebecca", "ult1m4t3_fr1sb33");
         merchant = new Merchant("Arthur", "zinch");
-        shop = new Shop("Arthur's Appliances", "a shop", (Merchant)merchant);
+        tags = new ArrayList<>();
+        tags.add(Tag.BABY);
+        tags.add(Tag.GROCERY);
+        tags.add(Tag.APPLIANCES);
+        shop = new Shop("Arthur's Assorted Goods", "a shop", (Merchant)merchant, tags);
     }
 
     @AfterEach
