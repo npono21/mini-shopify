@@ -81,15 +81,18 @@
             <h1 style="margin-top: 20px;">My Shops</h1>
             <section class="tiles-container">
                 <div class="tile" th:each="shop : ${merchant.shops}">
-                    <!--
                     <a th:href="@{/home/{merchantId}/{shopId}(merchantId=${merchant.id}, shopId=${shop.id})}" class="tile-link">
                         <h2 th:text="${shop.name}">Shop name</h2>
                         <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+                        <div class="displayTags">
+                            <ul>
+                                <li th:each="tag : ${shop.tags}">
+                                    <p th:text="${tag.name}">magic</p>
+                                </li>
+                            </ul>
+                        </div>
                     </a>
-                    -->
-                    <h2 th:text="${shop.name}">Shop name</h2>
-                    <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
-                    <!-- Display Tags -->
+                    <!-- Display Tags
                     <div class="displayTags">
                         <ul>
                             <li th:each="tag : ${shop.tags}">
@@ -97,7 +100,7 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- Display Tags -->
+                    Display Tags -->
                 </div>
             </section>
         </main>

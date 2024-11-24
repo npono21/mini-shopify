@@ -1,14 +1,11 @@
-package SYSC4806Project;
+package sysc4806.group7.mini_shopify;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.SocketOption;
 import java.util.*;
 
 @org.springframework.stereotype.Controller

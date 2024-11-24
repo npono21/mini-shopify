@@ -1,4 +1,4 @@
-package SYSC4806Project;
+package sysc4806.group7.mini_shopify;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
