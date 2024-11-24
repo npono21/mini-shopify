@@ -48,8 +48,22 @@
             </div>
             <p>Showing Shop results for: <span id="displaySearchString" th:text="${searchString}">magic</span>
             </p>
-            <h1>Look at these Shops</h1>
             <!-- Display the Shop Tiles Here -->
+            <section class="tiles-container">
+                <div class="tile" th:each="shop : ${shopResults}">
+                    <h2 th:text="${shop.name}">magic</h2>
+                    <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+                    <!-- Display Tags -->
+                    <div class="displayTags">
+                        <ul>
+                            <li th:each="tag : ${shop.tags}">
+                                <p th:text="${tag.name}">magic</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Display Tags -->
+                </div>
+            </section>
         </main>
     </div>
 </body>
