@@ -28,8 +28,8 @@ public class MerchantController {
     @PostMapping("/createMerchant")
     public String createMerchant(@RequestParam String name, @RequestParam String username, @RequestParam String password, Model model) {
         Merchant merchant = new Merchant(name, username, password);
-        merchantRepository.save(merchant);
         model.addAttribute("merchant", merchant);
+        merchantRepository.save(merchant);
         return "redirect:/" + merchant.getId();
     }
     @PostMapping("/signinMerchant")
@@ -45,7 +45,7 @@ public class MerchantController {
         return "error";
     }
     @GetMapping("/{merchantId}")
-    public String showMerchantHome(@PathVariable Long merchantId, Model model) {
+    public String getMerchant(@PathVariable Long merchantId, Model model) {
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
         if (merchant.isPresent()) {
             model.addAttribute("merchant", merchant.get());
