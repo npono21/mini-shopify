@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="/js/go_back.js"></script>
+    <script src="/js/password_match.js" defer></script>
 </head>
 
 <body>
@@ -17,25 +18,26 @@
             <i class="fa fa-arrow-left" id="go-back-arrow" aria-hidden="true"></i>
         </div>
         <p>Create your Shopper account!</p>
-        <form class="registration-form" id="registration-form" action="" method="post">
+        <form class="registration-form" id="registration-form" action="/createBuyer" method="post"
+            onsubmit="password_match(event)">
             <label class="required" for="email">Email</label>
-            <input type="text" id="email" name="email" required>
+            <input type="email" id="username" name="username" required>
 
             <label class="required" for="name">Name</label>
             <input type="text" id="name" name="name" required>
 
-            <label class=" required" for=" password">Password</label>
+            <label class="required" for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
             <label class="required" for="confirm_password">Confirm Password</label>
             <input type="password" id="confirm_password" name="confirm_password" required>
 
             <div class="confirm_t_and_cs">
-                <input type="checkbox" id="confirm_ts_and_cs" name="confirm_ts_and_cs" value="false">
-                <p>I have read and agree to the </p>
-                <a href=""> Terms and Conditions</a>
+                <input type="checkbox" id="confirm_ts_and_cs" name="confirm_ts_and_cs" value="true" required>
+                <p>I have read and agree to the</p>
+                <a>Terms and Conditions</a>
             </div>
-            <input type="submit" value="Register">
+            <button type="submit">Create Mini-Shopify Account</button>
         </form>
         <div class="login-link">
             <p>Already have an account? <a href="/shopperLogin">Login here</a></p>

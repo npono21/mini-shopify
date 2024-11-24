@@ -1,5 +1,6 @@
 package sysc4806.group7.mini_shopify;
 
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,18 @@ public class MerchantController {
         merchantRepository.save(merchant);
         model.addAttribute("merchant", merchant);
         return "redirect:/" + merchant.getId();
+    }
+    @PostMapping("/signinMerchant")
+    public String signinMerchant(@RequestParam String username, @RequestParam String password, Model model) {
+        List<Merchant> merchants = merchantRepository.findAll();
+        
+        for (Merchant merchant : merchants) {
+            if (merchant.login(username, password)) {
+                model.addAttribute("merchant", merchant);
+                return "redirect:/" + merchant.getId();
+            }
+        }
+        return "error";
     }
     @GetMapping("/{merchantId}")
     public String showMerchantHome(@PathVariable Long merchantId, Model model) {

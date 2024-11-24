@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Controller
@@ -18,6 +19,18 @@ public class BuyerController {
         buyerRepository.save(buyer);
         model.addAttribute("buyer", buyer);
         return "redirect:/" + buyer.getId();
+    }
+    @PostMapping("/signinBuyer")
+    public String signinBuyer(@RequestParam String username, @RequestParam String password, Model model) {
+        List<Buyer> buyers = buyerRepository.findAll();
+        
+        for (Buyer buyer : buyers) {
+            if (buyer.login(username, password)) {
+                model.addAttribute("buyer", buyer);
+                return "redirect:/" + buyer.getId();
+            }
+        }
+        return "error";
     }
     @GetMapping("/{buyerId}")
     public String showMerchantHome(@PathVariable Long merchantId, Model model) {
