@@ -91,7 +91,7 @@ public class SearchController {
                 // Loop: Tags
                 for (Tag tag : shop.getTags()) {
                         // Check: tag match of searchTerm in Shop tags
-                        if (tag.toString().toUpperCase().equals(searchTerm.toUpperCase())) {
+                        if (tag.toString().toUpperCase().contains(searchTerm.toUpperCase())) {
                             // Accumulate Shop
                             shopResults.add(shop);
                             logger.info("Shop [" + shop.getName() + "] found with TAG matching search term: [" + searchTerm + "]");
@@ -107,7 +107,7 @@ public class SearchController {
         }
 
         // Add the results to the model
-        model.addAttribute(searchString);
+        model.addAttribute("shopResults", shopResults);
 
         // Return the template as a view
         return "search_results";
