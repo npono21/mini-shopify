@@ -10,12 +10,14 @@ public class Controller {
     public String registerMerchant() {
         return "merchant_register";
     }
+
     @GetMapping("/loginMerchant")
     public String loginMerchant() {
         return "merchant_login";
     }
+
     @GetMapping("/merchantHome")
-    public String loginMerchant(Model model) {
+    public String merchantHome(Model model) {
         return "merchant_home";
     }
 
