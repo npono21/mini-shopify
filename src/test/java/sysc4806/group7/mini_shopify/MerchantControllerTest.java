@@ -27,7 +27,7 @@ public class MerchantControllerTest {
                         .param("username", username)
                         .param("password", password))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/1"));
+                .andExpect(redirectedUrl("/merchantHome/1"));
     }
 
     @Test
