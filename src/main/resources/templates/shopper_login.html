@@ -22,22 +22,17 @@
         </div>
         <div class="login-button-div">
             <button class="login-button">Login with email</button>
-            <!-- <div class="social-login-div">
-                <button class="login-button">Login with Google</button>
-                <div class="divider"></div>
-                <button class="login-button">Login with Microsoft</button>
-            </div> -->
         </div>
         <div id="email-login-div">
             <form action="" method="post">
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email">
+                <input type="text" id="email" name="email" required>
                 <div class="form-input-div"></div>
-                <div class="label-forgot-password">
+                <div class="label-forgot-password" style="display:none;">
                     <label for="password">Password</label>
                     <a href="">Forgot Password?</a>
                 </div>
-                <input type="password" id="password" name="password">
+                <input type="password" id="password" name="password" required>
                 <input type="submit" value="Login">
             </form>
         </div>
