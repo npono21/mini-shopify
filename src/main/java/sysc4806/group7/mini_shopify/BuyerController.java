@@ -14,7 +14,7 @@ public class BuyerController {
     BuyerRepository buyerRepository;
 
     @PostMapping("/createBuyer")
-    public String createMerchant(@RequestParam String name, @RequestParam String username, @RequestParam String password, Model model) {
+    public String createBuyer(@RequestParam String name, @RequestParam String username, @RequestParam String password, Model model) {
         Buyer buyer = new Buyer(name, username, password);
         buyerRepository.save(buyer);
         model.addAttribute("buyer", buyer);
@@ -33,7 +33,7 @@ public class BuyerController {
         return "error";
     }
     @GetMapping("/{buyerId}")
-    public String showMerchantHome(@PathVariable Long merchantId, Model model) {
+    public String showBuyerHome(@PathVariable Long merchantId, Model model) {
         Optional<Buyer> buyer = buyerRepository.findById(merchantId);
         if (buyer.isPresent()) {
             model.addAttribute("buyer", buyer.get());
