@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/home/carts")
 public class CartController implements WebMvcConfigurer {
     @Autowired
     CartRepository cartRepository;
@@ -24,7 +25,7 @@ public class CartController implements WebMvcConfigurer {
     }
 
 
-    @GetMapping("/carts/{cartId}")
+    @GetMapping("/{cartId}")
     public String getCart(@PathVariable Long cartId, Model model) {
         Optional<Cart> cart = cartRepository.findById(cartId);
         if (cart.isPresent()) {
@@ -36,7 +37,7 @@ public class CartController implements WebMvcConfigurer {
 
     }
 
-    @DeleteMapping("/carts/{cartId}/{productId}")
+    @DeleteMapping("/{cartId}/{productId}")
     public String deleteProductFromCart(@PathVariable Long cartId, @PathVariable Long productId, Model model, RedirectAttributes redirectAttributes) {
         Optional<Cart> result = cartRepository.findById(cartId);
         if (result.isPresent()) {
@@ -50,7 +51,7 @@ public class CartController implements WebMvcConfigurer {
         return "cart_home";
     }
 
-    @PostMapping("/carts/{cartId}/update/{productId}")
+    @PostMapping("/{cartId}/update/{productId}")
     public String updateProductQuantityInCart(@PathVariable Long cartId, @PathVariable Long productId, @RequestParam int quantity, Model model, RedirectAttributes redirectAttributes) {
         Optional<Cart> result = cartRepository.findById(cartId);
         if (result.isPresent()) {
@@ -66,6 +67,6 @@ public class CartController implements WebMvcConfigurer {
         } else {
             return "error";
         }
-        return "redirect:/carts/" + cartId;
+        return "redirect:/home/carts/" + cartId;
     }
 }

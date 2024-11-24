@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @org.springframework.stereotype.Controller
+@RequestMapping("/home/buyer")
 public class BuyerController {
 
     @Autowired
@@ -18,7 +19,7 @@ public class BuyerController {
         Buyer buyer = new Buyer(name, username, password);
         buyerRepository.save(buyer);
         model.addAttribute("buyer", buyer);
-        return "redirect:/" + buyer.getId();
+        return "redirect:/home/buyer/" + buyer.getId();
     }
     @PostMapping("/signinBuyer")
     public String signinBuyer(@RequestParam String username, @RequestParam String password, Model model) {
@@ -27,17 +28,17 @@ public class BuyerController {
         for (Buyer buyer : buyers) {
             if (buyer.login(username, password)) {
                 model.addAttribute("buyer", buyer);
-                return "redirect:/" + buyer.getId();
+                return "redirect:/home/buyer/" + buyer.getId();
             }
         }
         return "error";
     }
     @GetMapping("/{buyerId}")
-    public String showBuyerHome(@PathVariable Long merchantId, Model model) {
-        Optional<Buyer> buyer = buyerRepository.findById(merchantId);
+    public String showBuyerHome(@PathVariable Long buyerId, Model model) {
+        Optional<Buyer> buyer = buyerRepository.findById(buyerId);
         if (buyer.isPresent()) {
             model.addAttribute("buyer", buyer.get());
-            return "shopper_home";
+            return "buyer_home";
         }
         else {
             return "error";

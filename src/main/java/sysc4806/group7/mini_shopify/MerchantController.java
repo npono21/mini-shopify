@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import java.util.ArrayList;
 
 @org.springframework.stereotype.Controller
+@RequestMapping("/home/merchant")
 public class MerchantController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class MerchantController {
         Merchant merchant = new Merchant(name, username, password);
         merchantRepository.save(merchant);
         model.addAttribute("merchant", merchant);
-        return "redirect:/merchantHome/" + merchant.getId();
+        return "redirect:/home/merchant/" + merchant.getId();
     }
 
     @GetMapping("/{merchantId}")
@@ -49,7 +50,7 @@ public class MerchantController {
         for (Merchant merchant : merchants) {
             if (merchant.login(username, password)) {
                 model.addAttribute("merchant", merchant);
-                return "redirect:/merchantHome/" + merchant.getId();
+                return "redirect:/home/merchant/" + merchant.getId();
             }
         }
         return "error";
@@ -68,13 +69,13 @@ public class MerchantController {
             merchant.get().addShop(shop);
             merchantRepository.save(merchant.get());
             model.addAttribute("shop", shop);
-            return "redirect:/merchantHome/" + merchant.get().getId();
+            return "redirect:/home/merchant/" + merchant.get().getId();
         } else {
             return "error";
         }
     }
 
-    @GetMapping("/home/{merchantId}/{shopId}")
+    @GetMapping("/{merchantId}/shop/{shopId}")
     public String showShopHome(@PathVariable Long merchantId, @PathVariable Long shopId, Model model) {
         Optional<Shop> shop = shopRepository.findByIdAndMerchantId(shopId, merchantId);
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
@@ -87,7 +88,7 @@ public class MerchantController {
         }
     }
 
-    @PostMapping("/home/{merchantId}/{shopId}/addProduct")
+    @PostMapping("/{merchantId}/shop/{shopId}/addProduct")
     public String addProduct(@PathVariable Long merchantId,
                              @PathVariable Long shopId,
                              @RequestParam String productName,
@@ -102,7 +103,7 @@ public class MerchantController {
             for (Product product: shop.get().getProducts()){
                 if (product.getName().equals(productName)){
                     // TODO: handle duplicated product name
-                    return "redirect:/home/" + merchant.get().getId() + "/" + shop.get().getId();
+                    return "redirect:/home/merchant/" + merchant.get().getId() + "/shop/" + shop.get().getId();
                 }
             }
             // TODO: handle product image
@@ -112,7 +113,7 @@ public class MerchantController {
             shopRepository.save(shop.get());
             model.addAttribute("shop", shop.get());
             model.addAttribute("merchant", merchant.get());
-            return "redirect:/home/" + merchant.get().getId() + "/" + shop.get().getId();
+            return "redirect:/home/merchant/" + merchant.get().getId() + "/shop/" + shop.get().getId();
         }
         else {
             return "error";

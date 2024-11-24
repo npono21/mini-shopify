@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Mini-Shopify Shopper Home</title>
+    <title>Mini-Shopify Buyer Home</title>
     <meta charset="UTF-8">
     <meta name="author" content="Nicholai Ponomarev">
     <link rel="stylesheet" href="/css/merchant_home.css">
@@ -14,8 +14,8 @@
 <body>
     <div class="header-bar">
         <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-        <form id="search-bar">
-            <input type="search" placeholder="Search...">
+        <form id="search-bar" action="/home/search/results" method="get">
+            <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
             <button type="submit">Search</button>
         </form>
         <div class="dropdown-account-menu">
@@ -43,21 +43,12 @@
         <main class="content-area">
             <div class="page-title-div">
                 <div>
-                    <h1 th:text="'Welcome to '+ ${shopper.name} + '\'s Dashboard'">Dashboard</h1>
+                    <h1 th:text="'Welcome to '+ ${buyer.name} + '\'s Dashboard'">Dashboard</h1>
                     <p>Manage your business activities, check orders, and stay on top of inventory and customer needs.
                     </p>
                 </div>
-                <button id="create-shop-button">Create a Shop</button>
             </div>
-            <h1 style="margin-top: 20px;">Shops</h1>
-            <section class="tiles-container">
-                <div class="tile" th:each="shop : ${merchant.shops}">
-                    <h2 th:text="${shop.name}">Shop name</h2>
-                    <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
-                </div>
-            </section>
         </main>
     </div>
 </body>
-
 </html>

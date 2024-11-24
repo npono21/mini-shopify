@@ -22,12 +22,12 @@ public class MerchantControllerTest {
         String name = "bob";
         String username = "bob@gmail.com";
         String password = "test";
-        mockMvc.perform(post("/createMerchant")
+        mockMvc.perform(post("/home/merchant/createMerchant")
                         .param("name", name)
                         .param("username", username)
                         .param("password", password))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/merchantHome/1"));
+                .andExpect(redirectedUrl("/home/merchant/1"));
     }
 
     @Test

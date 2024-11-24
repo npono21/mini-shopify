@@ -27,13 +27,11 @@
         window.onclick = function (event) {
             const dropdownContent = document.querySelector(".dropdown-account-content");
             const dropdownButton = document.querySelector(".dropdown-account-button");
-            const newShopButton = document.querySelector("#add-product-button");
 
             // Close dropdown if the user clicks outside the button and dropdown
             if (!event.target.matches('.dropdown-account-button') && !event.target.matches('.dropdown-account-content') && !event.target.matches('#add-product-button')) {
                 if (dropdownContent) {
                     dropdownContent.style.display = "none"; // Hide dropdown
-                    newShopButton.style.display = "block";  // Show "Create Shop" button
                 }
             }
         }
@@ -44,7 +42,7 @@
 <body>
     <div class="header-bar">
         <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-        <form id="search-bar" action="/searchResults" method="get">
+        <form id="search-bar" action="/home/search/results" method="get">
             <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
             <button type="submit">Search</button>
         </form>
@@ -60,7 +58,7 @@
     </div>
     <div class="main-content">
         <aside class="side-menu">
-            <div class="menu-item"><i class="fa fa-home" aria-hidden="true" onclick="goBack('merchantHome')"></i>
+            <div class="menu-item"><i class="fa fa-home" aria-hidden="true" onclick="goBack('/home/buyer/' + ${buyer.id})"></i>
                 <p> Home</p>
             </div>
             <div class=" menu-item"><i class="fa fa-shopping-cart"></i>
@@ -88,54 +86,6 @@
                 </div>
             </section>
         </main>
-<<<<<<< HEAD
-        <div id="add-product-modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <form th:action="@{/home/{merchantId}/{shopId}/addProduct(merchantId=${merchant.id},shopId=${shop.id})}"
-                    method="post" enctype="multipart/form-data">
-                    <label for="select_product_img">Select Product Display Image:</label>
-                    <input type="file" id="select_product_img" name="select_product_img" accept="image/*">
-                    <label for="productName">Product Name:</label><br>
-                    <input type="text" id="productName" name="productName" required><br>
-                    <label for="productPrice">Product Price</label>
-                    <input type="number" id="productPrice" name="productPrice" min="001" step="0.01" required><br>
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="999999" required>
-                    <p><label for="productDescription">Product Description:</label></p>
-                    <textarea id="productDescription" name="productDescription" rows="4" cols="50" required></textarea>
-                    <br>
-                    <input type="submit" value="Add Product">
-                </form>
-            </div>
-            <script>
-                var add_product_modal = document.getElementById("add-product-modal");
-                var add_product_btn = document.getElementById("add-product-button");
-
-                // Get the <span> element that closes the modal, this is the (x)
-                // We need to get the [0] because getElementsByClassName returns a collection of HTML element
-                var close_modal_span = document.getElementsByClassName("close")[0];
-
-                // When the user clicks the button, open the modal
-                add_product_btn.onclick = function () {
-                    add_product_modal.style.display = "block";
-                }
-
-                // When the user clicks on <span> (x), close the modal
-                close_modal_span.onclick = function () {
-                    add_product_modal.style.display = "none";
-                }
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == add_product_modal) {
-                        add_product_modal.style.display = "none";
-                    }
-                }
-            </script>
-        </div>
-=======
->>>>>>> f9b3e4c2882c310f1aa6c5bcfcddc1f883b6258d
     </div>
 </body>
 

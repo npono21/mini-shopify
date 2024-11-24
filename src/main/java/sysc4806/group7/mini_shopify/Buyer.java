@@ -9,7 +9,7 @@ import jakarta.persistence.*;
  */
 @Entity
 public class Buyer extends User{
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private final Cart cart = new Cart();
 
     public Buyer(String name, String username, String password) {

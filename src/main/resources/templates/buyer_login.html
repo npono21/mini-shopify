@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Mini-Shopify Shopper Login Page</title>
+    <title>Mini-Shopify Buyer Login Page</title>
     <meta charset="UTF-8">
     <meta name="author" content="Nicholai Ponomarev">
-    <link rel="stylesheet" href="/css/shopper_merchant_login.css">
+    <link rel="stylesheet" href="/css/buyer_merchant_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="/js/go_back.js"></script>
@@ -24,9 +24,9 @@
             <button class="login-button">Login with email</button>
         </div>
         <div id="email-login-div">
-            <form class="login-form" id="login-form" action="/signinBuyer" method="post">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
+            <form class="login-form" id="login-form" action="/home/buyer/signinBuyer" method="post">
+                <label for="username">Email</label>
+                <input type="text" id="username" name="username" required>
                 <div class="form-input-div"></div>
                 <div class="label-forgot-password" style="display:none;">
                     <label for="password">Password</label>
@@ -37,7 +37,7 @@
             </form>
         </div>
         <div class="register-link">
-            <p>Don't have a shopper account? <a href="/registerShopper">Register here</a></p>
+            <p>Don't have a Buyer account? <a href="/registerBuyer">Register here</a></p>
         </div>
     </div>
     <script src="/js/login_with_email.js" defer></script>

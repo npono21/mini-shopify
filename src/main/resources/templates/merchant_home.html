@@ -14,7 +14,7 @@
 <body>
     <div class="header-bar">
         <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-        <form id="search-bar" action="/searchResults" method="get">
+        <form id="search-bar" action="/home/search/results" method="get">
             <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
             <button type="submit">Search</button>
         </form>
@@ -52,7 +52,7 @@
             <h1 style="margin-top: 20px;">My Shops</h1>
             <section class="tiles-container">
                 <div class="tile" th:each="shop : ${merchant.shops}">
-                    <a th:href="@{/home/{merchantId}/{shopId}(merchantId=${merchant.id}, shopId=${shop.id})}" class="tile-link">
+                    <a th:href="@{/home/merchant/{merchantId}/shop/{shopId}(merchantId=${merchant.id}, shopId=${shop.id})}" class="tile-link">
                         <h2 th:text="${shop.name}">Shop name</h2>
                         <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
                         <div class="displayTags">
@@ -69,7 +69,7 @@
         <div id="create-shop-modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <form th:action="@{/{id}/createShop(id=${merchant.id})}" method="post">
+                <form th:action="@{/home/merchant/{id}/createShop(id=${merchant.id})}" method="post">
                     <label for="select_shop_img">Select Shop Display Image:</label>
                     <input type="file" id="select_shop_img" name="select_shop_img" accept="image/*">
                     <label for="shopName">Shop Name:</label><br>
