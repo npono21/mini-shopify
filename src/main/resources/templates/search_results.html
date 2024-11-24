@@ -14,8 +14,8 @@
 <body>
     <div class="header-bar">
         <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-        <form id="search-bar">
-            <input type="search" placeholder="Search...">
+        <form id="search-bar" action="/searchResults" method="get">
+            <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
             <button type="submit">Search</button>
         </form>
         <div class="dropdown-account-menu">
@@ -51,17 +51,17 @@
             <!-- Display the Shop Tiles Here -->
             <section class="tiles-container">
                 <div class="tile" th:each="shop : ${shopResults}">
-                    <h2 th:text="${shop.name}">magic</h2>
-                    <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
-                    <!-- Display Tags -->
-                    <div class="displayTags">
-                        <ul>
-                            <li th:each="tag : ${shop.tags}">
-                                <p th:text="${tag.name}">magic</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Display Tags -->
+                    <a th:href="@{/home/{shopId}(shopId=${shop.id})}" class="tile-link">
+                        <h2 th:text="${shop.name}">magic</h2>
+                        <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
+                        <div class="displayTags">
+                            <ul>
+                                <li th:each="tag : ${shop.tags}">
+                                    <p th:text="${tag.name}">magic</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </a>
                 </div>
             </section>
         </main>

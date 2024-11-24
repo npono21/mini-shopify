@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
@@ -108,6 +109,16 @@ public class SearchController {
 
         // Return the template as a view
         return "search_results";
+    }
+    @GetMapping("/home/{shopId}")
+    public String showShopHome(@PathVariable Long shopId, Model model) {
+        Optional<Shop> shop = shopRepository.findById(shopId);
+        if (shop.isPresent()) {
+            model.addAttribute("shop", shop.get());
+            return "shop_home";
+        } else {
+            return "error";
+        }
     }
 
 }

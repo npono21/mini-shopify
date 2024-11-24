@@ -67,7 +67,7 @@ public class MerchantController {
         if (shop.isPresent() && merchant.isPresent()) {
             model.addAttribute("shop", shop.get());
             model.addAttribute("merchant", merchant.get());
-            return "shop_home";
+            return "merchant_shop";
         }
         else {
             return "error";
