@@ -77,7 +77,7 @@ public class MerchantController {
 
     @GetMapping("/{merchantId}/shop/{shopId}")
     public String showShopHome(@PathVariable Long merchantId, @PathVariable Long shopId, Model model) {
-        Optional<Shop> shop = shopRepository.findByIdAndMerchantId(shopId, merchantId);
+        Optional<Shop> shop = shopRepository.findById(shopId);
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
         if (shop.isPresent() && merchant.isPresent()) {
             model.addAttribute("shop", shop.get());
@@ -97,7 +97,7 @@ public class MerchantController {
                              @RequestParam int quantity,
                              @RequestParam("select_product_img") MultipartFile productImg,
                              Model model) {
-        Optional<Shop> shop = shopRepository.findByIdAndMerchantId(shopId, merchantId);
+        Optional<Shop> shop = shopRepository.findById(shopId);
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
         if (shop.isPresent() && merchant.isPresent()) {
             for (Product product: shop.get().getProducts()){
@@ -111,8 +111,6 @@ public class MerchantController {
             shop.get().addProduct(product);
             shop.get().addInventory(product, quantity);
             shopRepository.save(shop.get());
-            model.addAttribute("shop", shop.get());
-            model.addAttribute("merchant", merchant.get());
             return "redirect:/home/merchant/" + merchant.get().getId() + "/shop/" + shop.get().getId();
         }
         else {
