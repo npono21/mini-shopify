@@ -31,7 +31,7 @@ public class MerchantController {
         for (Merchant merchant : merchants) {
             if (merchant.login(username, password)) {
                 model.addAttribute("merchant", merchant);
-                return "redirect:/" + merchant.getId();
+                return "redirect:/merchantHome" + merchant.getId();
             }
         }
         return "error";
