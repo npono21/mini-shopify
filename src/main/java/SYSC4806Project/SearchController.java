@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.SocketOption;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @org.springframework.stereotype.Controller
 public class SearchController {
@@ -41,30 +38,47 @@ public class SearchController {
             logger.info("\t" + searchTerm);
         }
 
-        // Create a set of Shops to accumulate search hits and avoid dupes
-        ArrayList<Shop> shopResults = new ArrayList<>();
+        // Create a SET of Shops to accumulate search hits and avoid dupes
+        Set<Shop> shopResults = new HashSet<>();
 
-        // NOTE: Can do this, but we're already going to go through our
-        // results to check tags, so just do the work there.
-        // Loop through our ArrayList of search terms, accumulating results.
-        //for (String searchTerm : searchTerms) {
-        //    // Query shops by name (can at most hit one, since unique).
-        //    Optional<Shop> shopByName = shopRepository.findByName(searchTerm);
-        //    if (shopByName.isPresent()) {
-        //        shopResults.add(shopByName.get());
-        //        logger.info("Shop with NAME matching search term: " + //searchTerm);
-        //    }
-        //}
+        /* Get Shops */
 
-        // Query shops by tags (as many hits possible as there are shops).
-        // Note: Could do this by defining a ShopRepository method to filter
-        // on tags, but I'm not convinced it would be more efficient.
-        List<Shop> allShops = shopRepository.findAll();
-        for (Shop shop : allShops) {
-            logger.info("\t" + shop);
+        // Get all of them at once rather than relying on different CRUDRepository
+        // methods, since we are going to search for BOTH name and tag hits, and
+        // this simplifies that process as we loop. Yes, this is a bigger read,
+        // but it is only one read.
+
+        // findAll() returns an Iterable, so cast to ArrayList() for search
+        Iterable<Shop> shopsIterable = shopRepository.findAll();
+        List<Shop> allShops = new ArrayList<>();
+        for (Shop shop : shopsIterable) {
+            // Exclude any nulls, if they occur
+            if (shop.getName() != null) {
+                allShops.add(shop);
+            }
         }
+
+        // Debug
+        logger.info("Found " + allShops.size() + " shops:");
+        for (Shop shop : allShops) {
+            logger.info("\t" + shop.getName());
+        }
+
+        /* Perform the Search */
+
+        // To meet requirements, we perform a single unified search by both
+        // Shop NAME and Shop TAGS. So, a user can enter any string they like,
+        // and each whitespace-separated substring is treated as a single
+        // search term for both criteria.
+        //
+        // To keep us case-insensitive, all pattern matching is done in
+        // uppercase.
+        //
+        // We also return substring matches to make the search more
+        // user-friendly. So, for example, if a user searches for "electronic",
+        // they will still catch results for the tag "ELECTRONICS".
+
         // Loop: Shops
-        /*
         for (Shop shop : allShops) {
             // Loop: Search Terms
             for (String searchTerm: searchTerms) {
@@ -72,7 +86,7 @@ public class SearchController {
                 if (shop.getName().toUpperCase().contains(searchTerm.toUpperCase())) {
                     // Accumulate Shop
                     shopResults.add(shop);
-                    logger.info("Shop [" + shop.getName() + "] found with NAME matching search term: " + searchTerm);
+                    logger.info("Shop [" + shop.getName() + "] found with NAME matching search term: [" + searchTerm + "]");
                 }
                 // Loop: Tags
                 for (Tag tag : shop.getTags()) {
@@ -80,12 +94,17 @@ public class SearchController {
                         if (tag.toString().toUpperCase().equals(searchTerm.toUpperCase())) {
                             // Accumulate Shop
                             shopResults.add(shop);
-                            logger.info("Shop [" + shop.getName() + "] found with TAG matching search term: " + searchTerm);
+                            logger.info("Shop [" + shop.getName() + "] found with TAG matching search term: [" + searchTerm + "]");
                         }
-                    }
                 }
+            }
         }
-         */
+
+        // List all Shops found matching Name or Tag query
+        logger.info("Returning " + shopResults.size() + " matching shops:");
+        for (Shop shop : shopResults) {
+            logger.info("\t" + shop.getName());
+        }
 
         // Add the results to the model
         model.addAttribute(searchString);
