@@ -37,7 +37,7 @@ public class BuyerController {
         Optional<Buyer> buyer = buyerRepository.findById(merchantId);
         if (buyer.isPresent()) {
             model.addAttribute("buyer", buyer.get());
-            return "buyer_home";
+            return "shopper_home";
         }
         else {
             return "error";
