@@ -22,7 +22,7 @@ public class MerchantController {
         Merchant merchant = new Merchant(name, username, password);
         merchantRepository.save(merchant);
         model.addAttribute("merchant", merchant);
-        return "redirect:/" + merchant.getId();
+        return "redirect:/merchantHome/" + merchant.getId();
     }
     @PostMapping("/signinMerchant")
     public String signinMerchant(@RequestParam String username, @RequestParam String password, Model model) {
@@ -31,7 +31,7 @@ public class MerchantController {
         for (Merchant merchant : merchants) {
             if (merchant.login(username, password)) {
                 model.addAttribute("merchant", merchant);
-                return "redirect:/merchantHome" + merchant.getId();
+                return "redirect:/merchantHome/" + merchant.getId();
             }
         }
         return "error";
