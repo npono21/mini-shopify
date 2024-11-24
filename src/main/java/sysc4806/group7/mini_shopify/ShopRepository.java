@@ -10,5 +10,4 @@ public interface ShopRepository extends CrudRepository<Shop, Long> {
     Optional<Shop> findById(Long id);
     Optional<Shop> findByIdAndMerchantId(Long id, Long merchantId);
     Optional<Shop> findByName(String shopName);
-    List<Shop> findAll();
 }
