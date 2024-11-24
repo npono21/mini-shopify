@@ -19,8 +19,8 @@ public class MerchantController {
     @PostMapping("/createMerchant")
     public String createMerchant(@RequestParam String username, @RequestParam String password, Model model) {
         Merchant merchant = new Merchant(username, password);
-        model.addAttribute("merchant", merchant);
         merchantRepository.save(merchant);
+        model.addAttribute("merchant", merchant);
         return "redirect:/" + merchant.getId();
     }
     @GetMapping("/{merchantId}")
