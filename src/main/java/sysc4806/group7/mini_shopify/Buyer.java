@@ -31,4 +31,6 @@ public class Buyer extends User{
     public double getCartTotalPrice() {
         return cart.getRunningTotal();
     }
+
+    public Cart getCart() {return cart;}
 }

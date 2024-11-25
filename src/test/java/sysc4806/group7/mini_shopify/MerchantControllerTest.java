@@ -14,9 +14,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class MerchantControllerTest {
+    // TODO: fix, demo is running when tests are
+    int merchantId = 3;
+    int shopId = 1;
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    MerchantRepository merchantRepository;
+
 
     @Test
     public void createMerchantTest() throws Exception {
@@ -25,7 +32,7 @@ public class MerchantControllerTest {
                         .param("username", "bob@gmail.com")
                         .param("password", "test"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/home/merchant/1"));
+                .andExpect(redirectedUrl("/home/merchant/" + merchantId));
     }
 
     @Test
@@ -40,7 +47,7 @@ public class MerchantControllerTest {
                         .param("username", "bob@gmail.com")
                         .param("password", "test"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/home/merchant/1"));
+                .andExpect(redirectedUrl("/home/merchant/" + merchantId));
     }
 
     @Test

@@ -3,10 +3,7 @@ package sysc4806.group7.mini_shopify;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -21,7 +18,10 @@ public class SearchController {
     ShopRepository shopRepository;
 
     @GetMapping("/results")
-    public String getSearchResults(@RequestParam String searchString, Model model) {
+    public String getSearchResults(@RequestParam String searchString, @RequestParam (required = false) Long buyerId, Model model) {
+        if (buyerId != null) {
+            model.addAttribute("buyerId", buyerId);
+        }
 
         // Log the string that the user has entered in search bar
         logger.info("Displaying shop results for search string: " + searchString);
@@ -113,7 +113,10 @@ public class SearchController {
         return "search_results";
     }
     @GetMapping("/{shopId}")
-    public String showShopHome(@PathVariable Long shopId, Model model) {
+    public String showShopHome(@PathVariable Long shopId, @RequestParam (required = false) Long buyerId, Model model) {
+        if (buyerId != null) {
+            model.addAttribute("buyerId", buyerId);
+        }
         Optional<Shop> shop = shopRepository.findById(shopId);
         if (shop.isPresent()) {
             model.addAttribute("shop", shop.get());
