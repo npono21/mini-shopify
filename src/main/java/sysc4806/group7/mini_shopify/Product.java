@@ -115,6 +115,13 @@ public class Product {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Product product)) return false;
+        return this.name.equals(product.name) && this.description.equals(product.description) && this.price == product.price;
+
+    }
+
+    @Override
     public String toString() {
         return "Product [name=" + name + ", price=" + price + ", tags=" + tags + "]";
     }

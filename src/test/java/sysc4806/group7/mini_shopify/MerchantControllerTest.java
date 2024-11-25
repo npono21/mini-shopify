@@ -18,6 +18,7 @@ public class MerchantControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+
     @Test
     public void createMerchantTest() throws Exception {
         mockMvc.perform(post("/home/merchant/createMerchant")
