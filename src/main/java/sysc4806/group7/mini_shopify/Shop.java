@@ -41,6 +41,14 @@ public class Shop {
         this.tags.addAll(tags);
     }
 
+    // Constructor: No Tags
+    public Shop(String name, String description, Merchant merchant) {
+        this.name = name;
+        this.description = description;
+        this.merchant = merchant;
+        this.tags = new ArrayList<>();
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

@@ -57,15 +57,27 @@ public class MerchantController {
     }
 
     @PostMapping("/{merchantId}/createShop")
-    public String createShop(@PathVariable Long merchantId, @RequestParam String shopName, @RequestParam String shopDescription, @RequestParam ArrayList<Tag> shopTags, Model model) {
+    public String createShop(@PathVariable Long merchantId, @RequestParam String shopName, @RequestParam String shopDescription, @RequestParam(required=false) ArrayList<Tag> shopTags, Model model) {
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
+        Shop shop;
         if (merchant.isPresent()) {
-            // Log list of received tags
-            logger.debug("Tags for shop " + shopName + ":");
-            for (Tag tag : shopTags) {
-                logger.debug(tag.toString());
+            // Case: Tags POSTed
+            if (shopTags != null) {
+                logger.info("Adding " + shopTags.size() + " tag(s) for shop " + shopName + ".");
+                for (Tag tag : shopTags) {
+                    logger.debug(tag.toString());
+                }
+                // Create the Shop with Tags
+                shop = new Shop(shopName,shopDescription,merchant.get(), shopTags);
             }
-            Shop shop = new Shop(shopName, shopDescription, merchant.get(), shopTags);
+            // Case: No Tags POSTed
+            else {
+                logger.info("No tags argued for shop " + shopName + "; creating shop without tags.");
+                // Create the Shop without Tags
+                shop = new Shop(shopName,shopDescription,merchant.get());
+            }
+
+            // Attach Shop to Merchant
             merchant.get().addShop(shop);
             merchantRepository.save(merchant.get());
             model.addAttribute("shop", shop);

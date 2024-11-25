@@ -70,19 +70,16 @@ public class SearchController {
         // Shop NAME and Shop TAGS. So, a user can enter any string they like,
         // and each whitespace-separated substring is treated as a single
         // search term for both criteria.
-        //
         // To keep us case-insensitive, all pattern matching is done in
         // uppercase.
-        //
-        // We also return substring matches to make the search more
-        // user-friendly. So, for example, if a user searches for "electronic",
-        // they will still catch results for the tag "ELECTRONICS".
+        // We return substring matches, as if the Shop name has whitespace-
+        // separated words comprising its name, we still want to return it.
 
         // Loop: Shops
         for (Shop shop : allShops) {
             // Loop: Search Terms
             for (String searchTerm: searchTerms) {
-                // Check: substring match of searchTerm in Shop name
+                // Check: exact match of searchTerm in Shop name
                 if (shop.getName().toUpperCase().contains(searchTerm.toUpperCase())) {
                     // Accumulate Shop
                     shopResults.add(shop);
