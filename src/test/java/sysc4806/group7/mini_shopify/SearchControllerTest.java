@@ -21,60 +21,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SearchControllerTest {
 
     @Autowired
-    BuyerRepository buyerRepository;
-    @Autowired
-    MerchantRepository merchantRepository;
-    @Autowired
-    ShopRepository shopRepository;
-    @Autowired
     private MockMvc mockMvc;
-
-    Buyer buyer;
-    Merchant merchant;
-    Shop s0;
-    Shop s1;
-    Shop s2;
-    ArrayList<Tag> t1;
-    ArrayList<Tag> t2;
-    String searchString;
-    String response;
-
+    private String urlString;
+    private String searchString;
 
     @Test
     public void getSearchResults() throws Exception {
 
-        /* Setup */
-        // Buyer
-        buyer = new Buyer("Rebecca", "rebecca_123", "ult1m4t3_fr1sb33");
-        buyerRepository.save(buyer);
+        // The endpoint under test
+        urlString = "/home/search/results";
 
-        // Merchant
-        merchant = new Merchant("Arthur", "arthur_123", "zinch");
-        merchantRepository.save(merchant);
+        // Test: No search term
+        searchString = "";
+        mockMvc.perform(get(urlString)
+                        .param("searchString", searchString))
+                .andExpect(status().isOk());
 
-        // Tag: t1 (one tag)
-        t1 = new ArrayList<>();
-        t1.add(Tag.BABY);
-        // Tag: t2 (several tags)
-        t2 = new ArrayList<>();
-        t2.add(Tag.BABY);
-        t2.add(Tag.APPLIANCES);
-        t2.add(Tag.GROCERY);
-        // Shop: s0 (no tags)
-        s0 = new Shop("No Tag Shop", "sells something", merchant);
-        merchant.addShop(s0);
-        // Shop: s1 (one tag)
-        s1 = new Shop("One Tag Shop", "sells baby stuff only", merchant);
-        merchant.addShop(s1);
-        // Shop: s2 (several tags)
-        s2 = new Shop("One Tag Shop", "sells babies, appliances, and groceries", merchant);
-        merchant.addShop(s2);
-
-        /* Test */
-
+        // Test: Single search term
         searchString = "baby";
-        // Test our endpoint.
-        mockMvc.perform(get("/home/search/results")
+        mockMvc.perform(get(urlString)
+                        .param("searchString", searchString))
+                .andExpect(status().isOk());
+
+        // Test: Multiple search terms
+        searchString = "baby appliances grocery";
+        mockMvc.perform(get(urlString)
                         .param("searchString", searchString))
                 .andExpect(status().isOk());
     }
