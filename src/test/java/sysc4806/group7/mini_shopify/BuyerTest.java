@@ -16,8 +16,8 @@ class BuyerTest {
 
     @BeforeEach
     void setUp() {
-        b1 = new Buyer("Rebecca", "ult1m4t3_fr1sb33");
-        m1 = new Merchant("Arthur", "zinch");
+        b1 = new Buyer("Rebecca", "rebeccar_123", "ult1m4t3_fr1sb33");
+        m1 = new Merchant("Arthur", "arthuer_123", "zinch");
         tags = new ArrayList<>();
         tags.add(Tag.BABY);
         tags.add(Tag.GROCERY);

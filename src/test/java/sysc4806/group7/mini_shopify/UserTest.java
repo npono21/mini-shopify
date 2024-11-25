@@ -16,8 +16,8 @@ class UserTest {
 
     @BeforeEach
     void setUp() {
-        buyer = new Buyer("Rebecca", "ult1m4t3_fr1sb33");
-        merchant = new Merchant("Arthur", "zinch");
+        buyer = new Buyer("Rebecca", "Rebecca123", "ult1m4t3_fr1sb33");
+        merchant = new Merchant("Arthur", "Arthurt123", "zinch");
         tags = new ArrayList<>();
         tags.add(Tag.BABY);
         tags.add(Tag.GROCERY);
@@ -32,11 +32,11 @@ class UserTest {
     @Test
     void login() {
         // Try login with correct password
-        assertTrue(buyer.login("Rebecca", "ult1m4t3_fr1sb33"));
+        assertTrue(buyer.login("Rebecca123", "ult1m4t3_fr1sb33"));
         // Try login with empty password
-        assertFalse(buyer.login("Rebecca", ""));
+        assertFalse(buyer.login("rebecca_123", ""));
         // Try login with incorrect password
-        assertFalse(buyer.login("Rebecca", "zinch"));
+        assertFalse(buyer.login("rebecca_123", "zinch"));
     }
 
     @Test

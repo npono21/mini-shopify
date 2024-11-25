@@ -1,9 +1,6 @@
 package sysc4806.group7.mini_shopify;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
-
-public interface BuyerRepository extends CrudRepository<Buyer, Long> {
-    Optional<Buyer> findById(Long id);
+public interface BuyerRepository extends JpaRepository<Buyer, Long> {
 }

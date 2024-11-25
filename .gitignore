@@ -15,3 +15,6 @@ target/
 .DS_Store
 *.swp
 *.scratch
+
+# VS Code generated files
+.vscode

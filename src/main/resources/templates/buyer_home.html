@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>Mini-Shopify Search Results</title>
+    <title>Mini-Shopify Buyer Home</title>
     <meta charset="UTF-8">
     <meta name="author" content="Nicholai Ponomarev">
     <link rel="stylesheet" href="/css/merchant_home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script></script>
+    <script src="/js/profile_menu_dropdown.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
             </button>
             <div class="dropdown-account-content">
                 <a href="#">Manage Account</a>
-                <a href="/index.html">Logout</a>
+                <a href="/index">Logout</a>
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
                 <p> Home</p>
             </div>
             <div class="menu-item"><i class="fa fa-shopping-cart"></i>
-                <p> Orders</p>
+                <p> My Order</p>
             </div>
             <div class="menu-item"><i class="fa fa-cog"></i>
                 <p> Settings</p>
@@ -43,29 +43,12 @@
         <main class="content-area">
             <div class="page-title-div">
                 <div>
-                    <h1>Search Results</h1>
+                    <h1 th:text="'Welcome to '+ ${buyer.name} + '\'s Dashboard'">Dashboard</h1>
+                    <p>Manage your business activities, check orders, and stay on top of inventory and customer needs.
+                    </p>
                 </div>
             </div>
-            <p>Showing Shop results for: <span id="displaySearchString" th:text="${searchString}">magic</span>
-            </p>
-            <!-- Display the Shop Tiles Here -->
-            <section class="tiles-container">
-                <div class="tile" th:each="shop : ${shopResults}">
-                    <a th:href="@{/home/search/{shopId}(shopId=${shop.id})}" class="tile-link">
-                        <h2 th:text="${shop.name}">magic</h2>
-                        <img src="/images/nafinia-putra-Kwdp-0pok-I-unsplash.jpg" alt="Shop Stock Image 1">
-                        <div class="displayTags">
-                            <ul>
-                                <li th:each="tag : ${shop.tags}">
-                                    <p th:text="${tag.name}">magic</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </a>
-                </div>
-            </section>
         </main>
     </div>
 </body>
-
 </html>

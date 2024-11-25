@@ -6,16 +6,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 @org.springframework.stereotype.Controller
 public class Controller {
 
+    @GetMapping("/index")
+    public String index(Model model) {
+        return "index";
+    }
+
     @GetMapping("/registerMerchant")
     public String registerMerchant() {
         return "merchant_register";
     }
-    @GetMapping("/merchantLogin")
-    public String merchantLogin() {
+
+    @GetMapping("/loginMerchant")
+    public String loginMerchant() {
         return "merchant_login";
     }
-    @GetMapping("/loginMerchant")
-    public String loginMerchant(Model model) {
-        return "merchant_home";
+
+    @GetMapping("/registerBuyer")
+    public String registerBuyer(Model model) {
+        return "buyer_register";
     }
+
+    @GetMapping("/loginBuyer")
+    public String loginBuyer(Model model) {
+        return "buyer_login";
+    }
+
 }

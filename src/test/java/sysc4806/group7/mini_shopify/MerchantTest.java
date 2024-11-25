@@ -9,23 +9,25 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MerchantTest {
-    Merchant m1;
-    Shop s1;
-    ArrayList<Tag> tags;
+    private Merchant m1;
+    private Shop s1;
+    private ArrayList<Tag> tags;
 
     @BeforeEach
     void setUp() {
-        m1 = new Merchant("Arthur", "zinch");
+        m1 = new Merchant("Arthur", "arthur123", "zinch");
         tags = new ArrayList<>();
         tags.add(Tag.BABY);
         tags.add(Tag.GROCERY);
         tags.add(Tag.APPLIANCES);
         s1 = new Shop("Arthur's Appliances", "a shop", m1, tags);
-
     }
 
     @AfterEach
     void tearDown() {
+        m1 = null;
+        s1 = null;
+        tags = null;
     }
 
     @Test

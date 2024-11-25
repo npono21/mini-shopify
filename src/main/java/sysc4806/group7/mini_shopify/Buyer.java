@@ -9,15 +9,15 @@ import jakarta.persistence.*;
  */
 @Entity
 public class Buyer extends User{
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private final Cart cart = new Cart();
 
-    public Buyer(String name, String password) {
-        super(name, password);
+    public Buyer(String name, String username, String password) {
+        super(name, username, password);
     }
 
     public Buyer() {
-        super("default", "default");
+        super("default", "default", "default");
     }
 
     public boolean addItemToCart(Product product) {
