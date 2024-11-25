@@ -96,7 +96,6 @@
                         </label>
                         <button type="submit">Add to cart</button>
                     </form>
-                    <h1 th:text="'A' + ${alertItemName}"></h1>
                     <div th:if="${alertItemName == items.product.name}" class="alert">
                         <p th:text="${alertMessage}"></p>
                     </div>

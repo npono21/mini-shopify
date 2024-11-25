@@ -25,7 +25,7 @@ public class AccessingDataJpaApplication {
         SpringApplication.run(AccessingDataJpaApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     public CommandLineRunner demo(CartRepository repository, BuyerRepository buyerRepository, MerchantRepository merchantRepository) {
         return (args) -> {
             Merchant merchant = new Merchant("tim", "TT", "tom");
@@ -47,5 +47,5 @@ public class AccessingDataJpaApplication {
             Buyer buyer = new Buyer("John", "JD", "Doe");
             buyerRepository.save(buyer);
         };
-    }
+    }*/
 }
