@@ -4,7 +4,7 @@
 <head>
     <title>Mini-Shopify Shop Home</title>
     <meta charset="UTF-8">
-    <meta name="author" content="Nicholai Ponomarev">
+    <meta name="author" content="Nicholai Ponomarev, Rebecca Elliott">
     <link rel="stylesheet" href="/css/shop_home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -43,6 +43,7 @@
     <div class="header-bar">
         <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
         <form id="search-bar" action="/home/search/results" method="get">
+            <input type="hidden" name="buyerId" th:value="${buyerId}">
             <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
             <button type="submit">Search</button>
         </form>
@@ -62,7 +63,8 @@
                 <p> Home</p>
             </div>
             <div class=" menu-item"><i class="fa fa-shopping-cart"></i>
-                <p> Orders</p>
+                <button th:if="${buyerId}" th:onclick="'location.href=\'/home/carts/' + ${buyerId} + '\';'"> Cart</button>
+                <p th:if="${buyerId} == null"> Orders</p>
             </div>
             <div class="menu-item"><i class="fa fa-cog"></i>
                 <p> Settings</p>
@@ -83,6 +85,21 @@
                     <h5 th:text="'Description: ' + ${items.product.description}">Product Description</h5>
                     <h5 th:text="'  Price: $' + ${items.product.price}">Product Price</h5>
                     <img th:src="${items.product.imagePath}" alt="Item Stock Image 1">
+                    <form th:if="${buyerId}" th:action="@{/home/buyer/{buyerId}/{shopId}(buyerId=${buyerId}, shopId=${shop.getId()})}" method="post" style="display: inline;">
+                        <label>
+                            Quantity:
+                            <input type="number" name="quantity" th:value="1" min="1" style="width: 50px;">
+                            <input type="hidden"  name="productName" th:value="${items.product.name}">
+                            <input type="hidden" name="productDescription" th:value="${items.product.description}">
+                            <input type="hidden" name="productPrice" th:value="${items.product.price}">
+                            <input type="hidden" name="productImg" th:value="${items.product.imagePath}">
+                        </label>
+                        <button type="submit">Add to cart</button>
+                    </form>
+                    <h1 th:text="'A' + ${alertItemName}"></h1>
+                    <div th:if="${alertItemName == items.product.name}" class="alert">
+                        <p th:text="${alertMessage}"></p>
+                    </div>
                 </div>
             </section>
         </main>

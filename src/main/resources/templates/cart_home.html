@@ -44,6 +44,7 @@
 <div class="header-bar">
     <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
     <form id="search-bar" action="/home/search/results" method="get">
+        <input type="hidden" name="buyerId" th:value="${buyerId}">
         <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
         <button type="submit">Search</button>
     </form>
@@ -86,7 +87,7 @@
             <div class="tile" th:each="item : ${cart.items}">
                 <h2 th:text="${item.product.name}">Item name</h2>
                 <h4 th:text="'Price: $' + ${item.product.price} + ' x ' + ${item.quantity} + ' = $' + ${item.getTotalCost()}">Item price</h4>
-                <form th:action="@{/home/carts/{cartId}/update/{productId}(cartId=${cart.getId()}, productId=${item.product.getId()})}" method="post" style="display: inline;">
+                <form th:action="@{/home/carts/{buyerId}/update/{productId}(buyerId=${buyerId}, productId=${item.product.getId()})}" method="post" style="display: inline;">
                     <label>
                         Quantity:
                         <input type="number" name="quantity" th:value="${item.quantity}" min="1" style="width: 50px;">
@@ -98,7 +99,7 @@
                 </div>
                 <img th:src="${item.product.imagePath}" alt="Item Stock Image 1">
 
-                <form th:action="@{/home/carts/{cartId}/{productId}(cartId=${cart.getId()}, productId=${item.product.getId()})}" method="post" style="display: inline;">
+                <form th:action="@{/home/carts/{buyerId}/{productId}(buyerId=${buyerId}, productId=${item.product.getId()})}" method="post" style="display: inline;">
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit">Remove Product From Cart</button>
                 </form>

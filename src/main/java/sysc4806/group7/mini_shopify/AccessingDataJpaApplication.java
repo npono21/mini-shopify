@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -24,9 +26,11 @@ public class AccessingDataJpaApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(CartRepository repository) {
+    public CommandLineRunner demo(CartRepository repository, BuyerRepository buyerRepository, MerchantRepository merchantRepository) {
         return (args) -> {
-            Shop shop = new Shop();
+            Merchant merchant = new Merchant("tim", "TT", "tom");
+
+            Shop shop = new Shop("U", "des", merchant, new ArrayList<>(List.of(Tag.GROCERY)));
             Product eggs = new Product("Eggs", "some eggs", 3.00, "/images/jakub-kapusnak-Hj53USePB1E-unsplash.jpg", shop);
             shop.addProduct(eggs);
             shop.addInventory(eggs, 4);
@@ -37,10 +41,13 @@ public class AccessingDataJpaApplication {
             cart.addItems(eggs, 2);
             cart.addItems(milk, 1);
 
-            repository.save(cart);
+            //repository.save(cart);
+
+            merchant.addShop(shop);
+            merchantRepository.save(merchant);
 
 
-            log.info("Carts found with findAll():");
+            /*log.info("Carts found with findAll():");
             log.info("-------------------------------");
             repository.findAll().forEach(cart1 -> {
                 log.info(cart1.toString());
@@ -52,6 +59,21 @@ public class AccessingDataJpaApplication {
             log.info("Cart found with findById(1L):");
             log.info("--------------------------------");
             log.info(cart2.get().toString());
+            log.info("");*/
+
+            Buyer buyer = new Buyer("John", "JD", "Doe");
+            buyerRepository.save(buyer);
+            log.info("Buyers found with findAll():");
+            log.info("-------------------------------");
+            buyerRepository.findAll().forEach(buyer1 -> {
+                log.info("ID: " + buyer1.getId() + ", " + buyer1.toString());
+            });
+            log.info("");
+
+            Optional<Buyer> buyer2 = buyerRepository.findById(2L);
+            log.info("Buyer found with findById(1L):");
+            log.info("--------------------------------");
+            log.info(buyer2.get().toString());
             log.info("");
         };
     }
