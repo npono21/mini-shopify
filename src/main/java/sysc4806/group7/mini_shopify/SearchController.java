@@ -72,14 +72,15 @@ public class SearchController {
         // search term for both criteria.
         // To keep us case-insensitive, all pattern matching is done in
         // uppercase.
-        // We only return exact matches (no substring matches)
+        // We return substring matches, as if the Shop name has whitespace-
+        // separated words comprising its name, we still want to return it.
 
         // Loop: Shops
         for (Shop shop : allShops) {
             // Loop: Search Terms
             for (String searchTerm: searchTerms) {
                 // Check: exact match of searchTerm in Shop name
-                if (shop.getName().toUpperCase().equals(searchTerm.toUpperCase())) {
+                if (shop.getName().toUpperCase().contains(searchTerm.toUpperCase())) {
                     // Accumulate Shop
                     shopResults.add(shop);
                     logger.info("Shop [" + shop.getName() + "] found with NAME matching search term: [" + searchTerm + "]");
@@ -87,7 +88,7 @@ public class SearchController {
                 // Loop: Tags
                 for (Tag tag : shop.getTags()) {
                         // Check: tag match of searchTerm in Shop tags
-                        if (tag.toString().toUpperCase().equals(searchTerm.toUpperCase())) {
+                        if (tag.toString().toUpperCase().contains(searchTerm.toUpperCase())) {
                             // Accumulate Shop
                             shopResults.add(shop);
                             logger.info("Shop [" + shop.getName() + "] found with TAG matching search term: [" + searchTerm + "]");
