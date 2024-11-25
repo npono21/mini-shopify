@@ -141,6 +141,7 @@ Use Cases for this project used to drive the design and implementation.
   1. Click the **I am a Merchant Login** Button.
   1. Click the **Login with email** Button.
   1. Enter credentials from registration and click **Login** Button.
+  1. At end of session, click the **Account** button and then click **Logout**.
 - Status:
   - Implemented in Milestone 2.
 
@@ -155,6 +156,7 @@ Use Cases for this project used to drive the design and implementation.
   1. Click the **I am a Buyer Login** Button.
   1. Click the **Login with email** Button.
   1. Enter credentials from registration and click **Login** Button.
+  1. At end of session, click the **Account** button and then click **Logout**.
 - Status:
   - Implemented in Milestone 2.
 
