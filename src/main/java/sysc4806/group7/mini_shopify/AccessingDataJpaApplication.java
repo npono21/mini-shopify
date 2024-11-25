@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootApplication
 public class AccessingDataJpaApplication {
@@ -41,10 +40,11 @@ public class AccessingDataJpaApplication {
             cart.addItems(eggs, 2);
             cart.addItems(milk, 1);
 
-            //repository.save(cart);
-
             merchant.addShop(shop);
             merchantRepository.save(merchant);
+
+            Buyer buyer = new Buyer("John", "JD", "Doe");
+            buyerRepository.save(buyer);
 
 
             /*log.info("Carts found with findAll():");
@@ -61,8 +61,7 @@ public class AccessingDataJpaApplication {
             log.info(cart2.get().toString());
             log.info("");*/
 
-            Buyer buyer = new Buyer("John", "JD", "Doe");
-            buyerRepository.save(buyer);
+            /*
             log.info("Buyers found with findAll():");
             log.info("-------------------------------");
             buyerRepository.findAll().forEach(buyer1 -> {
@@ -74,7 +73,7 @@ public class AccessingDataJpaApplication {
             log.info("Buyer found with findById(1L):");
             log.info("--------------------------------");
             log.info(buyer2.get().toString());
-            log.info("");
+            log.info("");*/
         };
     }
 }
