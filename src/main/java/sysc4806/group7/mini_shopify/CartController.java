@@ -32,7 +32,7 @@ public class CartController implements WebMvcConfigurer {
             model.addAttribute("cart", cart.get());
             return "cart_home";
         } else {
-            return "error";
+            return "general_error";
         }
 
     }
@@ -46,7 +46,7 @@ public class CartController implements WebMvcConfigurer {
             cartRepository.save(cart);
             model.addAttribute("cart", cart);
         } else {
-            return "error";
+            return "general_error";
         }
         return "cart_home";
     }
@@ -65,7 +65,7 @@ public class CartController implements WebMvcConfigurer {
                 redirectAttributes.addFlashAttribute("alertItemId", productId);
             }
         } else {
-            return "error";
+            return "general_error";
         }
         return "redirect:/home/carts/" + cartId;
     }
