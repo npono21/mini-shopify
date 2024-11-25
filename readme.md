@@ -178,10 +178,11 @@ Design diagrams generated for this project.
 
 ### UML Class Diagram
 
-The current UML class diagram for the project is visualized below:
-![Milestone 1: UML Class Diagram](https://github.com/npono21/mini-shopify/blob/main/src/main/java/SYSC4806Project.png?raw=true)
+The current UML class diagram for Milestone 2 is visualized below:
+![Milestone 2: UML Class Diagram](./img/milestone-02/m02-uml-class-diagram.png)
 
 ### Database Schema
 
-The current relational database schema design for the project is visualized below:
-![Milestone 1: Database Schema](https://github.com/npono21/mini-shopify/blob/e44040a775aa786d0ee9eebc4e75c0482096a111/src/main/java/db-schema-m01.png?raw=true)
+The current relational database schema design for Milestone 2 is visualized below:
+![Milestone 2: Database Schema](./img/milestone-02/m02-db-schema.png)
+
