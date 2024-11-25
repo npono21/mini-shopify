@@ -59,7 +59,7 @@ button {
   box-sizing: border-box;
   color: #fff;
   font-size: 15px;
-  width: 100%;
+  width: 100px;
 }
 
 button:hover {

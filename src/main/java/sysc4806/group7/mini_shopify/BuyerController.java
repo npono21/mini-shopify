@@ -35,7 +35,7 @@ public class BuyerController {
                 return "redirect:/home/buyer/" + buyer.getId();
             }
         }
-        return "error";
+        return "credential_error";
     }
     @GetMapping("/{buyerId}")
     public String showBuyerHome(@PathVariable Long buyerId, Model model) {
@@ -45,7 +45,7 @@ public class BuyerController {
             return "buyer_home";
         }
         else {
-            return "error";
+            return "general_error";
         }
     }
 

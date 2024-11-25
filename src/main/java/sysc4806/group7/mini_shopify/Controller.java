@@ -31,4 +31,14 @@ public class Controller {
         return "buyer_login";
     }
 
+    @GetMapping("/generalError")
+    public String generalError(Model model) {
+        return "general_error";
+    }
+
+    @GetMapping("/credentialError")
+    public String credentialError(Model model) {
+        return "credential_error";
+    }
+
 }

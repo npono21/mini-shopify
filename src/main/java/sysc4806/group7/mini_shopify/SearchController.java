@@ -122,7 +122,7 @@ public class SearchController {
             model.addAttribute("shop", shop.get());
             return "shop_home";
         } else {
-            return "error";
+            return "general_error";
         }
     }
 
