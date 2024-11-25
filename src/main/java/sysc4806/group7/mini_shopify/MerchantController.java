@@ -40,7 +40,7 @@ public class MerchantController {
             model.addAttribute("merchant", merchant.get());
             return "merchant_home";
         } else {
-            return "error";
+            return "general_error";
         }
     }
 
@@ -53,7 +53,7 @@ public class MerchantController {
                 return "redirect:/home/merchant/" + merchant.getId();
             }
         }
-        return "error";
+        return "credential_error";
     }
 
     @PostMapping("/{merchantId}/createShop")
@@ -71,7 +71,7 @@ public class MerchantController {
             model.addAttribute("shop", shop);
             return "redirect:/home/merchant/" + merchant.get().getId();
         } else {
-            return "error";
+            return "general_error";
         }
     }
 
@@ -84,7 +84,7 @@ public class MerchantController {
             model.addAttribute("merchant", merchant.get());
             return "merchant_shop";
         } else {
-            return "error";
+            return "general_error";
         }
     }
 
@@ -116,7 +116,7 @@ public class MerchantController {
             return "redirect:/home/merchant/" + merchant.get().getId() + "/shop/" + shop.get().getId();
         }
         else {
-            return "error";
+            return "general_error";
         }
     }
 }
