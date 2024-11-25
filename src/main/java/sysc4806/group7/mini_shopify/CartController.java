@@ -39,7 +39,7 @@ public class CartController implements WebMvcConfigurer {
     }
 
     @DeleteMapping("/{buyerId}/{productId}")
-    public String deleteProductFromCart(@PathVariable Long buyerId, @PathVariable Long productId, Model model, RedirectAttributes redirectAttributes) {
+    public String deleteProductFromCart(@PathVariable Long buyerId, @PathVariable Long productId, Model model) {
         Optional<Buyer> buyer = buyerRepository.findById(buyerId);
         if (buyer.isPresent()) {
             Cart cart = buyer.get().getCart();
