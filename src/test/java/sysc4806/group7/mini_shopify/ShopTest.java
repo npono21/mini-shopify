@@ -13,6 +13,7 @@ class ShopTest {
     Buyer buyer;
     Merchant merchant;
     Shop shop;
+    Shop noTagShop;
     Product bread;
     Product toaster;
     ArrayList<Tag> tags;
@@ -29,6 +30,7 @@ class ShopTest {
         merchant.addShop(shop);
         toaster = new Product("Toaster", "a toaster", 12.99);
         bread = new Product("Bread", "some bread", 4.25);
+        noTagShop = new Shop("Babak's Books", "sells Martin Fowler books", merchant);
     }
 
     @AfterEach
@@ -134,6 +136,27 @@ class ShopTest {
         shop.setName("Arthur's Avocados");
         assertEquals("Arthur's Avocados", shop.getName());
     }
+
+    @Test
+    void addTag() {
+        assertFalse(shop.getTags().contains(Tag.ENTERTAINMENT));
+        shop.addTag(Tag.ENTERTAINMENT);
+        assertTrue(shop.getTags().contains(Tag.ENTERTAINMENT));
+    }
+
+    @Test
+    void removeTag() {
+        // Remove existing tag
+        assertFalse(shop.getTags().contains(Tag.ENTERTAINMENT));
+        shop.addTag(Tag.ENTERTAINMENT);
+        assertTrue(shop.getTags().contains(Tag.ENTERTAINMENT));
+
+        // Try to remove from empty
+        assertEquals(0, noTagShop.getTags().size());
+        noTagShop.removeTag(Tag.ENTERTAINMENT);
+        assertEquals(0, noTagShop.getTags().size());
+    }
+
 
     @Test
     void testToString() {
