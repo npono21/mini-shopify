@@ -27,7 +27,7 @@ SYSC 4806 A Project
 
 [Visit the Mini-Shopify web application!](https://sysc4806-minishopify-ergyb4hpcef7fufw.canadaeast-01.azurewebsites.net/)
 
-The Mini-Shopify project is a web application, developed using the Java Spring Boot framework, that provides a simple and easy forum for merchants and customers to interact in an online marketplace. Merchants are able to create one or more shops where they may list various products for purchase. Customers may browse merchant shops to view and purchase items, or they may rely on the site's various search mechanisms to help them find the products they want. Customers may add items to their cart from a vendor's shop, and initiate purchase of the items in their shop through a transaction.
+The Mini-Shopify project is a web application, developed using the Java Spring Boot framework, that provides a simple and easy forum for merchants and customers to interact in an online marketplace. Merchants are able to create one or more shops where they may list various products for purchase. Customers may browse merchant shops to view and purchase items, or they may rely on the site's search mechanism to help them find the products they want. Customers may add items to their cart from a vendor's shop, and initiate purchase of the items in their shop through a transaction.
 
 ## Milestones
 
@@ -54,14 +54,19 @@ Project milestones.
 
 #### Goals
 
-- [ ] Implement several additional related features
-- [ ] Support several related use cases
-- [ ] Implement integration tests for Controllers
-- [ ] Update project documentation and diagrams 
+- [x] Implement several additional related features
+- [x] Support several related use cases
+- [x] Implement integration tests for Controllers
+- [x] Update project documentation and diagrams 
 
 #### Completed Use Cases
 
 3. Search a Shop by Name or Tags
+4. Register a Buyer Account
+5. Login/Logout as a Merchant
+6. Login/Logout as a Buyer
+7. Add an Item to Shop
+
 
 ## Use Cases
 
@@ -74,12 +79,10 @@ Use Cases for this project used to drive the design and implementation.
 - Preconditions:
   - None
 - Steps:
-  1. In a browser, navigate to the [Mini-Shopify home page on Azure](https://sysc4806-minishopify-ergyb4hpcef7fufw.canadaeast-01.azurewebsites.net/).
+  1. In a browser, navigate to the Mini-Shopify home page.
   1. Click the **I am a Merchant Login** Button.
   1. Click the **Register here** button to begin the registration process.
-  1. Complete the **Create your account** form by supplying the following fields:
-     - **Username or Email**
-     - **Password**
+  1. Complete the **Create your account**. 
   1. Click the **Create Mini-Shopify Account** button to complete merchant registration.
   1. Peruse the merchant dashboard created for the merchant account.
 - Status:
@@ -93,10 +96,7 @@ Use Cases for this project used to drive the design and implementation.
   - User has registered as a Merchant and is logged in to their account, as per Use Case 1 above.
 - Steps:
   1. From the merchant dashboard, click the **Create a Shop** button.
-  1. Complete the resultant form with the following fields:
-     - **Shop Name**
-     - **Shop Description**
-     - **Shop Tags**
+  1. Complete the resultant form with the required shop information.
   1. Create the shop by clicking the **Create Shop** button.
   1. View the shop icon created under the **My Shops** section of the merchant dashboard.
 - Status:
@@ -113,6 +113,66 @@ Use Cases for this project used to drive the design and implementation.
   1. View the list of results containing all **Shops** that match any search term in their **Name** or list of **Tags**.
 - Status:
   - Implemented in Milestone 2.
+
+### Use Case 4: Register a Buyer Account
+
+- Primary Actor:
+  - New Buyer User
+- Preconditions:
+  - None
+- Steps:
+  1. In a browser, navigate to the Mini-Shopify home page.
+  1. Click the **I am a Buyer Login** Button.
+  1. Click the **Register here** button to begin the registration process.
+  1. Complete the **Create your account** form.
+  1. Click the **Create Mini-Shopify Account** button to complete merchant registration.
+  1. Peruse the buyer dashboard created for the buyer account.
+- Status:
+  - Implemented in Milestone 2.
+
+### Use Case 5: Login/Logout as a Merchant
+
+- Primary Actor:
+  - Merchant
+- Preconditions:
+  - User has registered.
+- Steps:
+  1. In a browser, navigate to the Mini-Shopify home page.
+  1. Click the **I am a Merchant Login** Button.
+  1. Click the **Login with email** Button.
+  1. Enter credentials from registration and click **Login** Button.
+  1. At end of session, click the **Account** button and then click **Logout**.
+- Status:
+  - Implemented in Milestone 2.
+
+### Use Case 6: Login/Logout as a Buyer
+
+- Primary Actor:
+  - Buyer
+- Preconditions:
+  - User has registered.
+- Steps:
+  1. In a browser, navigate to the Mini-Shopify home page.
+  1. Click the **I am a Buyer Login** Button.
+  1. Click the **Login with email** Button.
+  1. Enter credentials from registration and click **Login** Button.
+  1. At end of session, click the **Account** button and then click **Logout**.
+- Status:
+  - Implemented in Milestone 2.
+
+### Use Case 7: Add an Item to Shop
+
+- Primary Actor:
+  - Merchant
+- Preconditions:
+  - Merchant has registered, is logged into their account, and has an extant shop.
+- Steps:
+  1. On the merchant home page, click the shop to add a product to.
+  1. On the shop page, click the **Add a Product** button.
+  1. Complete the form with product details and click **Add Product** button.
+- Status:
+  - Implemented in Milestone 2.
+
 
 ## CI/CD/CT
 
@@ -133,7 +193,6 @@ The GitHub Actions Workflow for deployment is defined in the file `main_sysc4806
 ### Continuous Testing (CT)
 
 Unit and integration tests are automatically executed upon every mainline and feature branch _push_ to the remote repository as a GitHub Action. The Workflow for these tests are defined in the file `run-tests.yml`, and may be actively monitored or later reviewed [here](https://github.com/npono21/mini-shopify/actions/workflows/run-tests.yml).
-**N.B.** If tests do _not_ pass on the project's mainline, this is because they are caused by known bugs tracked in our project's [GitHub Issues](https://github.com/npono21/mini-shopify/issues) and [Kanban](https://github.com/users/npono21/projects/2) board that are actively being worked on.
 
 ## Issues
 
@@ -178,10 +237,11 @@ Design diagrams generated for this project.
 
 ### UML Class Diagram
 
-The current UML class diagram for the project is visualized below:
-![Milestone 1: UML Class Diagram](https://github.com/npono21/mini-shopify/blob/main/src/main/java/SYSC4806Project.png?raw=true)
+The current UML class diagram for Milestone 2 is visualized below:
+![Milestone 2: UML Class Diagram](./img/milestone-02/m02-uml-class-diagram.png)
 
 ### Database Schema
 
-The current relational database schema design for the project is visualized below:
-![Milestone 1: Database Schema](https://github.com/npono21/mini-shopify/blob/e44040a775aa786d0ee9eebc4e75c0482096a111/src/main/java/db-schema-m01.png?raw=true)
+The current relational database schema design for Milestone 2 is visualized below:
+![Milestone 2: Database Schema](./img/milestone-02/m02-db-schema.png)
+
