@@ -1,75 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <title>Mini-Shopify Shop Home</title>
     <meta charset="UTF-8">
-    <meta name="author" content="Nicholai Ponomarev">
+    <meta name="author" content="Nicholai Ponomarev, Rebecca Elliott">
     <link rel="stylesheet" href="/css/shop_home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="/js/go_back.js"></script>
-    <script>
-        function toggleProfileMenuDropdown() {
-            const dropdownContent = document.querySelector(".dropdown-account-content");
-            const newShopButton = document.querySelector("#add-product-button");
-
-            // Toggle dropdown visibility
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none"; // Hide dropdown
-                newShopButton.style.display = "block";  // Show "Create Shop" button
-            } else {
-                dropdownContent.style.display = "block"; // Show dropdown
-                newShopButton.style.display = "none";   // Hide "Create Shop" button
-            }
-        }
-
-        window.onclick = function (event) {
-            const dropdownContent = document.querySelector(".dropdown-account-content");
-            const dropdownButton = document.querySelector(".dropdown-account-button");
-
-            // Close dropdown if the user clicks outside the button and dropdown
-            if (!event.target.matches('.dropdown-account-button') && !event.target.matches('.dropdown-account-content') && !event.target.matches('#add-product-button')) {
-                if (dropdownContent) {
-                    dropdownContent.style.display = "none"; // Hide dropdown
-                }
-            }
-        }
-
-    </script>
+    <script src="/js/profile_menu_dropdown.js"></script>
 </head>
 
 <body>
-    <div class="header-bar">
-        <img src="/images/Mini-Shopify Logo.png" alt="Mini-Shopify Logo" style="width: 50px; height: 50px;">
-        <form id="search-bar" action="/home/search/results" method="get">
-            <input type="search" id="searchString" name="searchString" placeholder="Search by shop name or tags...">
-            <input type="hidden" name="buyerId" th:value="${buyerId}">
-            <button type="submit">Search</button>
-        </form>
-        <div class="dropdown-account-menu">
-            <button onclick="toggleProfileMenuDropdown()" class="dropdown-account-button">
-                <i class="fa fa-user"></i> Account
-            </button>
-            <div class="dropdown-account-content">
-                <a href="#">Manage Account</a>
-                <a href="/index">Logout</a>
-            </div>
-        </div>
-    </div>
+    <div th:replace="fragments/common :: header-bar"></div>
     <div class="main-content">
-        <aside class="side-menu">
-            <div class="menu-item"><i class="fa fa-home" aria-hidden="true" onclick="goBack('/home/buyer/' + ${buyer.id})"></i>
-                <p> Home</p>
-            </div>
-            <div class=" menu-item"><i class="fa fa-shopping-cart"></i>
-                <button th:if="${buyerId}" th:onclick="'location.href=\'/home/carts/' + ${buyerId} + '\';'"> Cart</button>
-                <p th:if="${buyerId} == null"> Orders</p>
-            </div>
-            <div class="menu-item"><i class="fa fa-cog"></i>
-                <p> Settings</p>
-            </div>
-        </aside>
+        <aside th:replace="fragments/common :: side-menu"></aside>
         <main class="content-area">
             <div class="page-title-div">
                 <div>
