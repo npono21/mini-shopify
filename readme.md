@@ -201,9 +201,9 @@ Use Cases for this project used to drive the design and implementation.
 - Steps:
   1. On any extant store page with products for sale and in stock, select the product to add to cart.
   1. Set the quantity of product to add to cart using the number input box for **Quantity**. 
-    - A quantity may be set either by typing into the box, or by using the increment/decrement buttons.
+      - A quantity may be set either by typing into the box, or by using the increment/decrement buttons.
   1. Add the selected quantity of product to cart by clicking the product's **Add to cart** button.
-    - The maximum amount of items that may be added to cart for a particular product is the number of products held in stock in the store inventory; if this quantity is exceed, items will _not_ be moved to cart and the buyer will receive a notification of insufficient inventory.
+      - The maximum amount of items that may be added to cart for a particular product is the number of products held in stock in the store inventory; if this quantity is exceed, items will _not_ be moved to cart and the buyer will receive a notification of insufficient inventory.
 - Status:
   - Implemented in Milestone 3.
 
@@ -296,8 +296,6 @@ If you wish to execute the entire suite of unit and integration tests locally un
 
 ```bash
 mvn -B test --file pom.xml
- oce    
-
 ```
 
 ## Diagrams
@@ -314,3 +312,4 @@ The current UML class diagram for Milestone 3 is visualized below:
 The current relational database schema design for Milestone 3 is visualized below:
 ![Milestone 3: Database Schema](./img/milestone-03/m03-db-schema.png)
 
+Thanks!!
