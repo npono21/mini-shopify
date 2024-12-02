@@ -20,6 +20,8 @@ public class Product {
     private double price;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Tag> tags = new ArrayList<>();
+    @Lob
+    private byte[] image;
     private String imagePath;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -33,11 +35,11 @@ public class Product {
         imagePath = "/images/Mini-Shopify Logo.png";
         this.shop = shop;
     }
-    public Product(String name, String description, double price, String imagePath, Shop shop) {
+    public Product(String name, String description, double price, byte[] image, Shop shop) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.imagePath = imagePath;
+        this.image = image;
         this.shop = shop;
     }
 
@@ -73,6 +75,12 @@ public class Product {
         return price;
     }
 
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+    public byte[] getImage() {
+        return image;
+    }
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
