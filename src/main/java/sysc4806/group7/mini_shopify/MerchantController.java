@@ -1,5 +1,6 @@
 package sysc4806.group7.mini_shopify;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -111,8 +112,7 @@ public class MerchantController {
                              @RequestParam String productDescription,
                              @RequestParam double productPrice,
                              @RequestParam int quantity,
-                             @RequestParam("select_product_img") MultipartFile productImg,
-                             Model model) {
+                             @RequestParam("select_product_img") MultipartFile productImg) {
         Optional<Shop> shop = shopRepository.findById(shopId);
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
         if (shop.isPresent() && merchant.isPresent()) {
@@ -122,8 +122,12 @@ public class MerchantController {
                     return "redirect:/home/merchant/" + merchant.get().getId() + "/shop/" + shop.get().getId();
                 }
             }
-            // TODO: handle product image
-            Product product = new Product(productName, productDescription, productPrice, shop.get());
+            byte[] imageData = null;
+            try {
+                imageData = productImg.getBytes();
+            } catch (IOException e) {
+            }
+            Product product = new Product(productName, productDescription, productPrice, imageData, shop.get());
             shop.get().addProduct(product);
             shop.get().addInventory(product, quantity);
             shopRepository.save(shop.get());

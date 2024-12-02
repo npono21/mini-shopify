@@ -54,7 +54,7 @@ public class BuyerController {
                                    @RequestParam String productName,
                                    @RequestParam String productDescription,
                                    @RequestParam double productPrice,
-                                   @RequestParam(required = false) String productImg,
+                                   @RequestParam(required = false) byte[] productImg,
                                    @RequestParam int quantity,
                                    RedirectAttributes redirectAttributes,
                                    Model model) {
@@ -63,11 +63,7 @@ public class BuyerController {
         if (buyer.isPresent() && shop.isPresent()) {
             Cart cart = buyer.get().getCart();
             Product product;
-            if (!productImg.isEmpty()) {
-                product = new Product(productName, productDescription, productPrice, productImg, shop.get());
-            } else {
-                product = new Product(productName, productDescription, productPrice, shop.get());
-            }
+            product = new Product(productName, productDescription, productPrice, productImg, shop.get());
             cart.addProduct(product);
             try {
                 model.addAttribute("buyer", buyer.get());

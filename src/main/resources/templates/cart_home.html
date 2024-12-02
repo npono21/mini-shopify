@@ -44,7 +44,6 @@
                 <div th:if="${alertItemId == item.product.id}" class="alert">
                     <p th:text="${alertMessage}"></p>
                 </div>
-                <img th:src="${item.product.imagePath}" alt="Item Stock Image 1">
 
                 <form th:action="@{/home/carts/{buyerId}/{productId}(buyerId=${buyerId}, productId=${item.product.getId()})}" method="post" style="display: inline;">
                     <input type="hidden" name="_method" value="DELETE">
