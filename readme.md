@@ -190,7 +190,7 @@ Use Cases for this project used to drive the design and implementation.
   1. On the shop page, click the **Add a Product** button.
   1. Complete the form with product details and click **Add Product** button.
 - Status:
-  - Implemented in Milestone 3.
+  - Implemented in Milestone 2.
 
 ### Use Case 8: Add an Item to Cart
 - Primary Actor:
