@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/mdesantis/school/sysc/4806a/mini-shopify/src/main/java/sysc4806/group7/mini_shopify</OriginalElement>
+  <nodes>
+    <node x="238.17731629392972" y="1076.9214589989351">sysc4806.group7.mini_shopify.Cart</node>
+    <node x="726.2776890308841" y="937.0750798722045">sysc4806.group7.mini_shopify.Shop</node>
+    <node x="1140.8626581469646" y="603.7501895633652">sysc4806.group7.mini_shopify.Merchant</node>
+    <node x="1404.9137380191696" y="1074.1522896698616">sysc4806.group7.mini_shopify.Product</node>
+    <node x="1042.9526730564428" y="1802.098296059638">sysc4806.group7.mini_shopify.ItemQuantityPair</node>
+    <node x="435.7275026624069" y="1744.8897763578275">sysc4806.group7.mini_shopify.ItemQuantityList</node>
+    <node x="1128.5017071352506" y="1266.7559275825347">sysc4806.group7.mini_shopify.Tag</node>
+    <node x="816.7151224707138" y="405.5266240681576">sysc4806.group7.mini_shopify.User</node>
+    <node x="423.5675867944631" y="628.1872673056442">sysc4806.group7.mini_shopify.Buyer</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="sysc4806.group7.mini_shopify.Merchant" target="sysc4806.group7.mini_shopify.User" relationship="GENERALIZATION">
+      <point x="-188.0" y="-51.5" />
+      <point x="1140.8626581469646" y="752.2469563365282" />
+      <point x="1068.016890308839" y="752.2469563365282" />
+      <point x="1068.016890308839" y="606.0266240681576" />
+      <point x="928.7151224707138" y="606.0266240681576" />
+      <point x="0.0" y="-200.5" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Buyer" target="sysc4806.group7.mini_shopify.Cart" relationship="TO_ONE">
+      <point x="146.5" y="0.0" />
+      <point x="445.77936528221505" y="725.1872673056442" />
+      <point x="445.77936528221505" y="838.5331075612353" />
+      <point x="411.2525963791267" y="838.5331075612353" />
+      <point x="411.2525963791267" y="1346.4214589989351" />
+      <point x="-143.5" y="0.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Buyer" target="sysc4806.group7.mini_shopify.User" relationship="GENERALIZATION">
+      <point x="133.34652609158672" y="-39.9684898828541" />
+      <point x="777.5356400425986" y="685.2187774227901" />
+      <point x="777.5356400425986" y="606.0266240681576" />
+      <point x="112.0" y="0.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Merchant" target="sysc4806.group7.mini_shopify.Shop" relationship="CREATE">
+      <point x="-0.0" y="131.5" />
+      <point x="1328.8626581469646" y="1114.2859637912675" />
+      <point x="1068.016890308839" y="1114.2859637912675" />
+      <point x="1068.016890308839" y="1305.0750798722045" />
+      <point x="174.0" y="-5.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Shop" target="sysc4806.group7.mini_shopify.ItemQuantityList" relationship="TO_ONE">
+      <point x="174.0" y="5.0" />
+      <point x="664.4390170394037" y="1315.0750798722045" />
+      <point x="664.4390170394037" y="1744.8897763578275" />
+      <point x="-10.0" y="-292.5" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Product" target="sysc4806.group7.mini_shopify.Tag" relationship="TO_MANY">
+      <point x="0.0" y="-350.0" />
+      <point x="1569.4137380191696" y="1758.5" />
+      <point x="1213.5017071352506" y="1758.5" />
+      <point x="0.0" y="189.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Cart" target="sysc4806.group7.mini_shopify.ItemQuantityList" relationship="TO_ONE">
+      <point x="143.5" y="-55.75" />
+      <point x="525.1773162939297" y="1433.7937965921192" />
+      <point x="572.2374920127796" y="1433.7937965921192" />
+      <point x="572.2374920127796" y="1744.8897763578275" />
+      <point x="-0.0" y="-292.5" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Shop" target="sysc4806.group7.mini_shopify.Product" relationship="TO_MANY">
+      <point x="-0.0" y="373.0" />
+      <point x="900.2776890308841" y="1217.967510117146" />
+      <point x="1413.7624749733757" y="1217.967510117146" />
+      <point x="1413.7624749733757" y="1338.6522896698616" />
+      <point x="164.5" y="-85.5" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Cart" target="sysc4806.group7.mini_shopify.ItemQuantityList" relationship="CREATE">
+      <point x="143.5" y="-65.75" />
+      <point x="615.7275026624069" y="1280.6714589989351" />
+      <point x="10.0" y="-292.5" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Merchant" target="sysc4806.group7.mini_shopify.Shop" relationship="TO_MANY">
+      <point x="-104.21090415335516" y="132.53622151224704" />
+      <point x="1224.6517539936094" y="907.4206645367411" />
+      <point x="895.2776890308841" y="907.4206645367411" />
+      <point x="-5.0" y="-373.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Buyer" target="sysc4806.group7.mini_shopify.Cart" relationship="CREATE">
+      <point x="-147.16404259850907" y="14.031799787007458" />
+      <point x="418.59810862619804" y="739.2190670926517" />
+      <point x="418.59810862619804" y="811.3518509052182" />
+      <point x="381.6773162939297" y="811.3518509052182" />
+      <point x="0.0" y="-269.5" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.ItemQuantityPair" target="sysc4806.group7.mini_shopify.Product" relationship="TO_ONE">
+      <point x="119.0" y="0.0" />
+      <point x="1569.4137380191696" y="1991.098296059638" />
+      <point x="0.0" y="350.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.ItemQuantityList" target="sysc4806.group7.mini_shopify.ItemQuantityPair" relationship="CREATE">
+      <point x="147.74368796592103" y="-11.261120340788239" />
+      <point x="810.0082044728433" y="2026.1286560170392" />
+      <point x="810.0082044728433" y="2025.2085197018105" />
+      <point x="-119.0" y="34.110223642172514" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Shop" target="sysc4806.group7.mini_shopify.Tag" relationship="TO_MANY">
+      <point x="-10.0" y="373.0" />
+      <point x="890.2776890308841" y="1455.7559275825347" />
+      <point x="85.0" y="0.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Shop" target="sysc4806.group7.mini_shopify.ItemQuantityList" relationship="CREATE">
+      <point x="10.0" y="373.0" />
+      <point x="910.2776890308841" y="1959.1077571884985" />
+      <point x="608.8987864749733" y="1959.1077571884985" />
+      <point x="608.8987864749733" y="2037.3897763578275" />
+      <point x="-170.0" y="0.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Product" target="sysc4806.group7.mini_shopify.Shop" relationship="TO_ONE">
+      <point x="-164.5" y="0.0" />
+      <point x="1413.7624749733757" y="1424.1522896698616" />
+      <point x="1413.7624749733757" y="1150.2492907348244" />
+      <point x="1052.7953865814693" y="1150.2492907348244" />
+      <point x="1052.7953865814693" y="1310.0750798722045" />
+      <point x="-174.0" y="0.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.Shop" target="sysc4806.group7.mini_shopify.Merchant" relationship="TO_ONE">
+      <point x="5.0" y="-373.0" />
+      <point x="905.2776890308841" y="1066.75305857295" />
+      <point x="1254.2850244941428" y="1066.75305857295" />
+      <point x="1254.2850244941428" y="829.8409627263046" />
+      <point x="1140.8626581469646" y="829.8409627263046" />
+      <point x="-188.0" y="0.0" />
+    </edge>
+    <edge source="sysc4806.group7.mini_shopify.ItemQuantityList" target="sysc4806.group7.mini_shopify.ItemQuantityPair" relationship="TO_MANY">
+      <point x="170.0" y="49.110223642172514" />
+      <point x="1042.9526730564428" y="2086.5" />
+      <point x="-119.0" y="49.110223642172514" />
+    </edge>
+  </edges>
+  <settings layout="Compact" zoom="0.7358011534603812" showDependencies="true" x="1023.3168136315229" y="1002.0799999999999" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
