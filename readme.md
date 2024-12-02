@@ -67,6 +67,25 @@ Project milestones.
 6. Login/Logout as a Buyer
 7. Add an Item to Shop
 
+### Milestone 3: Final Demo (2024/12/06)
+
+#### Goals
+
+- [x] Implement several additional related features
+- [x] Support additional use cases
+- [x] Fully establish and integrated features selected for implementation
+- [x] Make the product usable and useful for both buyers and merchants
+- [x] Remove all elements without functionality
+- [x] Refactor code to abide by DRY principle
+- [x] Update project documentation and diagrams 
+- [x] Integrate web application with external tools
+- [x] Ensure GitHub Issues and Kanban board are current
+
+#### Completed Use Cases
+
+8. Add an Item to Cart
+9. View and Modify Cart on Cart Dashboard
+10. Complete Transaction via Cart Checkout
 
 ## Use Cases
 
@@ -171,7 +190,50 @@ Use Cases for this project used to drive the design and implementation.
   1. On the shop page, click the **Add a Product** button.
   1. Complete the form with product details and click **Add Product** button.
 - Status:
-  - Implemented in Milestone 2.
+  - Implemented in Milestone 3.
+
+### Use Case 8: Add an Item to Cart
+- Primary Actor:
+  - Buyer
+- Preconditions:
+  - Merchant has an extant shop with items in stock.
+  - Buyer is registered and logged in.
+- Steps:
+  1. On any extant store page with products for sale and in stock, select the product to add to cart.
+  1. Set the quantity of product to add to cart using the number input box for **Quantity**. 
+    - A quantity may be set either by typing into the box, or by using the increment/decrement buttons.
+  1. Add the selected quantity of product to cart by clicking the product's **Add to cart** button.
+    - The maximum amount of items that may be added to cart for a particular product is the number of products held in stock in the store inventory; if this quantity is exceed, items will _not_ be moved to cart and the buyer will receive a notification of insufficient inventory.
+- Status:
+  - Implemented in Milestone 3.
+
+### Use Case 9: View and Modify Cart on Cart Dashboard
+- Primary Actor:
+  - Buyer
+- Preconditions:
+  - Buyer is registered and logged in.
+- Steps:
+  1. From a shop home page, click the **Cart** button in the left-hand navigation bar.
+  1. On the resultant Cart Dashboard page, inspect the cart and its products.
+      - Inspect cart information, such as cumulative total value of cart.
+      - Inspect item-specific information for each product in cart, such as quantity, unit price, and combined price.
+  1. On the resultant Cart Dashboard page, modify the items in cart.
+      - Update item quantity by setting new quantity and cliocking **Update** button.
+      - Remove product from cart by clicking ** Remove Product From Cart** button. 
+- Status:
+  - Implemented in Milestone 3.
+
+### Use Case 10: Complete Transaction via Cart Checkout
+- Primary Actor:
+  - Buyer
+- Preconditions:
+  - Buyer is registered and logged in.
+  - Buyer has at least one item in cart.
+- Steps:
+  1. From the cart dashboard, inspect and confirm items in cart.
+  1. To initiate transaction and purchase items in cart, click the **Checkout** button.
+- Status:
+  - Implemented in Milestone 3. 
 
 
 ## CI/CD/CT
@@ -222,6 +284,11 @@ Retrieve this repository's source code through one of the following methods:
 
 To build and execute the project locally in IntelliJ, select the `AccessingDataJpaApplication.java` class in the _Project_ browser, and select **Run** (`SHIFT + F10`).
 
+To build and execute the project locally with Maven, execute the following command:
+```bash
+mvn spring-boot:run
+```
+
 ### Running Unit and Integration Tests
 
 Unit and integration tests are automatically executed upon every mainline and feature branch _push_ to the remote repository as a GitHub Action; however, tests may also be run locally.
@@ -229,6 +296,8 @@ If you wish to execute the entire suite of unit and integration tests locally un
 
 ```bash
 mvn -B test --file pom.xml
+ oce    
+
 ```
 
 ## Diagrams
@@ -237,11 +306,11 @@ Design diagrams generated for this project.
 
 ### UML Class Diagram
 
-The current UML class diagram for Milestone 2 is visualized below:
-![Milestone 2: UML Class Diagram](./img/milestone-02/m02-uml-class-diagram.png)
+The current UML class diagram for Milestone 3 is visualized below:
+![Milestone 3: UML Class Diagram](./img/milestone-03/m03-uml-class-diagram.png)
 
 ### Database Schema
 
-The current relational database schema design for Milestone 2 is visualized below:
-![Milestone 2: Database Schema](./img/milestone-02/m02-db-schema.png)
+The current relational database schema design for Milestone 3 is visualized below:
+![Milestone 3: Database Schema](./img/milestone-03/m03-db-schema.png)
 
