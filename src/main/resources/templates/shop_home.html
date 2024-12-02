@@ -25,24 +25,24 @@
             </div>
             <h1 style="margin-top: 20px;">Products</h1>
             <section class="tiles-container">
-                <div class="tile" th:each="items : ${shop.inventory.itemQuantityPairs}">
-                    <h2 th:text="${items.product.name}">Product Name</h2>
-                    <h5 th:text="'Description: ' + ${items.product.description}">Product Description</h5>
-                    <h5 th:text="'  Price: $' + ${items.product.price}">Product Price</h5>
-                    <img th:src="${items.product.imagePath}" alt="Item Stock Image 1">
-                    <h5 th:text="'Available inventory: ' + ${items.quantity}">Product Inventory</h5>
+                <div class="tile" th:each="item : ${shop.inventory.itemQuantityPairs}">
+                    <h2 th:text="${item.product.name}">Product Name</h2>
+                    <h5 th:text="'Description: ' + ${item.product.description}">Product Description</h5>
+                    <h5 th:text="'  Price: $' + ${item.product.price}">Product Price</h5>
+                    <img th:src="@{/product/{productId}/image(productId=${item.product.id})}" alt="Item Stock Image 1">
+                    <h5 th:text="'Available inventory: ' + ${item.quantity}">Product Inventory</h5>
                     <form th:if="${buyerId}" th:action="@{/home/buyer/{buyerId}/{shopId}(buyerId=${buyerId}, shopId=${shop.getId()})}" method="post" style="display: inline;">
                         <label>
                             Quantity:
                             <input type="number" name="quantity" th:value="1" min="1" style="width: 50px;">
-                            <input type="hidden"  name="productName" th:value="${items.product.name}">
-                            <input type="hidden" name="productDescription" th:value="${items.product.description}">
-                            <input type="hidden" name="productPrice" th:value="${items.product.price}">
-                            <input type="hidden" name="productImg" th:value="${items.product.imagePath}">
+                            <input type="hidden"  name="productName" th:value="${item.product.name}">
+                            <input type="hidden" name="productDescription" th:value="${item.product.description}">
+                            <input type="hidden" name="productPrice" th:value="${item.product.price}">
+                            <input type="hidden" name="productImg" th:value="@{/product/{productId}/image(productId=${item.product.id})}">
                         </label>
                         <button type="submit">Add to cart</button>
                     </form>
-                    <div th:if="${alertItemName == items.product.name}" class="alert">
+                    <div th:if="${alertItemName == item.product.name}" class="alert">
                         <p th:text="${alertMessage}"></p>
                     </div>
                 </div>

@@ -26,12 +26,12 @@
             </div>
             <h1 style="margin-top: 20px;">Products</h1>
             <section class="tiles-container">
-                <div class="tile" th:each="items : ${shop.inventory.itemQuantityPairs}">
-                    <h2 th:text="${items.product.name}">Product Name</h2>
-                    <h5 th:text="'Description: ' + ${items.product.description}">Product Description</h5>
-                    <h5 th:text="'Inventory: ' + ${items.quantity}">Product Inventory</h5>
-                    <h5 th:text="'  Price: $' + ${items.product.price}">Product Price</h5>
-                    <img th:src="${items.product.imagePath}" alt="Item Stock Image 1">
+                <div class="tile" th:each="item : ${shop.inventory.itemQuantityPairs}">
+                    <h2 th:text="${item.product.name}">Product Name</h2>
+                    <h5 th:text="'Description: ' + ${item.product.description}">Product Description</h5>
+                    <h5 th:text="'Inventory: ' + ${item.quantity}">Product Inventory</h5>
+                    <h5 th:text="'  Price: $' + ${item.product.price}">Product Price</h5>
+                    <img th:src="@{/product/{productId}/image(productId=${item.product.id})}" alt="Item Stock Image 1">
                 </div>
             </section>
         </main>
