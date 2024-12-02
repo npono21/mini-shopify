@@ -175,4 +175,17 @@ class CartTest {
         assertEquals(expected, cart.getRunningTotal());
     }
 
+    @Test
+    void checkout() {
+        cart.addItems(apple, 1);
+        cart.addItems(bread, 2);
+        cart.addItems(toaster, 3);
+        cart.checkout();
+        assertEquals(0, cart.getItems().size());
+        assertEquals(100 - 1, shop.getProductInventory(apple));
+        assertEquals(100 - 2, shop.getProductInventory(bread));
+        assertEquals(100 - 3, shop.getProductInventory(toaster));
+
+    }
+
 }

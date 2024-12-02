@@ -208,9 +208,8 @@ public class ItemQuantityList implements Iterable<ItemQuantityPair> {
     }
 
     public void removeAll() {
-        for (ItemQuantityPair itemQuantityPair : this.itemQuantityPairs) {
-            itemQuantityPairs.remove(itemQuantityPair);
-        }
+        System.out.println(this.itemQuantityPairs);
+        this.itemQuantityPairs.clear();
     }
 
     @Override

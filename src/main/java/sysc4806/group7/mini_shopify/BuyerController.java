@@ -66,7 +66,7 @@ public class BuyerController {
             if (!productImg.isEmpty()) {
                 product = new Product(productName, productDescription, productPrice, productImg, shop.get());
             } else {
-                product = new Product(productName, productDescription, productPrice);
+                product = new Product(productName, productDescription, productPrice, shop.get());
             }
             cart.addProduct(product);
             try {

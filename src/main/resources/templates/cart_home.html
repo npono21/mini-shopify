@@ -77,7 +77,9 @@
                 <p>Manage the items in your cart.
                 </p>
             </div>
-            <button th:href="@{/carts/{cartId}/checkout(cartId=${cart.getId()})}" id="checkout-button">Checkout</button>
+            <form th:action="@{/home/carts/{buyerId}/checkout(buyerId=${buyerId})}" method="post">
+                <button type="submit" id="checkout-button">Checkout</button>
+            </form>
         </div>
         <h1 style="margin-top: 20px;">My Items</h1>
         <div class="total-display">

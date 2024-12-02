@@ -26,22 +26,14 @@ public class Product {
     private Shop shop;
 
     public Product() {}
-    public Product(String name, String description, double price) {
+    public Product(String name, String description, double price, Shop shop) {
         this.name = name;
         this.description = description;
         this.price = price;
         imagePath = "/images/Mini-Shopify Logo.png";
-    }
-    public Product(String name, String description, double price, String imagePath, Shop shop) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.imagePath = imagePath;
         this.shop = shop;
     }
-
-
-    public Product(String name, String description, double price, Shop shop) {
+    public Product(String name, String description, double price, String imagePath, Shop shop) {
         this.name = name;
         this.description = description;
         this.price = price;

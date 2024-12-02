@@ -28,8 +28,8 @@ class ShopTest {
         tags.add(Tag.APPLIANCES);
         shop = new Shop("Arthur's Appliances", "sells appliances", merchant, tags);
         merchant.addShop(shop);
-        toaster = new Product("Toaster", "a toaster", 12.99);
-        bread = new Product("Bread", "some bread", 4.25);
+        toaster = new Product("Toaster", "a toaster", 12.99, shop);
+        bread = new Product("Bread", "some bread", 4.25, shop);
         noTagShop = new Shop("Babak's Books", "sells Martin Fowler books", merchant);
     }
 
