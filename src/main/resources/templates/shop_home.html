@@ -30,6 +30,7 @@
                     <h5 th:text="'Description: ' + ${items.product.description}">Product Description</h5>
                     <h5 th:text="'  Price: $' + ${items.product.price}">Product Price</h5>
                     <img th:src="${items.product.imagePath}" alt="Item Stock Image 1">
+                    <h5 th:text="'Available inventory: ' + ${items.quantity}">Product Inventory</h5>
                     <form th:if="${buyerId}" th:action="@{/home/buyer/{buyerId}/{shopId}(buyerId=${buyerId}, shopId=${shop.getId()})}" method="post" style="display: inline;">
                         <label>
                             Quantity:

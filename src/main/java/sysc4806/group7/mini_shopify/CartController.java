@@ -72,4 +72,17 @@ public class CartController implements WebMvcConfigurer {
         }
         return "redirect:/home/carts/" + buyerId;
     }
+
+    @PostMapping("/{buyerId}/checkout")
+    public String checkout(@PathVariable Long buyerId, Model model) {
+        Optional<Buyer> result = buyerRepository.findById(buyerId);
+        if (result.isPresent()) {
+            Cart cart = result.get().getCart();
+            cart.checkout();
+            buyerRepository.save(result.get());
+            model.addAttribute("cart", cart);
+            model.addAttribute("buyerId", buyerId);
+        } else return "general_error";
+        return "redirect:/home/carts/" + buyerId;
+    }
 }

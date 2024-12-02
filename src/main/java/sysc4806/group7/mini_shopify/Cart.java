@@ -108,8 +108,12 @@ public class Cart {
         return runningTotal;
     }
 
-    // TODO: make transaction and remove quantity from shop.
-    public void checkout() {
+   public void checkout() {
+       System.out.println(items);
+        for (ItemQuantityPair p : items) {
+            p.product.getShop().removeInventory(p.product, p.quantity);
+        }
+        System.out.println(items);
         items.removeAll();
         runningTotal = 0.0;
     }

@@ -51,6 +51,15 @@ public class CartControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("general_error"));
     }
+
+    @Test
+    void testCheckout() throws Exception {
+        mockMvc.perform(get("/home/carts/1"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("cart_home"))
+                .andExpect(model().attributeExists("buyerId"))
+                .andExpect(model().attributeExists("cart"));
+    }
 }
 
 

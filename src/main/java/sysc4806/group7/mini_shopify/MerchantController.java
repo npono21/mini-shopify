@@ -119,7 +119,7 @@ public class MerchantController {
                 }
             }
             // TODO: handle product image
-            Product product = new Product(productName, productDescription, productPrice);
+            Product product = new Product(productName, productDescription, productPrice, shop.get());
             shop.get().addProduct(product);
             shop.get().addInventory(product, quantity);
             shopRepository.save(shop.get());

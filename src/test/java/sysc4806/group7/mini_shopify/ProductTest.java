@@ -13,11 +13,12 @@ class ProductTest {
 
     private Product apple;
     private Product toaster;
+    private Shop shop = new Shop();
 
     @BeforeEach
     void setUp() {
-        apple = new Product("apple", "some apples", 1.50);
-        toaster = new Product("toaster", "a toaster", 12.99);
+        apple = new Product("apple", "some apples", 1.50, shop);
+        toaster = new Product("toaster", "a toaster", 12.99, shop);
     }
 
     @AfterEach
