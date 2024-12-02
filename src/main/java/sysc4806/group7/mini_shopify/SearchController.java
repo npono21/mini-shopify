@@ -18,9 +18,12 @@ public class SearchController {
     ShopRepository shopRepository;
 
     @GetMapping("/results")
-    public String getSearchResults(@RequestParam String searchString, @RequestParam (required = false) Long buyerId, Model model) {
+    public String getSearchResults(@RequestParam String searchString, @RequestParam (required = false) Long buyerId, @RequestParam (required = false) Long merchantId, Model model) {
         if (buyerId != null) {
             model.addAttribute("buyerId", buyerId);
+        }
+        if (merchantId != null) {
+            model.addAttribute("merchantId", merchantId);
         }
 
         // Log the string that the user has entered in search bar
@@ -110,10 +113,14 @@ public class SearchController {
         return "search_results";
     }
     @GetMapping("/{shopId}")
-    public String showShopHome(@PathVariable Long shopId, @RequestParam (required = false) Long buyerId, Model model) {
+    public String showShopHome(@PathVariable Long shopId, @RequestParam (required = false) Long buyerId, @RequestParam (required = false) Long merchantId, Model model) {
         if (buyerId != null) {
             model.addAttribute("buyerId", buyerId);
         }
+        if (merchantId != null) {
+            model.addAttribute("merchantId", merchantId);
+        }
+
         Optional<Shop> shop = shopRepository.findById(shopId);
         if (shop.isPresent()) {
             model.addAttribute("shop", shop.get());

@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import java.util.ArrayList;
 
 @org.springframework.stereotype.Controller
+@SessionAttributes("merchantId")
 @RequestMapping("/home/merchant")
 public class MerchantController {
 
@@ -30,6 +31,7 @@ public class MerchantController {
         Merchant merchant = new Merchant(name, username, password);
         merchantRepository.save(merchant);
         model.addAttribute("merchant", merchant);
+        model.addAttribute("merchantId", merchant.getId());
         return "redirect:/home/merchant/" + merchant.getId();
     }
 
@@ -38,6 +40,7 @@ public class MerchantController {
         Optional<Merchant> merchant = merchantRepository.findById(merchantId);
         if (merchant.isPresent()) {
             model.addAttribute("merchant", merchant.get());
+            model.addAttribute("merchantId", merchant.get().getId());
             return "merchant_home";
         } else {
             return "general_error";
@@ -50,6 +53,7 @@ public class MerchantController {
         for (Merchant merchant : merchants) {
             if (merchant.login(username, password)) {
                 model.addAttribute("merchant", merchant);
+                model.addAttribute("merchantId", merchant.getId());
                 return "redirect:/home/merchant/" + merchant.getId();
             }
         }
